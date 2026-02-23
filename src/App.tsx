@@ -56,7 +56,7 @@ export default function App() {
   const [activeLinkId, setActiveLinkId] = useState<string | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [showAddModal, setShowAddModal] = useState(false);
-  const [showKilas, setShowKilas] = useState(false);
+  const [showKilas, setShowKilas] = useState(true);
   const [showPeta, setShowPeta] = useState(false);
   const [showTutorial, setShowTutorial] = useState(false);
   const [newApp, setNewApp] = useState({ 
@@ -105,7 +105,6 @@ export default function App() {
           icon: l.icon || 'Globe'
         }));
         setLinks(migrated);
-        if (migrated.length > 0) setActiveLinkId(migrated[0].id);
       } catch (e) {
         console.error('Failed to parse links', e);
       }
@@ -117,7 +116,6 @@ export default function App() {
         { id: '3', title: 'AI Studio', url: 'https://aistudio.google.com', displayMode: 'new_tab', color: APP_COLORS[4], icon: 'Zap' },
       ];
       setLinks(defaults);
-      setActiveLinkId(defaults[0].id);
     }
   }, []);
 
@@ -404,16 +402,26 @@ export default function App() {
             <ExternalLink size={14} className="text-slate-400 group-hover:text-indigo-500 transition-colors" />
           </a>
 
-          <div className="h-px bg-black/5 mx-2" />
-
-          {/* 3D Add Button */}
-          <button
-            onClick={() => setShowAddModal(true)}
-            className="group relative w-full h-11 bg-gradient-to-r from-indigo-600 to-violet-600 rounded-xl transition-all duration-100 active:translate-y-1 active:shadow-none shadow-[0_4px_0_0_#4338ca] hover:brightness-110 flex items-center justify-center gap-2 text-white font-bold text-sm"
+          {/* UKS SMPN 7 Menu */}
+          <a
+            href="https://uksspanju.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/40 text-slate-600 group"
           >
-            <Plus size={18} />
-            <span>Add New App</span>
-          </button>
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-400 to-blue-500 flex items-center justify-center text-white shadow-md shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
+              <Activity size={18} />
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="font-black tracking-tight truncate text-sm text-slate-600 group-hover:text-slate-900 transition-colors">
+                UKS SMPN 7
+              </p>
+              <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Aplikasi Eksternal</p>
+            </div>
+            <ExternalLink size={14} className="text-slate-400 group-hover:text-indigo-500 transition-colors" />
+          </a>
+
+          <div className="h-px bg-black/5 mx-2" />
 
           <div className="space-y-2 pt-1">
             {links.map((link) => {
