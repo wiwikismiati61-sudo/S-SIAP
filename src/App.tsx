@@ -366,6 +366,44 @@ export default function App() {
             <ExternalLink size={14} className="text-slate-400 group-hover:text-indigo-500 transition-colors" />
           </a>
 
+          {/* SIM-Agama Menu */}
+          <a
+            href="https://sim-agama.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/40 text-slate-600 group"
+          >
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-white shadow-md shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
+              <Book size={18} />
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="font-black tracking-tight truncate text-sm text-slate-600 group-hover:text-slate-900 transition-colors">
+                SIM-Agama
+              </p>
+              <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Aplikasi Eksternal</p>
+            </div>
+            <ExternalLink size={14} className="text-slate-400 group-hover:text-indigo-500 transition-colors" />
+          </a>
+
+          {/* Disiplin Spanju Menu */}
+          <a
+            href="https://disiplin-spanju.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/40 text-slate-600 group"
+          >
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-rose-400 to-pink-500 flex items-center justify-center text-white shadow-md shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
+              <Calendar size={18} />
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="font-black tracking-tight truncate text-sm text-slate-600 group-hover:text-slate-900 transition-colors">
+                Disiplin Spanju
+              </p>
+              <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Aplikasi Eksternal</p>
+            </div>
+            <ExternalLink size={14} className="text-slate-400 group-hover:text-indigo-500 transition-colors" />
+          </a>
+
           <div className="h-px bg-black/5 mx-2" />
 
           {/* 3D Add Button */}
