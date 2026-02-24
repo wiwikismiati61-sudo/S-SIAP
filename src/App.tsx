@@ -58,7 +58,6 @@ export default function App() {
   const [showAddModal, setShowAddModal] = useState(false);
   const [showKilas, setShowKilas] = useState(true);
   const [showPeta, setShowPeta] = useState(false);
-  const [showTutorial, setShowTutorial] = useState(false);
   const [newApp, setNewApp] = useState({ 
     title: '', 
     url: '', 
@@ -140,7 +139,6 @@ export default function App() {
   const handleLinkClick = (link: AppLink) => {
     setShowKilas(false);
     setShowPeta(false);
-    setShowTutorial(false);
     if (link.displayMode === 'new_tab') {
       window.open(link.url, '_blank');
       setActiveLinkId(link.id); // Still set as active to show selection
@@ -315,33 +313,6 @@ export default function App() {
                 Peta Integrasi 7KAIH
               </p>
               <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Kaitan Karakter</p>
-            </div>
-          </button>
-
-          {/* Tutorial Menu */}
-          <button
-            onClick={() => {
-              setShowTutorial(true);
-              setShowPeta(false);
-              setShowKilas(false);
-              setActiveLinkId(null);
-            }}
-            className={`
-              w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300
-              ${showTutorial 
-                ? `bg-white shadow-[0_10px_30px_rgba(0,0,0,0.08)] translate-y-[-2px] ring-1 ring-black/5` 
-                : 'hover:bg-white/40 text-slate-600'
-              }
-            `}
-          >
-            <div className={`w-9 h-9 rounded-xl bg-gradient-to-br from-rose-400 to-pink-500 flex items-center justify-center text-white shadow-md shrink-0 transition-all duration-500 ${showTutorial ? 'scale-110 rotate-3' : ''}`}>
-              <MessageSquare size={18} />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className={`font-black tracking-tight truncate text-sm ${showTutorial ? 'text-slate-900' : 'text-slate-600'}`}>
-                Tutorial Penggunaan
-              </p>
-              <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Panduan Video</p>
             </div>
           </button>
 
@@ -580,83 +551,7 @@ export default function App() {
       {/* Main Content */}
       <main className="flex-1 flex flex-col relative p-3 pl-3 md:pl-0">
         <AnimatePresence mode="wait">
-          {showTutorial ? (
-            <motion.div
-              key="tutorial-content"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
-              className="flex-1 flex flex-col glass rounded-[2rem] overflow-y-auto shadow-[0_30px_80px_rgba(0,0,0,0.08)] border border-white/40 p-12 scrollbar-hide"
-            >
-              <div className="max-w-4xl mx-auto space-y-12 w-full">
-                <div className="text-center space-y-4">
-                  <div className="w-24 h-24 rounded-3xl bg-white flex items-center justify-center shadow-2xl shadow-indigo-100 mx-auto rotate-6 overflow-hidden p-2 mb-6">
-                    <img 
-                      src="https://iili.io/KDFk4fI.png" 
-                      alt="Logo" 
-                      className="w-full h-full object-contain"
-                      referrerPolicy="no-referrer"
-                    />
-                  </div>
-                  <h2 className="text-5xl font-black text-slate-800 tracking-tight font-display leading-none">Tutorial Penggunaan</h2>
-                  <p className="text-lg font-black text-indigo-600 uppercase tracking-[0.3em]">Panduan Lengkap Aplikasi SIAP</p>
-                </div>
-
-                <div className="bg-white/50 rounded-[2.5rem] border border-white/60 shadow-xl overflow-hidden">
-                  <div className="aspect-video w-full bg-slate-900 relative">
-                    <iframe 
-                      className="w-full h-full"
-                      src="https://www.youtube.com/embed/NGNTPlVtm1Q" 
-                      title="Tutorial Penggunaan Aplikasi SIAP" 
-                      frameBorder="0" 
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                      referrerPolicy="strict-origin-when-cross-origin" 
-                      allowFullScreen
-                    ></iframe>
-                  </div>
-                  <div className="p-8 space-y-4">
-                    <h3 className="text-2xl font-black text-slate-800 font-display">Cara Menggunakan Aplikasi SIAP</h3>
-                    <div className="space-y-3">
-                      <p className="text-slate-600 leading-relaxed font-medium">
-                        Video tutorial ini akan memandu Anda dalam menggunakan Aplikasi SIAP Spanju, mulai dari instalasi hingga penggunaan fitur-fitur utamanya:
-                      </p>
-                      <ul className="space-y-2">
-                        <li className="flex gap-3 text-slate-600 text-sm font-medium">
-                          <div className="w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center shrink-0 font-bold text-xs">1</div>
-                          <span>Tautkan link aplikasi menggunakan akun belajar.id yang Anda miliki.</span>
-                        </li>
-                        <li className="flex gap-3 text-slate-600 text-sm font-medium">
-                          <div className="w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center shrink-0 font-bold text-xs">2</div>
-                          <span>Salin link yang tertera di sidebar dan buka di browser perangkat lain (laptop/HP).</span>
-                        </li>
-                        <li className="flex gap-3 text-slate-600 text-sm font-medium">
-                          <div className="w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center shrink-0 font-bold text-xs">3</div>
-                          <span>Pilih menu "Instal Aplikasi" atau "Tambahkan ke Layar Utama" pada browser Anda.</span>
-                        </li>
-                        <li className="flex gap-3 text-slate-600 text-sm font-medium">
-                          <div className="w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center shrink-0 font-bold text-xs">4</div>
-                          <span>Setelah terinstal, buka aplikasi dan klik tombol "Restore" untuk memuat data aplikasi.</span>
-                        </li>
-                        <li className="flex gap-3 text-slate-600 text-sm font-medium">
-                          <div className="w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center shrink-0 font-bold text-xs">5</div>
-                          <span>Pilih file backup (.json) yang telah diunduh sebelumnya. Aplikasi SIAP siap digunakan!</span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="text-center pt-8">
-                  <button 
-                    onClick={() => setShowTutorial(false)}
-                    className="px-10 py-4 bg-white text-slate-800 rounded-2xl font-black shadow-xl hover:scale-105 transition-all border border-black/5"
-                  >
-                    Kembali ke Dashboard
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-          ) : showPeta ? (
+          {showPeta ? (
             <motion.div
               key="peta-content"
               initial={{ opacity: 0, y: 20 }}
