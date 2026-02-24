@@ -43,12 +43,13 @@ const ICON_MAP: Record<string, any> = {
 };
 
 const APP_COLORS = [
-  'from-indigo-400 to-cyan-400',
-  'from-fuchsia-400 to-pink-400',
-  'from-emerald-400 to-teal-400',
-  'from-amber-400 to-orange-400',
-  'from-violet-400 to-purple-400',
-  'from-rose-400 to-red-400',
+  'from-blue-600 to-blue-800', // Biru
+  'from-slate-800 to-black', // Hitam
+  'from-slate-300 to-slate-100', // Putih (slightly darker for contrast)
+  'from-red-600 to-red-800', // Merah
+  'from-pink-500 to-pink-700', // Pink
+  'from-emerald-600 to-emerald-800', // Hijau
+  'from-amber-700 to-amber-900', // Coklat
 ];
 
 export default function App() {
@@ -219,8 +220,9 @@ export default function App() {
     return (
       <div className="min-h-screen bg-transparent flex flex-col items-center justify-center p-6 relative overflow-hidden font-sans">
         {/* Decorative elements */}
-        <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-red-600/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-blue-600/20 rounded-full blur-3xl" />
+        <div className="absolute top-[-10%] left-[-10%] w-[40rem] h-[40rem] bg-pink-600/20 rounded-full blur-[100px]" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40rem] h-[40rem] bg-emerald-600/20 rounded-full blur-[100px]" />
+        <div className="absolute top-[40%] left-[40%] w-64 h-64 bg-amber-800/20 rounded-full blur-[80px]" />
         <div className="absolute top-[20%] right-[10%] w-32 h-32 bg-white/10 rounded-full blur-2xl" />
         
         <motion.div 
@@ -291,7 +293,7 @@ export default function App() {
   }
 
   return (
-    <div className="flex h-screen bg-transparent font-sans overflow-hidden text-slate-800">
+    <div className="flex h-screen bg-transparent font-sans overflow-hidden text-slate-100">
       {/* Mobile Backdrop */}
       <AnimatePresence>
         {isMobile && isSidebarOpen && (
@@ -359,7 +361,7 @@ export default function App() {
               <Book size={20} />
             </div>
             <div className="flex-1 min-w-0">
-              <p className={`font-black tracking-tight truncate text-sm ${showKilas ? 'text-white' : 'text-slate-300'}`}>
+              <p className={`font-black tracking-tight truncate text-[20px] uppercase ${showKilas ? 'text-white' : 'text-slate-300'}`}>
                 Kilas Aplikasi SIAP
               </p>
               <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Referensi Dasar</p>
@@ -385,7 +387,7 @@ export default function App() {
               <LayoutDashboard size={20} />
             </div>
             <div className="flex-1 min-w-0">
-              <p className={`font-black tracking-tight truncate text-sm ${showPeta ? 'text-white' : 'text-slate-300'}`}>
+              <p className={`font-black tracking-tight truncate text-[20px] uppercase ${showPeta ? 'text-white' : 'text-slate-300'}`}>
                 Peta Integrasi 7KAIH
               </p>
               <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Kaitan Karakter</p>
@@ -403,7 +405,7 @@ export default function App() {
               <Shield size={20} />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="font-black tracking-tight truncate text-sm text-slate-600 group-hover:text-slate-900 transition-colors">
+              <p className="font-black tracking-tight truncate text-[20px] uppercase text-slate-300 group-hover:text-white transition-colors">
                 Silat Spanju
               </p>
               <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Aplikasi Eksternal</p>
@@ -422,7 +424,7 @@ export default function App() {
               <Book size={20} />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="font-black tracking-tight truncate text-sm text-slate-300 group-hover:text-white transition-colors">
+              <p className="font-black tracking-tight truncate text-[20px] uppercase text-slate-300 group-hover:text-white transition-colors">
                 SIM-Agama
               </p>
               <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Aplikasi Eksternal</p>
@@ -441,7 +443,7 @@ export default function App() {
               <Calendar size={20} />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="font-black tracking-tight truncate text-sm text-slate-300 group-hover:text-white transition-colors">
+              <p className="font-black tracking-tight truncate text-[20px] text-slate-300 group-hover:text-white transition-colors uppercase">
                 Disiplin Spanju
               </p>
               <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Aplikasi Eksternal</p>
@@ -460,7 +462,7 @@ export default function App() {
               <Activity size={20} />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="font-black tracking-tight truncate text-sm text-slate-300 group-hover:text-white transition-colors">
+              <p className="font-black tracking-tight truncate text-[20px] text-slate-300 group-hover:text-white transition-colors uppercase">
                 UKS SMPN 7
               </p>
               <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Aplikasi Eksternal</p>
@@ -479,7 +481,7 @@ export default function App() {
               <Book size={20} />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="font-black tracking-tight truncate text-sm text-slate-300 group-hover:text-white transition-colors">
+              <p className="font-black tracking-tight truncate text-[20px] text-slate-300 group-hover:text-white transition-colors uppercase">
                 SIPENA
               </p>
               <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Aplikasi Eksternal</p>
@@ -498,7 +500,7 @@ export default function App() {
               <FileText size={20} />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="font-black tracking-tight truncate text-sm text-slate-600 group-hover:text-slate-900 transition-colors">
+              <p className="font-black tracking-tight truncate text-[20px] text-slate-300 group-hover:text-white transition-colors uppercase">
                 Tata Tertib Siswa
               </p>
               <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Aplikasi Eksternal</p>
@@ -560,33 +562,6 @@ export default function App() {
               );
             })}
           </div>
-        </div>
-
-        {/* Footer Actions */}
-        <div className="p-4 border-t border-white/10 space-y-3 min-w-[280px]">
-          <div className="flex gap-2">
-            <button 
-              onClick={backupData}
-              className="flex-1 p-2 bg-white/5 hover:bg-white/10 text-slate-300 rounded-lg flex items-center justify-center gap-1.5 transition-all text-xs font-bold shadow-sm border border-white/10"
-            >
-              <Download size={14} className="text-blue-400" />
-              Backup
-            </button>
-            <button 
-              onClick={() => fileInputRef.current?.click()}
-              className="flex-1 p-2 bg-white/5 hover:bg-white/10 text-slate-300 rounded-lg flex items-center justify-center gap-1.5 transition-all text-xs font-bold shadow-sm border border-white/10"
-            >
-              <Upload size={14} className="text-red-400" />
-              Restore
-            </button>
-          </div>
-          <input 
-            type="file" 
-            ref={fileInputRef} 
-            onChange={handleFileUpload} 
-            className="hidden" 
-            accept=".json"
-          />
         </div>
       </motion.aside>
 

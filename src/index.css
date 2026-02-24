@@ -11,11 +11,14 @@
   body {
     @apply antialiased text-slate-100 font-sans;
     background: 
-      radial-gradient(at 0% 0%, rgba(220, 38, 38, 0.4) 0px, transparent 50%),
-      radial-gradient(at 100% 0%, rgba(37, 99, 235, 0.4) 0px, transparent 50%),
-      radial-gradient(at 100% 100%, rgba(15, 23, 42, 0.8) 0px, transparent 50%),
-      radial-gradient(at 0% 100%, rgba(0, 0, 0, 0.9) 0px, transparent 50%),
-      #020617;
+      radial-gradient(circle at 15% 50%, rgba(37, 99, 235, 0.15), transparent 50%), /* Blue */
+      radial-gradient(circle at 85% 30%, rgba(220, 38, 38, 0.15), transparent 50%), /* Red */
+      radial-gradient(circle at 50% 80%, rgba(236, 72, 153, 0.15), transparent 50%), /* Pink */
+      radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.1), transparent 50%), /* Green */
+      radial-gradient(circle at 20% 20%, rgba(139, 69, 19, 0.15), transparent 50%), /* Brown */
+      radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05), transparent 60%), /* White */
+      #050505; /* Black base */
+    background-attachment: fixed;
   }
 
   h1, h2, h3, h4, h5, h6 {
