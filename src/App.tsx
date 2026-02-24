@@ -43,15 +43,16 @@ const ICON_MAP: Record<string, any> = {
 };
 
 const APP_COLORS = [
-  'from-indigo-500 to-blue-600',
-  'from-rose-500 to-pink-600',
-  'from-emerald-500 to-teal-600',
-  'from-amber-500 to-orange-600',
-  'from-violet-500 to-purple-600',
-  'from-cyan-500 to-blue-500',
+  'from-indigo-400 to-cyan-400',
+  'from-fuchsia-400 to-pink-400',
+  'from-emerald-400 to-teal-400',
+  'from-amber-400 to-orange-400',
+  'from-violet-400 to-purple-400',
+  'from-rose-400 to-red-400',
 ];
 
 export default function App() {
+  const [hasEntered, setHasEntered] = useState(false);
   const [links, setLinks] = useState<AppLink[]>([]);
   const [activeLinkId, setActiveLinkId] = useState<string | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -214,8 +215,83 @@ export default function App() {
     setTimeout(() => setCopied(false), 2000);
   };
 
+  if (!hasEntered) {
+    return (
+      <div className="min-h-screen bg-transparent flex flex-col items-center justify-center p-6 relative overflow-hidden font-sans">
+        {/* Decorative elements */}
+        <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-red-600/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-blue-600/20 rounded-full blur-3xl" />
+        <div className="absolute top-[20%] right-[10%] w-32 h-32 bg-white/10 rounded-full blur-2xl" />
+        
+        <motion.div 
+          initial={{ opacity: 0, y: 20, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="relative z-10 flex flex-col items-center text-center max-w-2xl"
+        >
+          <motion.div 
+            initial={{ rotate: -10, scale: 0.8 }}
+            animate={{ rotate: 0, scale: 1 }}
+            transition={{ type: "spring", bounce: 0.5, duration: 1, delay: 0.2 }}
+            className="w-32 h-32 md:w-40 md:h-40 bg-black/40 rounded-[2.5rem] shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] flex items-center justify-center p-4 mb-8 border border-white/10 backdrop-blur-2xl"
+          >
+            <img 
+              src="https://iili.io/KDFk4fI.png" 
+              alt="Logo SIAP" 
+              className="w-full h-full object-contain drop-shadow-md"
+              referrerPolicy="no-referrer"
+            />
+          </motion.div>
+          
+          <motion.h1 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="text-5xl md:text-7xl font-black text-white tracking-tight mb-4 font-display"
+          >
+            SIAP
+          </motion.h1>
+          
+          <motion.p 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="text-lg md:text-xl font-bold text-slate-300 uppercase tracking-[0.2em] mb-8"
+          >
+            Sistem Integrasi Aplikasi Pembinaan
+          </motion.p>
+          
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+            className="text-slate-400 text-base md:text-lg max-w-lg mb-12 leading-relaxed font-medium"
+          >
+            Platform terpadu untuk mempermudah pendataan, pemantauan, dan tindak lanjut permasalahan siswa di SMP Negeri 7 Pasuruan.
+          </motion.p>
+          
+          <motion.button
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            whileHover={{ scale: 1.05, translateY: -2 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ delay: 0.7 }}
+            onClick={() => setHasEntered(true)}
+            className="group relative px-8 py-4 md:px-12 md:py-5 bg-gradient-to-r from-red-600 to-blue-600 text-white rounded-full font-bold text-lg md:text-xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)] border border-white/20 overflow-hidden"
+          >
+            <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out" />
+            <span className="relative flex items-center gap-3">
+              Masuk Dashboard
+              <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+            </span>
+          </motion.button>
+        </motion.div>
+      </div>
+    );
+  }
+
   return (
-    <div className="flex h-screen bg-[#f0f2f5] font-sans overflow-hidden text-slate-800">
+    <div className="flex h-screen bg-transparent font-sans overflow-hidden text-slate-800">
       {/* Mobile Backdrop */}
       <AnimatePresence>
         {isMobile && isSidebarOpen && (
@@ -237,9 +313,9 @@ export default function App() {
           opacity: isSidebarOpen ? 1 : 0,
           x: isMobile && !isSidebarOpen ? -280 : 0
         }}
-        className="glass border-r border-white/20 flex flex-col z-50 md:z-20 fixed md:relative h-[calc(100vh-1.5rem)] md:h-auto overflow-hidden m-3 rounded-2xl shadow-2xl md:shadow-none"
+        className="bg-black/40 backdrop-blur-2xl border-r border-white/10 flex flex-col z-50 md:z-20 fixed md:relative h-[calc(100vh-1.5rem)] md:h-auto overflow-hidden m-3 rounded-[2rem] shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] md:shadow-none"
       >
-        <div className="p-5 flex items-center justify-between border-b border-black/5 min-w-[280px]">
+        <div className="p-6 flex items-center justify-between border-b border-white/10 min-w-[280px]">
           <motion.h1 
             className="flex flex-col gap-0.5 font-display"
           >
@@ -252,13 +328,13 @@ export default function App() {
                   referrerPolicy="no-referrer"
                 />
               </div>
-              <span className="text-xl font-black tracking-tight bg-gradient-to-br from-slate-900 to-slate-600 bg-clip-text text-transparent">SIAP</span>
+              <span className="text-xl font-black tracking-tight text-white">SIAP</span>
             </div>
             <span className="text-[8px] font-bold text-slate-400 uppercase tracking-[0.1em] leading-none ml-10">Sistem Integrasi Aplikasi Pembinaan</span>
           </motion.h1>
           <button 
             onClick={() => setIsSidebarOpen(false)}
-            className="p-1.5 hover:bg-black/5 rounded-lg transition-colors text-slate-400 hover:text-slate-600"
+            className="p-1.5 hover:bg-white/10 rounded-lg transition-colors text-slate-400 hover:text-white"
           >
             <ChevronLeft size={20} />
           </button>
@@ -274,16 +350,16 @@ export default function App() {
             className={`
               w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300
               ${showKilas 
-                ? `bg-white shadow-[0_10px_30px_rgba(0,0,0,0.08)] translate-y-[-2px] ring-1 ring-black/5` 
-                : 'hover:bg-white/40 text-slate-600'
+                ? `bg-white/10 shadow-sm translate-y-[-1px] ring-1 ring-white/20` 
+                : 'hover:bg-white/5 text-slate-300'
               }
             `}
           >
-            <div className={`w-9 h-9 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-white shadow-md shrink-0 transition-all duration-500 ${showKilas ? 'scale-110 rotate-3' : ''}`}>
-              <Book size={18} />
+            <div className={`w-10 h-10 rounded-2xl bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 ${showKilas ? 'scale-110 rotate-3 shadow-red-500/50' : ''}`}>
+              <Book size={20} />
             </div>
             <div className="flex-1 min-w-0">
-              <p className={`font-black tracking-tight truncate text-sm ${showKilas ? 'text-slate-900' : 'text-slate-600'}`}>
+              <p className={`font-black tracking-tight truncate text-sm ${showKilas ? 'text-white' : 'text-slate-300'}`}>
                 Kilas Aplikasi SIAP
               </p>
               <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Referensi Dasar</p>
@@ -300,16 +376,16 @@ export default function App() {
             className={`
               w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300
               ${showPeta 
-                ? `bg-white shadow-[0_10px_30px_rgba(0,0,0,0.08)] translate-y-[-2px] ring-1 ring-black/5` 
-                : 'hover:bg-white/40 text-slate-600'
+                ? `bg-white/10 shadow-sm translate-y-[-1px] ring-1 ring-white/20` 
+                : 'hover:bg-white/5 text-slate-300'
               }
             `}
           >
-            <div className={`w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-400 to-violet-500 flex items-center justify-center text-white shadow-md shrink-0 transition-all duration-500 ${showPeta ? 'scale-110 rotate-3' : ''}`}>
-              <LayoutDashboard size={18} />
+            <div className={`w-10 h-10 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 ${showPeta ? 'scale-110 rotate-3 shadow-blue-500/50' : ''}`}>
+              <LayoutDashboard size={20} />
             </div>
             <div className="flex-1 min-w-0">
-              <p className={`font-black tracking-tight truncate text-sm ${showPeta ? 'text-slate-900' : 'text-slate-600'}`}>
+              <p className={`font-black tracking-tight truncate text-sm ${showPeta ? 'text-white' : 'text-slate-300'}`}>
                 Peta Integrasi 7KAIH
               </p>
               <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Kaitan Karakter</p>
@@ -321,10 +397,10 @@ export default function App() {
             href="https://silat-spanju.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/40 text-slate-600 group"
+            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/5 text-slate-300 group"
           >
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-teal-400 to-emerald-500 flex items-center justify-center text-white shadow-md shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
-              <Shield size={18} />
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-red-500/50">
+              <Shield size={20} />
             </div>
             <div className="flex-1 min-w-0">
               <p className="font-black tracking-tight truncate text-sm text-slate-600 group-hover:text-slate-900 transition-colors">
@@ -340,13 +416,13 @@ export default function App() {
             href="https://sim-agama.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/40 text-slate-600 group"
+            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/5 text-slate-300 group"
           >
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-white shadow-md shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
-              <Book size={18} />
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-blue-500/50">
+              <Book size={20} />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="font-black tracking-tight truncate text-sm text-slate-600 group-hover:text-slate-900 transition-colors">
+              <p className="font-black tracking-tight truncate text-sm text-slate-300 group-hover:text-white transition-colors">
                 SIM-Agama
               </p>
               <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Aplikasi Eksternal</p>
@@ -359,13 +435,13 @@ export default function App() {
             href="https://disiplin-spanju.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/40 text-slate-600 group"
+            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/5 text-slate-300 group"
           >
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-rose-400 to-pink-500 flex items-center justify-center text-white shadow-md shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
-              <Calendar size={18} />
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-red-500/50">
+              <Calendar size={20} />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="font-black tracking-tight truncate text-sm text-slate-600 group-hover:text-slate-900 transition-colors">
+              <p className="font-black tracking-tight truncate text-sm text-slate-300 group-hover:text-white transition-colors">
                 Disiplin Spanju
               </p>
               <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Aplikasi Eksternal</p>
@@ -378,13 +454,13 @@ export default function App() {
             href="https://uksspanju.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/40 text-slate-600 group"
+            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/5 text-slate-300 group"
           >
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-400 to-blue-500 flex items-center justify-center text-white shadow-md shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
-              <Activity size={18} />
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-blue-500/50">
+              <Activity size={20} />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="font-black tracking-tight truncate text-sm text-slate-600 group-hover:text-slate-900 transition-colors">
+              <p className="font-black tracking-tight truncate text-sm text-slate-300 group-hover:text-white transition-colors">
                 UKS SMPN 7
               </p>
               <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Aplikasi Eksternal</p>
@@ -397,13 +473,13 @@ export default function App() {
             href="https://sipena7.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/40 text-slate-600 group"
+            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/5 text-slate-300 group"
           >
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-purple-400 to-indigo-500 flex items-center justify-center text-white shadow-md shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
-              <Book size={18} />
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-red-500/50">
+              <Book size={20} />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="font-black tracking-tight truncate text-sm text-slate-600 group-hover:text-slate-900 transition-colors">
+              <p className="font-black tracking-tight truncate text-sm text-slate-300 group-hover:text-white transition-colors">
                 SIPENA
               </p>
               <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Aplikasi Eksternal</p>
@@ -416,10 +492,10 @@ export default function App() {
             href="https://tally.so/r/q4D1XY"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/40 text-slate-600 group"
+            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/5 text-slate-300 group"
           >
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-fuchsia-400 to-pink-500 flex items-center justify-center text-white shadow-md shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
-              <FileText size={18} />
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-blue-500/50">
+              <FileText size={20} />
             </div>
             <div className="flex-1 min-w-0">
               <p className="font-black tracking-tight truncate text-sm text-slate-600 group-hover:text-slate-900 transition-colors">
@@ -442,16 +518,16 @@ export default function App() {
                     className={`
                       w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300
                       ${activeLinkId === link.id 
-                        ? `bg-white shadow-[0_10px_30px_rgba(0,0,0,0.08)] translate-y-[-2px] ring-1 ring-black/5` 
-                        : 'hover:bg-white/40 text-slate-600'
+                        ? `bg-white/10 shadow-sm translate-y-[-1px] ring-1 ring-white/20` 
+                        : 'hover:bg-white/5 text-slate-300'
                       }
                     `}
                   >
-                    <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${link.color || 'from-indigo-500 to-blue-600'} flex items-center justify-center text-white shadow-md shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 bg-indigo-500`}>
-                      <IconComponent size={18} />
+                    <div className={`w-10 h-10 rounded-2xl bg-gradient-to-br ${link.color || 'from-red-500 to-blue-700'} flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3`}>
+                      <IconComponent size={20} />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className={`font-black tracking-tight truncate text-sm ${activeLinkId === link.id ? 'text-slate-900' : 'text-slate-600'}`}>
+                      <p className={`font-black tracking-tight truncate text-sm ${activeLinkId === link.id ? 'text-white' : 'text-slate-300'}`}>
                         {link.title}
                       </p>
                       <div className="flex items-center gap-2 mt-0.5">
@@ -487,37 +563,20 @@ export default function App() {
         </div>
 
         {/* Footer Actions */}
-        <div className="p-4 border-t border-black/5 space-y-3 min-w-[280px]">
-          {/* App Link Info */}
-          <div className="bg-indigo-50/50 border border-indigo-100/50 rounded-xl p-3 space-y-2">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-black text-indigo-600 uppercase tracking-widest">Link Aplikasi</span>
-              <button 
-                onClick={copyAppLink}
-                className="text-indigo-500 hover:text-indigo-700 transition-colors"
-                title="Salin Link"
-              >
-                {copied ? <span className="text-[8px] font-bold">Tersalin!</span> : <Copy size={14} />}
-              </button>
-            </div>
-            <p className="text-[10px] font-mono text-slate-500 break-all leading-tight opacity-80">
-              {window.location.href}
-            </p>
-          </div>
-
+        <div className="p-4 border-t border-white/10 space-y-3 min-w-[280px]">
           <div className="flex gap-2">
             <button 
               onClick={backupData}
-              className="flex-1 p-2 bg-white/50 hover:bg-white text-slate-600 rounded-lg flex items-center justify-center gap-1.5 transition-all text-xs font-bold shadow-sm border border-white/20"
+              className="flex-1 p-2 bg-white/5 hover:bg-white/10 text-slate-300 rounded-lg flex items-center justify-center gap-1.5 transition-all text-xs font-bold shadow-sm border border-white/10"
             >
-              <Download size={14} className="text-indigo-500" />
+              <Download size={14} className="text-blue-400" />
               Backup
             </button>
             <button 
               onClick={() => fileInputRef.current?.click()}
-              className="flex-1 p-2 bg-white/50 hover:bg-white text-slate-600 rounded-lg flex items-center justify-center gap-1.5 transition-all text-xs font-bold shadow-sm border border-white/20"
+              className="flex-1 p-2 bg-white/5 hover:bg-white/10 text-slate-300 rounded-lg flex items-center justify-center gap-1.5 transition-all text-xs font-bold shadow-sm border border-white/10"
             >
-              <Upload size={14} className="text-violet-500" />
+              <Upload size={14} className="text-red-400" />
               Restore
             </button>
           </div>
@@ -537,7 +596,7 @@ export default function App() {
           initial={{ x: -20, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           onClick={() => setIsSidebarOpen(true)}
-          className="fixed left-6 top-6 z-30 p-2 glass rounded-3xl text-indigo-600 hover:scale-110 transition-all active:scale-90 shadow-2xl overflow-hidden"
+          className="fixed left-6 top-6 z-30 p-2 bg-black/40 backdrop-blur-2xl border border-white/10 rounded-3xl text-slate-300 hover:scale-110 transition-all active:scale-90 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] overflow-hidden"
         >
           <img 
             src="https://iili.io/KDFk4fI.png" 
@@ -557,7 +616,7 @@ export default function App() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
-              className="flex-1 flex flex-col glass rounded-[2rem] overflow-y-auto shadow-[0_30px_80px_rgba(0,0,0,0.08)] border border-white/40 p-12 scrollbar-hide"
+              className="flex-1 flex flex-col bg-white/50 backdrop-blur-2xl rounded-[2.5rem] overflow-y-auto shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] border border-white/60 p-12 scrollbar-hide"
             >
               <div className="max-w-5xl mx-auto space-y-12">
                 <div className="text-center space-y-4">
@@ -569,30 +628,30 @@ export default function App() {
                       referrerPolicy="no-referrer"
                     />
                   </div>
-                  <h2 className="text-5xl font-black text-slate-800 tracking-tight font-display leading-none">Peta Integrasi SIAP</h2>
-                  <p className="text-lg font-black text-indigo-600 uppercase tracking-[0.3em]">Kaitan Aplikasi dengan Nilai 7KAIH</p>
+                  <h2 className="text-5xl font-black text-white tracking-tight font-display leading-none">Peta Integrasi SIAP</h2>
+                  <p className="text-lg font-black text-slate-300 uppercase tracking-[0.3em]">Kaitan Aplikasi dengan Nilai 7KAIH</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {/* A. Terlambat Hadir */}
-                  <div className="p-8 bg-white/50 rounded-[2.5rem] border border-white/60 shadow-xl space-y-6 flex flex-col">
+                  <div className="p-8 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6 flex flex-col">
                     <div className="flex items-center gap-4">
                       <div className="w-12 h-12 rounded-2xl bg-rose-100 flex items-center justify-center text-rose-600">
                         <Calendar size={24} />
                       </div>
-                      <h3 className="text-xl font-black text-slate-800 font-display">A. Aplikasi Siswa Terlambat Hadir</h3>
+                      <h3 className="text-xl font-black text-white font-display">A. Aplikasi Siswa Terlambat Hadir</h3>
                     </div>
                     <div className="flex-1 space-y-4">
                       <ul className="space-y-2">
-                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
+                        <li className="flex gap-2 text-slate-300 text-sm font-medium">
                           <div className="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 shrink-0" />
                           Jumlah keterlambatan per bulan
                         </li>
-                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
+                        <li className="flex gap-2 text-slate-300 text-sm font-medium">
                           <div className="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 shrink-0" />
                           Kelas terbanyak & terendah
                         </li>
-                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
+                        <li className="flex gap-2 text-slate-300 text-sm font-medium">
                           <div className="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 shrink-0" />
                           Tindak lanjut (teguran, pembinaan, orang tua)
                         </li>
@@ -605,24 +664,24 @@ export default function App() {
                   </div>
 
                   {/* B. Izin Siswa */}
-                  <div className="p-8 bg-white/50 rounded-[2.5rem] border border-white/60 shadow-xl space-y-6 flex flex-col">
+                  <div className="p-8 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6 flex flex-col">
                     <div className="flex items-center gap-4">
                       <div className="w-12 h-12 rounded-2xl bg-emerald-100 flex items-center justify-center text-emerald-600">
                         <FileText size={24} />
                       </div>
-                      <h3 className="text-xl font-black text-slate-800 font-display">B. Aplikasi Izin Siswa</h3>
+                      <h3 className="text-xl font-black text-white font-display">B. Aplikasi Izin Siswa</h3>
                     </div>
                     <div className="flex-1 space-y-4">
                       <ul className="space-y-2">
-                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
+                        <li className="flex gap-2 text-slate-300 text-sm font-medium">
                           <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 shrink-0" />
                           Izin sakit / izin keluarga / tanpa keterangan
                         </li>
-                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
+                        <li className="flex gap-2 text-slate-300 text-sm font-medium">
                           <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 shrink-0" />
                           Validasi dokumen
                         </li>
-                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
+                        <li className="flex gap-2 text-slate-300 text-sm font-medium">
                           <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 shrink-0" />
                           Kepatuhan siswa
                         </li>
@@ -635,24 +694,24 @@ export default function App() {
                   </div>
 
                   {/* C. BK Peduli Siswa */}
-                  <div className="p-8 bg-white/50 rounded-[2.5rem] border border-white/60 shadow-xl space-y-6 flex flex-col">
+                  <div className="p-8 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6 flex flex-col">
                     <div className="flex items-center gap-4">
                       <div className="w-12 h-12 rounded-2xl bg-indigo-100 flex items-center justify-center text-indigo-600">
                         <Users size={24} />
                       </div>
-                      <h3 className="text-xl font-black text-slate-800 font-display">C. Aplikasi BK Peduli Siswa</h3>
+                      <h3 className="text-xl font-black text-white font-display">C. Aplikasi BK Peduli Siswa</h3>
                     </div>
                     <div className="flex-1 space-y-4">
                       <ul className="space-y-2">
-                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
+                        <li className="flex gap-2 text-slate-300 text-sm font-medium">
                           <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-1.5 shrink-0" />
                           Jenis permasalahan siswa
                         </li>
-                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
+                        <li className="flex gap-2 text-slate-300 text-sm font-medium">
                           <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-1.5 shrink-0" />
                           Jumlah layanan konseling
                         </li>
-                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
+                        <li className="flex gap-2 text-slate-300 text-sm font-medium">
                           <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-1.5 shrink-0" />
                           Status penyelesaian kasus
                         </li>
@@ -665,24 +724,24 @@ export default function App() {
                   </div>
 
                   {/* D. SI-UKS */}
-                  <div className="p-8 bg-white/50 rounded-[2.5rem] border border-white/60 shadow-xl space-y-6 flex flex-col">
+                  <div className="p-8 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6 flex flex-col">
                     <div className="flex items-center gap-4">
                       <div className="w-12 h-12 rounded-2xl bg-rose-100 flex items-center justify-center text-rose-600">
                         <Activity size={24} />
                       </div>
-                      <h3 className="text-xl font-black text-slate-800 font-display">D. Aplikasi SI-UKS</h3>
+                      <h3 className="text-xl font-black text-white font-display">D. Aplikasi SI-UKS</h3>
                     </div>
                     <div className="flex-1 space-y-4">
                       <ul className="space-y-2">
-                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
+                        <li className="flex gap-2 text-slate-300 text-sm font-medium">
                           <div className="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 shrink-0" />
                           Data siswa sakit
                         </li>
-                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
+                        <li className="flex gap-2 text-slate-300 text-sm font-medium">
                           <div className="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 shrink-0" />
                           Kunjungan UKS
                         </li>
-                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
+                        <li className="flex gap-2 text-slate-300 text-sm font-medium">
                           <div className="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 shrink-0" />
                           Edukasi kesehatan
                         </li>
@@ -695,24 +754,24 @@ export default function App() {
                   </div>
 
                   {/* E. SIM-Agama */}
-                  <div className="p-8 bg-white/50 rounded-[2.5rem] border border-white/60 shadow-xl space-y-6 flex flex-col">
+                  <div className="p-8 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6 flex flex-col">
                     <div className="flex items-center gap-4">
                       <div className="w-12 h-12 rounded-2xl bg-amber-100 flex items-center justify-center text-amber-600">
                         <Shield size={24} />
                       </div>
-                      <h3 className="text-xl font-black text-slate-800 font-display">E. Aplikasi SIM-Agama</h3>
+                      <h3 className="text-xl font-black text-white font-display">E. Aplikasi SIM-Agama</h3>
                     </div>
                     <div className="flex-1 space-y-4">
                       <ul className="space-y-2">
-                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
+                        <li className="flex gap-2 text-slate-300 text-sm font-medium">
                           <div className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5 shrink-0" />
                           Kegiatan keagamaan siswa
                         </li>
-                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
+                        <li className="flex gap-2 text-slate-300 text-sm font-medium">
                           <div className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5 shrink-0" />
                           Pembiasaan ibadah
                         </li>
-                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
+                        <li className="flex gap-2 text-slate-300 text-sm font-medium">
                           <div className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5 shrink-0" />
                           Partisipasi siswa
                         </li>
@@ -725,24 +784,24 @@ export default function App() {
                   </div>
 
                   {/* F. SIPENA */}
-                  <div className="p-8 bg-white/50 rounded-[2.5rem] border border-white/60 shadow-xl space-y-6 flex flex-col">
+                  <div className="p-8 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6 flex flex-col">
                     <div className="flex items-center gap-4">
                       <div className="w-12 h-12 rounded-2xl bg-indigo-100 flex items-center justify-center text-indigo-600">
                         <Book size={24} />
                       </div>
-                      <h3 className="text-xl font-black text-slate-800 font-display">F. Aplikasi SIPENA</h3>
+                      <h3 className="text-xl font-black text-white font-display">F. Aplikasi SIPENA</h3>
                     </div>
                     <div className="flex-1 space-y-4">
                       <ul className="space-y-2">
-                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
+                        <li className="flex gap-2 text-slate-300 text-sm font-medium">
                           <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-1.5 shrink-0" />
                           Jumlah kunjungan perpustakaan per bulan
                         </li>
-                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
+                        <li className="flex gap-2 text-slate-300 text-sm font-medium">
                           <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-1.5 shrink-0" />
                           Jumlah peminjaman dan pengembalian buku
                         </li>
-                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
+                        <li className="flex gap-2 text-slate-300 text-sm font-medium">
                           <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-1.5 shrink-0" />
                           Keterlambatan pengembalian dan tindak lanjut
                         </li>
@@ -758,7 +817,7 @@ export default function App() {
                 <div className="text-center pt-8">
                   <button 
                     onClick={() => setShowPeta(false)}
-                    className="px-10 py-4 bg-white text-slate-800 rounded-2xl font-black shadow-xl hover:scale-105 transition-all border border-black/5"
+                    className="px-10 py-4 bg-white/10 text-white rounded-2xl font-black shadow-xl hover:scale-105 hover:bg-white/20 transition-all border border-white/20"
                   >
                     Kembali ke Dashboard
                   </button>
@@ -771,11 +830,11 @@ export default function App() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
-              className="flex-1 flex flex-col glass rounded-[2rem] overflow-y-auto shadow-[0_30px_80px_rgba(0,0,0,0.08)] border border-white/40 p-12 scrollbar-hide"
+              className="flex-1 flex flex-col bg-black/40 backdrop-blur-2xl rounded-[2.5rem] overflow-y-auto shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] border border-white/10 p-12 scrollbar-hide"
             >
               <div className="max-w-4xl mx-auto space-y-12">
                 <div className="text-center space-y-4">
-                  <div className="w-24 h-24 rounded-3xl bg-white flex items-center justify-center shadow-2xl shadow-indigo-100 mx-auto rotate-6 overflow-hidden p-2 mb-6">
+                  <div className="w-24 h-24 rounded-3xl bg-white/10 flex items-center justify-center shadow-2xl shadow-black/50 mx-auto rotate-6 overflow-hidden p-2 mb-6 border border-white/20">
                     <img 
                       src="https://iili.io/KDFk4fI.png" 
                       alt="Logo" 
@@ -783,37 +842,37 @@ export default function App() {
                       referrerPolicy="no-referrer"
                     />
                   </div>
-                  <h2 className="text-5xl font-black text-slate-800 tracking-tight font-display leading-none">Kilas Aplikasi SIAP</h2>
-                  <p className="text-lg font-black text-indigo-600 uppercase tracking-[0.3em]">Sistem Integrasi Aplikasi Pembinaan</p>
+                  <h2 className="text-5xl font-black text-white tracking-tight font-display leading-none">Kilas Aplikasi SIAP</h2>
+                  <p className="text-lg font-black text-slate-300 uppercase tracking-[0.3em]">Sistem Integrasi Aplikasi Pembinaan</p>
                 </div>
 
-                <div className="p-10 bg-white/50 rounded-[2.5rem] border border-white/60 shadow-xl space-y-6">
-                  <h3 className="text-2xl font-black text-slate-800 font-display">Ringkasan SIAP Spanju</h3>
-                  <p className="text-slate-600 leading-relaxed font-medium text-lg">
+                <div className="p-10 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6">
+                  <h3 className="text-2xl font-black text-white font-display">Ringkasan SIAP Spanju</h3>
+                  <p className="text-slate-300 leading-relaxed font-medium text-lg">
                     Penggunaan Aplikasi Pembinaan di SMP Negeri 7 Pasuruan sebagai upaya mendukung penanganan permasalahan siswa secara lebih efektif dan terintegrasi. 
                   </p>
-                  <p className="text-slate-600 leading-relaxed font-medium">
+                  <p className="text-slate-300 leading-relaxed font-medium">
                     Aplikasi ini dimanfaatkan untuk mempermudah pendataan, pemantauan, dan tindak lanjut berbagai permasalahan siswa dengan mengedepankan pendekatan pembinaan yang edukatif, humanis, dan kolaboratif antara guru, wali kelas, guru BK, serta orang tua. 
                   </p>
-                  <p className="text-slate-600 leading-relaxed font-medium">
+                  <p className="text-slate-300 leading-relaxed font-medium">
                     Melalui Aplikasi SIAP, sekolah berharap tercipta lingkungan belajar yang aman, tertib, dan kondusif guna mendukung tumbuh kembang karakter dan prestasi peserta didik.
                   </p>
                 </div>
 
                 <div className="space-y-8">
-                  <h3 className="text-3xl font-black text-slate-800 font-display text-center">Daftar Aplikasi SIAP Spanju</h3>
+                  <h3 className="text-3xl font-black text-white font-display text-center">Daftar Aplikasi SIAP Spanju</h3>
                   
                   <div className="grid grid-cols-1 gap-8">
                     {/* Aplikasi Siswa Terlambat Hadir */}
-                    <div className="p-8 bg-white/50 rounded-[2.5rem] border border-white/60 shadow-xl space-y-6">
+                    <div className="p-8 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6">
                       <div className="flex items-center gap-4">
                         <div className="w-12 h-12 rounded-2xl bg-rose-100 flex items-center justify-center text-rose-600">
                           <Calendar size={24} />
                         </div>
-                        <h4 className="text-xl font-black text-slate-800 font-display">Aplikasi Siswa Terlambat Hadir</h4>
+                        <h4 className="text-xl font-black text-white font-display">Aplikasi Siswa Terlambat Hadir</h4>
                       </div>
                       <div className="space-y-3">
-                        <p className="font-black text-xs text-indigo-600 uppercase tracking-widest">Kegunaan:</p>
+                        <p className="font-black text-xs text-slate-400 uppercase tracking-widest">Kegunaan:</p>
                         <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           {[
                             "Pendataan keterlambatan yang tertib dan akurat mencatat siswa terlambat secara sistematis sebagai data resmi sekolah.",
@@ -822,7 +881,7 @@ export default function App() {
                             "Meningkatkan kedisiplinan dan kesadaran siswa membiasakan siswa bertanggung jawab terhadap waktu hadir di sekolah.",
                             "Bahan evaluasi dan laporan sekolah."
                           ].map((item, i) => (
-                            <li key={i} className="flex gap-3 text-slate-600 text-sm font-medium">
+                            <li key={i} className="flex gap-3 text-slate-300 text-sm font-medium">
                               <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-1.5 shrink-0" />
                               {item}
                             </li>
@@ -832,15 +891,15 @@ export default function App() {
                     </div>
 
                     {/* Aplikasi Izin Siswa */}
-                    <div className="p-8 bg-white/50 rounded-[2.5rem] border border-white/60 shadow-xl space-y-6">
+                    <div className="p-8 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6">
                       <div className="flex items-center gap-4">
                         <div className="w-12 h-12 rounded-2xl bg-emerald-100 flex items-center justify-center text-emerald-600">
                           <FileText size={24} />
                         </div>
-                        <h4 className="text-xl font-black text-slate-800 font-display">Aplikasi Izin Siswa</h4>
+                        <h4 className="text-xl font-black text-white font-display">Aplikasi Izin Siswa</h4>
                       </div>
                       <div className="space-y-3">
-                        <p className="font-black text-xs text-indigo-600 uppercase tracking-widest">Kegunaan:</p>
+                        <p className="font-black text-xs text-slate-400 uppercase tracking-widest">Kegunaan:</p>
                         <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           {[
                             "Mencatat izin siswa secara resmi dan terdata memudahkan pendataan siswa izin sakit, izin keperluan keluarga, atau izin lainnya secara tertib dan terdokumentasi.",
@@ -851,7 +910,7 @@ export default function App() {
                             "Memperkuat komunikasi sekolah dan orang tua orang tua dapat terlibat langsung dalam proses pengajuan izin siswa.",
                             "Sebagai bahan evaluasi dan pelaporan sekolah data izin digunakan untuk laporan kehadiran, evaluasi bulanan, dan arsip administrasi sekolah."
                           ].map((item, i) => (
-                            <li key={i} className="flex gap-3 text-slate-600 text-sm font-medium">
+                            <li key={i} className="flex gap-3 text-slate-300 text-sm font-medium">
                               <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 shrink-0" />
                               {item}
                             </li>
@@ -861,15 +920,15 @@ export default function App() {
                     </div>
 
                     {/* Aplikasi BK Peduli Siswa */}
-                    <div className="p-8 bg-white/50 rounded-[2.5rem] border border-white/60 shadow-xl space-y-6">
+                    <div className="p-8 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6">
                       <div className="flex items-center gap-4">
                         <div className="w-12 h-12 rounded-2xl bg-indigo-100 flex items-center justify-center text-indigo-600">
                           <Users size={24} />
                         </div>
-                        <h4 className="text-xl font-black text-slate-800 font-display">Aplikasi BK Peduli Siswa</h4>
+                        <h4 className="text-xl font-black text-white font-display">Aplikasi BK Peduli Siswa</h4>
                       </div>
                       <div className="space-y-3">
-                        <p className="font-black text-xs text-indigo-600 uppercase tracking-widest">Kegunaan:</p>
+                        <p className="font-black text-xs text-slate-400 uppercase tracking-widest">Kegunaan:</p>
                         <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           {[
                             "Pendataan permasalahan siswa secara terintegrasi membantu mencatat berbagai permasalahan siswa secara sistematis dan rahasia.",
@@ -880,7 +939,7 @@ export default function App() {
                             "Pemantauan tindak lanjut dan perkembangan siswa setiap langkah pembinaan dan hasil pendampingan dapat dipantau dan dievaluasi.",
                             "Sebagai bahan evaluasi dan pelaporan sekolah data aplikasi digunakan untuk evaluasi program BK, sekolah ramah anak, dan laporan administrasi."
                           ].map((item, i) => (
-                            <li key={i} className="flex gap-3 text-slate-600 text-sm font-medium">
+                            <li key={i} className="flex gap-3 text-slate-300 text-sm font-medium">
                               <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-1.5 shrink-0" />
                               {item}
                             </li>
@@ -891,11 +950,11 @@ export default function App() {
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                       {/* Aplikasi Si-UKS */}
-                      <div className="p-6 bg-white/50 rounded-[2rem] border border-white/60 shadow-xl space-y-4">
+                      <div className="p-6 bg-black/40 rounded-[2rem] border border-white/10 shadow-xl space-y-4">
                         <div className="w-10 h-10 rounded-xl bg-rose-100 flex items-center justify-center text-rose-600">
                           <Activity size={20} />
                         </div>
-                        <h4 className="text-lg font-black text-slate-800 font-display">Aplikasi Si-UKS</h4>
+                        <h4 className="text-lg font-black text-white font-display">Aplikasi Si-UKS</h4>
                         <ul className="space-y-2">
                           {[
                             "Menertibkan administrasi UKS digital.",
@@ -904,7 +963,7 @@ export default function App() {
                             "Layanan kesehatan berkualitas.",
                             "Bukti inovasi & praktik baik."
                           ].map((item, i) => (
-                            <li key={i} className="flex gap-2 text-slate-600 text-xs font-medium">
+                            <li key={i} className="flex gap-2 text-slate-300 text-xs font-medium">
                               <div className="w-1 h-1 rounded-full bg-rose-400 mt-1.5 shrink-0" />
                               {item}
                             </li>
@@ -913,18 +972,18 @@ export default function App() {
                       </div>
 
                       {/* Aplikasi SIM-AGAMA */}
-                      <div className="p-6 bg-white/50 rounded-[2rem] border border-white/60 shadow-xl space-y-4">
+                      <div className="p-6 bg-black/40 rounded-[2rem] border border-white/10 shadow-xl space-y-4">
                         <div className="w-10 h-10 rounded-xl bg-amber-100 flex items-center justify-center text-amber-600">
                           <Shield size={20} />
                         </div>
-                        <h4 className="text-lg font-black text-slate-800 font-display">Aplikasi SIM-AGAMA</h4>
+                        <h4 className="text-lg font-black text-white font-display">Aplikasi SIM-AGAMA</h4>
                         <ul className="space-y-2">
                           {[
                             "Pantau keaktifan keagamaan.",
                             "Konsistensi program agama.",
                             "Data akurat untuk pelaporan."
                           ].map((item, i) => (
-                            <li key={i} className="flex gap-2 text-slate-600 text-xs font-medium">
+                            <li key={i} className="flex gap-2 text-slate-300 text-xs font-medium">
                               <div className="w-1 h-1 rounded-full bg-amber-400 mt-1.5 shrink-0" />
                               {item}
                             </li>
@@ -933,18 +992,18 @@ export default function App() {
                       </div>
 
                       {/* Aplikasi SIPENA */}
-                      <div className="p-6 bg-white/50 rounded-[2rem] border border-white/60 shadow-xl space-y-4">
+                      <div className="p-6 bg-black/40 rounded-[2rem] border border-white/10 shadow-xl space-y-4">
                         <div className="w-10 h-10 rounded-xl bg-indigo-100 flex items-center justify-center text-indigo-600">
                           <Book size={20} />
                         </div>
-                        <h4 className="text-lg font-black text-slate-800 font-display">Aplikasi SIPENA</h4>
+                        <h4 className="text-lg font-black text-white font-display">Aplikasi SIPENA</h4>
                         <ul className="space-y-2">
                           {[
                             "Pendataan buku perpustakaan.",
                             "Layanan pinjam-kembali cepat.",
                             "Meningkatkan minat baca siswa."
                           ].map((item, i) => (
-                            <li key={i} className="flex gap-2 text-slate-600 text-xs font-medium">
+                            <li key={i} className="flex gap-2 text-slate-300 text-xs font-medium">
                               <div className="w-1 h-1 rounded-full bg-indigo-400 mt-1.5 shrink-0" />
                               {item}
                             </li>
@@ -972,7 +1031,7 @@ export default function App() {
                 <div className="text-center pt-8">
                   <button 
                     onClick={() => setShowKilas(false)}
-                    className="px-10 py-4 bg-white text-slate-800 rounded-2xl font-black shadow-xl hover:scale-105 transition-all border border-black/5"
+                    className="px-10 py-4 bg-white/10 text-white rounded-2xl font-black shadow-xl hover:scale-105 hover:bg-white/20 transition-all border border-white/20"
                   >
                     Kembali ke Dashboard
                   </button>
@@ -985,19 +1044,19 @@ export default function App() {
               initial={{ opacity: 0, scale: 0.99 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.99 }}
-              className="flex-1 flex flex-col glass rounded-[2rem] overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.08)] border border-white/40"
+              className="flex-1 flex flex-col bg-black/40 backdrop-blur-2xl rounded-[2.5rem] overflow-hidden shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] border border-white/10"
             >
               {/* Toolbar */}
-              <div className="h-16 bg-white/30 border-b border-white/20 flex items-center justify-between px-8 z-10 backdrop-blur-md">
+              <div className="h-16 bg-black/40 border-b border-white/10 flex items-center justify-between px-8 z-10 backdrop-blur-md">
                 <div className="flex items-center gap-4">
-                  <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${activeLink.color || 'from-indigo-500 to-blue-600'} flex items-center justify-center text-white shadow-xl shadow-black/10 bg-indigo-500`}>
+                  <div className={`w-10 h-10 rounded-2xl bg-gradient-to-br ${activeLink.color || 'from-indigo-400 to-blue-400'} flex items-center justify-center text-white shadow-sm`}>
                     {(() => {
                       const IconComponent = ICON_MAP[activeLink.icon] || Globe;
                       return <IconComponent size={20} />;
                     })()}
                   </div>
                   <div>
-                    <h2 className="text-lg font-black text-slate-800 tracking-tight leading-none mb-0.5 font-display">{activeLink.title}</h2>
+                    <h2 className="text-lg font-black text-white tracking-tight leading-none mb-0.5 font-display">{activeLink.title}</h2>
                     <p className="text-[10px] text-slate-400 font-mono tracking-wider uppercase opacity-70">
                       {activeLink.url}
                     </p>
@@ -1009,7 +1068,7 @@ export default function App() {
                       setIsLoading(true);
                       setTimeout(() => setIsLoading(false), 1000);
                     }}
-                    className="p-2 text-slate-400 hover:text-indigo-600 hover:bg-white rounded-xl transition-all shadow-sm border border-black/5"
+                    className="p-2 text-slate-400 hover:text-indigo-600 hover:bg-white/10 rounded-xl transition-all shadow-sm border border-black/5"
                   >
                     <Settings size={18} />
                   </button>
@@ -1026,9 +1085,9 @@ export default function App() {
               </div>
 
               {/* Iframe Container */}
-              <div className="flex-1 bg-white/60 m-4 rounded-[1.5rem] shadow-[inset_0_2px_10px_rgba(0,0,0,0.05)] overflow-hidden border border-black/5 relative group">
+              <div className="flex-1 bg-black/20 m-4 rounded-[2rem] shadow-inner overflow-hidden border border-white/10 relative group">
                 {isLoading && (
-                  <div className="absolute inset-0 z-20 bg-white/80 backdrop-blur-xl flex flex-col items-center justify-center space-y-6">
+                  <div className="absolute inset-0 z-20 bg-black/80 backdrop-blur-xl flex flex-col items-center justify-center space-y-6">
                     <div className="relative">
                       <motion.div 
                         animate={{ rotate: 360 }}
@@ -1040,7 +1099,7 @@ export default function App() {
                       </div>
                     </div>
                     <div className="text-center">
-                      <p className="text-xl font-black text-slate-800 tracking-tighter">Menyiapkan Aplikasi</p>
+                      <p className="text-xl font-black text-white tracking-tighter">Menyiapkan Aplikasi</p>
                       <p className="text-slate-400 text-[10px] font-bold uppercase tracking-widest">Sinkronisasi data...</p>
                     </div>
                   </div>
@@ -1054,15 +1113,15 @@ export default function App() {
                 />
 
                 {/* Fallback Message */}
-                <div className="absolute inset-0 -z-10 flex flex-col items-center justify-center p-8 text-center bg-gradient-to-br from-slate-50 to-slate-100">
-                  <div className="w-24 h-24 bg-white rounded-[2rem] shadow-2xl flex items-center justify-center mb-6 rotate-3">
+                <div className="absolute inset-0 -z-10 flex flex-col items-center justify-center p-8 text-center bg-gradient-to-br from-slate-900 to-black">
+                  <div className="w-24 h-24 bg-white/10 border border-white/20 rounded-[2rem] shadow-2xl flex items-center justify-center mb-6 rotate-3">
                     {(() => {
                       const IconComponent = ICON_MAP[activeLink.icon] || Globe;
                       return <IconComponent size={48} className="text-indigo-500" />;
                     })()}
                   </div>
-                  <h3 className="text-2xl font-black text-slate-800 mb-3 tracking-tight">Situs Memblokir Tampilan</h3>
-                  <p className="text-slate-500 max-w-md mb-8 text-base font-medium leading-relaxed">
+                  <h3 className="text-2xl font-black text-white mb-3 tracking-tight">Situs Memblokir Tampilan</h3>
+                  <p className="text-slate-400 max-w-md mb-8 text-base font-medium leading-relaxed">
                     Beberapa situs web memiliki kebijakan keamanan yang melarang mereka dibuka di dalam dashboard.
                   </p>
                   <a 
@@ -1082,9 +1141,9 @@ export default function App() {
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="p-12 glass rounded-[2.5rem] flex flex-col items-center gap-6 border border-white/40 text-center max-w-xl"
+                className="p-12 bg-black/40 backdrop-blur-2xl rounded-[3rem] flex flex-col items-center gap-6 border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] text-center max-w-xl"
               >
-                <div className="w-20 h-20 rounded-2xl bg-white flex items-center justify-center shadow-2xl shadow-indigo-100 rotate-6 overflow-hidden p-2">
+                <div className="w-20 h-20 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center shadow-2xl shadow-black/50 rotate-6 overflow-hidden p-2">
                   <img 
                     src="https://iili.io/KDFk4fI.png" 
                     alt="Logo" 
@@ -1093,16 +1152,16 @@ export default function App() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <h2 className="text-5xl font-black text-slate-800 tracking-tight font-display leading-none">SIAP</h2>
-                  <p className="text-sm font-black text-indigo-600 uppercase tracking-[0.3em]">Sistem Integrasi Aplikasi Pembinaan</p>
+                  <h2 className="text-5xl font-black text-white tracking-tight font-display leading-none">SIAP</h2>
+                  <p className="text-sm font-black text-slate-300 uppercase tracking-[0.3em]">Sistem Integrasi Aplikasi Pembinaan</p>
                   <div className="h-1 w-20 bg-gradient-to-r from-indigo-500 to-violet-500 mx-auto rounded-full my-4" />
-                  <p className="text-slate-500 text-base font-medium max-w-md mx-auto leading-relaxed">
+                  <p className="text-slate-400 text-base font-medium max-w-md mx-auto leading-relaxed">
                     Sekolah Sigap Menangani Permasalahan Siswa Secara Cepat dan Terdata
                   </p>
                 </div>
                 <button 
                   onClick={() => setShowAddModal(true)}
-                  className="px-8 py-4 bg-gradient-to-r from-indigo-600 to-violet-600 text-white rounded-xl shadow-2xl shadow-indigo-200 hover:scale-105 transition-all font-black text-base"
+                  className="px-8 py-4 bg-gradient-to-r from-indigo-600 to-violet-600 text-white rounded-xl shadow-2xl shadow-black/50 hover:scale-105 transition-all font-black text-base"
                 >
                   Tambah Aplikasi Pertama
                 </button>
@@ -1127,34 +1186,34 @@ export default function App() {
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className="relative bg-white/90 backdrop-blur-2xl rounded-[2rem] shadow-2xl w-full max-w-lg p-8 border border-white/50"
+              className="relative bg-black/80 backdrop-blur-2xl rounded-[2rem] shadow-2xl w-full max-w-lg p-8 border border-white/10"
             >
-              <h3 className="text-2xl font-black text-slate-800 mb-6 tracking-tight font-display">Tambah Aplikasi Baru</h3>
+              <h3 className="text-2xl font-black text-white mb-6 tracking-tight font-display">Tambah Aplikasi Baru</h3>
               <div className="space-y-4">
                 <div>
-                  <label className="block text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1.5 ml-1">Nama Aplikasi</label>
+                  <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5 ml-1">Nama Aplikasi</label>
                   <input 
                     type="text" 
                     placeholder="Contoh: Dashboard Kerja"
                     value={newApp.title}
                     onChange={(e) => setNewApp({...newApp, title: e.target.value})}
-                    className="w-full px-4 py-2.5 rounded-xl bg-white border-2 border-slate-100 focus:border-indigo-500 focus:outline-none transition-all text-sm font-bold shadow-sm"
+                    className="w-full px-4 py-2.5 rounded-xl bg-white/5 border-2 border-white/10 focus:border-indigo-500 focus:outline-none transition-all text-sm font-bold shadow-sm text-white"
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1.5 ml-1">Alamat URL</label>
+                  <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5 ml-1">Alamat URL</label>
                   <input 
                     type="text" 
                     placeholder="https://app.anda.com"
                     value={newApp.url}
                     onChange={(e) => setNewApp({...newApp, url: e.target.value})}
-                    className="w-full px-4 py-2.5 rounded-xl bg-white border-2 border-slate-100 focus:border-indigo-500 focus:outline-none transition-all text-sm font-bold shadow-sm"
+                    className="w-full px-4 py-2.5 rounded-xl bg-white/5 border-2 border-white/10 focus:border-indigo-500 focus:outline-none transition-all text-sm font-bold shadow-sm text-white"
                   />
                 </div>
                 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-[10px] font-black text-slate-500 uppercase tracking-widest mb-2 ml-1">Pilih Ikon</label>
+                    <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 ml-1">Pilih Ikon</label>
                     <div className="grid grid-cols-5 gap-1.5">
                       {Object.keys(ICON_MAP).map((iconName) => {
                         const Icon = ICON_MAP[iconName];
@@ -1162,7 +1221,7 @@ export default function App() {
                           <button
                             key={iconName}
                             onClick={() => setNewApp({...newApp, icon: iconName})}
-                            className={`p-1.5 rounded-lg border-2 transition-all flex items-center justify-center ${newApp.icon === iconName ? 'border-indigo-600 bg-indigo-50 text-indigo-600' : 'border-slate-100 text-slate-400 bg-white hover:border-slate-200'}`}
+                            className={`p-1.5 rounded-lg border-2 transition-all flex items-center justify-center ${newApp.icon === iconName ? 'border-indigo-500 bg-indigo-500/20 text-indigo-400' : 'border-white/10 text-slate-400 bg-white/5 hover:border-white/20'}`}
                           >
                             <Icon size={14} />
                           </button>
@@ -1172,7 +1231,7 @@ export default function App() {
                   </div>
                   
                   <div>
-                    <label className="block text-[10px] font-black text-slate-500 uppercase tracking-widest mb-2 ml-1">Warna Tema</label>
+                    <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 ml-1">Warna Tema</label>
                     <div className="grid grid-cols-3 gap-1.5">
                       {APP_COLORS.map((color) => (
                         <button
@@ -1187,18 +1246,18 @@ export default function App() {
 
                 <div className="grid grid-cols-1 gap-4">
                   <div>
-                    <label className="block text-[10px] font-black text-slate-500 uppercase tracking-widest mb-2 ml-1">Mode Tampilan</label>
+                    <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 ml-1">Mode Tampilan</label>
                     <div className="grid grid-cols-2 gap-3">
                       <button
                         onClick={() => setNewApp({...newApp, displayMode: 'iframe'})}
-                        className={`p-3 rounded-xl border-2 transition-all text-xs font-black flex flex-col items-center gap-1.5 ${newApp.displayMode === 'iframe' ? 'border-indigo-600 bg-indigo-50 text-indigo-600 shadow-lg shadow-indigo-100' : 'border-slate-100 text-slate-400 bg-white'}`}
+                        className={`p-3 rounded-xl border-2 transition-all text-xs font-black flex flex-col items-center gap-1.5 ${newApp.displayMode === 'iframe' ? 'border-indigo-500 bg-indigo-500/20 text-indigo-400 shadow-lg shadow-indigo-500/20' : 'border-white/10 text-slate-400 bg-white/5'}`}
                       >
                         <LayoutDashboard size={16} />
                         Dashboard
                       </button>
                       <button
                         onClick={() => setNewApp({...newApp, displayMode: 'new_tab'})}
-                        className={`p-3 rounded-xl border-2 transition-all text-xs font-black flex flex-col items-center gap-1.5 ${newApp.displayMode === 'new_tab' ? 'border-indigo-600 bg-indigo-50 text-indigo-600 shadow-lg shadow-indigo-100' : 'border-slate-100 text-slate-400 bg-white'}`}
+                        className={`p-3 rounded-xl border-2 transition-all text-xs font-black flex flex-col items-center gap-1.5 ${newApp.displayMode === 'new_tab' ? 'border-indigo-500 bg-indigo-500/20 text-indigo-400 shadow-lg shadow-indigo-500/20' : 'border-white/10 text-slate-400 bg-white/5'}`}
                       >
                         <ExternalLink size={16} />
                         Tab Baru
@@ -1210,13 +1269,13 @@ export default function App() {
                 <div className="flex gap-3 pt-4">
                   <button 
                     onClick={() => setShowAddModal(false)}
-                    className="flex-1 py-3.5 px-4 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-xl font-black text-base transition-all"
+                    className="flex-1 py-3.5 px-4 bg-white/10 hover:bg-white/20 text-white rounded-xl font-black text-base transition-all"
                   >
                     Batal
                   </button>
                   <button 
                     onClick={addLink}
-                    className="flex-1 py-3.5 px-4 bg-gradient-to-r from-indigo-600 to-violet-600 text-white rounded-xl font-black text-base shadow-2xl shadow-indigo-200 transition-all hover:scale-105 active:scale-95"
+                    className="flex-1 py-3.5 px-4 bg-gradient-to-r from-indigo-600 to-violet-600 text-white rounded-xl font-black text-base shadow-2xl shadow-black/50 transition-all hover:scale-105 active:scale-95"
                   >
                     Simpan App
                   </button>
