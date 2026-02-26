@@ -249,7 +249,7 @@ export default function App() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="text-5xl md:text-7xl font-black text-white tracking-tight mb-4 font-display"
+            className="text-4xl md:text-7xl font-black text-white tracking-tight mb-4 font-display"
           >
             SIAP
           </motion.h1>
@@ -258,7 +258,7 @@ export default function App() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
-            className="text-lg md:text-xl font-bold text-slate-300 uppercase tracking-[0.2em] mb-8"
+            className="text-base md:text-xl font-bold text-slate-300 uppercase tracking-[0.2em] mb-8"
           >
             Sistem Integrasi Aplikasi Pembinaan
           </motion.p>
@@ -311,11 +311,12 @@ export default function App() {
       <motion.aside 
         initial={false}
         animate={{ 
-          width: isSidebarOpen ? 280 : 0,
+          width: isSidebarOpen ? (isMobile ? 'calc(100% - 2rem)' : 280) : 0,
           opacity: isSidebarOpen ? 1 : 0,
-          x: isMobile && !isSidebarOpen ? -280 : 0
+          x: isMobile && !isSidebarOpen ? '-100%' : 0,
+          margin: isMobile ? '1rem' : '0.75rem',
         }}
-        className="bg-black/40 backdrop-blur-2xl border-r border-white/10 flex flex-col z-50 md:z-20 fixed md:relative h-[calc(100vh-1.5rem)] md:h-auto overflow-hidden m-3 rounded-[2rem] shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] md:shadow-none"
+        className="bg-black/40 backdrop-blur-2xl border-r border-white/10 flex flex-col z-50 fixed md:relative h-[calc(100vh-2rem)] md:h-auto overflow-hidden rounded-[2rem] shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] md:shadow-none"
       >
         <div className="p-6 flex items-center justify-between border-b border-white/10 min-w-[280px]">
           <motion.h1 
@@ -583,7 +584,7 @@ export default function App() {
       )}
 
       {/* Main Content */}
-      <main className="flex-1 flex flex-col relative p-3 pl-3 md:pl-0">
+      <main className="flex-1 flex flex-col relative p-1.5 md:p-3 md:pl-0">
         <AnimatePresence mode="wait">
           {showPeta ? (
             <motion.div
@@ -591,7 +592,7 @@ export default function App() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
-              className="flex-1 flex flex-col bg-white/50 backdrop-blur-2xl rounded-[2.5rem] overflow-y-auto shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] border border-white/60 p-12 scrollbar-hide"
+              className="flex-1 flex flex-col bg-white/50 backdrop-blur-2xl rounded-[2rem] md:rounded-[2.5rem] overflow-y-auto shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] border border-white/60 p-6 md:p-12 scrollbar-hide"
             >
               <div className="max-w-5xl mx-auto space-y-12">
                 <div className="text-center space-y-4">
@@ -603,8 +604,8 @@ export default function App() {
                       referrerPolicy="no-referrer"
                     />
                   </div>
-                  <h2 className="text-5xl font-black text-white tracking-tight font-display leading-none">Peta Integrasi SIAP</h2>
-                  <p className="text-lg font-black text-slate-300 uppercase tracking-[0.3em]">Kaitan Aplikasi dengan Nilai 7KAIH</p>
+                  <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight font-display leading-none">Peta Integrasi SIAP</h2>
+                  <p className="text-sm md:text-lg font-black text-slate-300 uppercase tracking-[0.3em]">Kaitan Aplikasi dengan Nilai 7KAIH</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -805,7 +806,7 @@ export default function App() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
-              className="flex-1 flex flex-col bg-black/40 backdrop-blur-2xl rounded-[2.5rem] overflow-y-auto shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] border border-white/10 p-12 scrollbar-hide"
+              className="flex-1 flex flex-col bg-black/40 backdrop-blur-2xl rounded-[2rem] md:rounded-[2.5rem] overflow-y-auto shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] border border-white/10 p-6 md:p-12 scrollbar-hide"
             >
               <div className="max-w-4xl mx-auto space-y-12">
                 <div className="text-center space-y-4">
@@ -817,8 +818,8 @@ export default function App() {
                       referrerPolicy="no-referrer"
                     />
                   </div>
-                  <h2 className="text-5xl font-black text-white tracking-tight font-display leading-none">Kilas Aplikasi SIAP</h2>
-                  <p className="text-lg font-black text-slate-300 uppercase tracking-[0.3em]">Sistem Integrasi Aplikasi Pembinaan</p>
+                  <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight font-display leading-none">Kilas Aplikasi SIAP</h2>
+                  <p className="text-sm md:text-lg font-black text-slate-300 uppercase tracking-[0.3em]">Sistem Integrasi Aplikasi Pembinaan</p>
                 </div>
 
                 <div className="p-10 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6">
@@ -1019,10 +1020,10 @@ export default function App() {
               initial={{ opacity: 0, scale: 0.99 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.99 }}
-              className="flex-1 flex flex-col bg-black/40 backdrop-blur-2xl rounded-[2.5rem] overflow-hidden shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] border border-white/10"
+              className="flex-1 flex flex-col bg-black/40 backdrop-blur-2xl rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] border border-white/10"
             >
               {/* Toolbar */}
-              <div className="h-16 bg-black/40 border-b border-white/10 flex items-center justify-between px-8 z-10 backdrop-blur-md">
+              <div className="h-16 bg-black/40 border-b border-white/10 flex items-center justify-between px-4 md:px-8 z-10 backdrop-blur-md">
                 <div className="flex items-center gap-4">
                   <div className={`w-10 h-10 rounded-2xl bg-gradient-to-br ${activeLink.color || 'from-indigo-400 to-blue-400'} flex items-center justify-center text-white shadow-sm`}>
                     {(() => {
@@ -1031,7 +1032,7 @@ export default function App() {
                     })()}
                   </div>
                   <div>
-                    <h2 className="text-lg font-black text-white tracking-tight leading-none mb-0.5 font-display">{activeLink.title}</h2>
+                    <h2 className="text-base md:text-lg font-black text-white tracking-tight leading-none mb-0.5 font-display">{activeLink.title}</h2>
                     <p className="text-[10px] text-slate-400 font-mono tracking-wider uppercase opacity-70">
                       {activeLink.url}
                     </p>
@@ -1060,7 +1061,7 @@ export default function App() {
               </div>
 
               {/* Iframe Container */}
-              <div className="flex-1 bg-black/20 m-4 rounded-[2rem] shadow-inner overflow-hidden border border-white/10 relative group">
+              <div className="flex-1 bg-black/20 m-2 md:m-4 rounded-[1.5rem] md:rounded-[2rem] shadow-inner overflow-hidden border border-white/10 relative group">
                 {isLoading && (
                   <div className="absolute inset-0 z-20 bg-black/80 backdrop-blur-xl flex flex-col items-center justify-center space-y-6">
                     <div className="relative">
@@ -1116,7 +1117,7 @@ export default function App() {
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="p-12 bg-black/40 backdrop-blur-2xl rounded-[3rem] flex flex-col items-center gap-6 border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] text-center max-w-xl"
+                className="p-8 md:p-12 bg-black/40 backdrop-blur-2xl rounded-[2rem] md:rounded-[3rem] flex flex-col items-center gap-6 border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] text-center max-w-xl"
               >
                 <div className="w-20 h-20 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center shadow-2xl shadow-black/50 rotate-6 overflow-hidden p-2">
                   <img 
@@ -1127,7 +1128,7 @@ export default function App() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <h2 className="text-5xl font-black text-white tracking-tight font-display leading-none">SIAP</h2>
+                  <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight font-display leading-none">SIAP</h2>
                   <p className="text-sm font-black text-slate-300 uppercase tracking-[0.3em]">Sistem Integrasi Aplikasi Pembinaan</p>
                   <div className="h-1 w-20 bg-gradient-to-r from-indigo-500 to-violet-500 mx-auto rounded-full my-4" />
                   <p className="text-slate-400 text-base font-medium max-w-md mx-auto leading-relaxed">
