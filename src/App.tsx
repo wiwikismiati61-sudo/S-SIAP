@@ -522,6 +522,25 @@ export default function App() {
             <ExternalLink size={14} className="text-slate-400 group-hover:text-indigo-500 transition-colors" />
           </a>
 
+          {/* BK Peduli Siswa Menu */}
+          <a
+            href="https://bk-peduli-siswa.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/5 text-slate-300 group"
+          >
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-indigo-500 to-indigo-700 flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-indigo-500/50">
+              <Users size={20} />
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="font-black tracking-tight truncate text-[20px] text-slate-300 group-hover:text-white transition-colors uppercase">
+                BK Peduli Siswa
+              </p>
+              <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Aplikasi Eksternal</p>
+            </div>
+            <ExternalLink size={14} className="text-slate-400 group-hover:text-indigo-500 transition-colors" />
+          </a>
+
           <div className="h-px bg-black/5 mx-2" />
 
           <div className="space-y-2 pt-1">
