@@ -42,6 +42,19 @@ const ICON_MAP: Record<string, any> = {
   Globe, Shield, Book, Users, Activity, FileText, Calendar, MessageSquare, Briefcase, Zap, Search
 };
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.1,
+      duration: 0.5,
+      ease: "easeOut"
+    }
+  })
+};
+
 const APP_COLORS = [
   'from-blue-600 to-blue-800', // Biru
   'from-slate-800 to-black', // Hitam
@@ -612,7 +625,13 @@ export default function App() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
                   {/* A. Terlambat Hadir */}
-                  <div className="p-8 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6 flex flex-col hover:bg-black/60 transition-all duration-300 hover:border-white/20 hover:-translate-y-1">
+                  <motion.div
+                    variants={cardVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.5 }}
+                    custom={0}
+                    className="p-8 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6 flex flex-col hover:bg-black/60 transition-all duration-300 hover:border-white/20 hover:-translate-y-1">
                     <div className="flex items-center gap-4">
                       <div className="w-12 h-12 rounded-2xl bg-rose-100 flex items-center justify-center text-rose-600">
                         <Calendar size={24} />
@@ -639,10 +658,16 @@ export default function App() {
                       <p className="text-xs font-black text-rose-600 uppercase tracking-widest mb-1">📌 Kaitan 7KAIH:</p>
                       <p className="text-sm font-bold text-rose-700">Kedisiplinan & Karakter</p>
                     </div>
-                  </div>
+                  </motion.div>
 
                   {/* B. Izin Siswa */}
-                  <div className="p-8 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6 flex flex-col hover:bg-black/60 transition-all duration-300 hover:border-white/20 hover:-translate-y-1">
+                  <motion.div
+                    variants={cardVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.5 }}
+                    custom={1}
+                    className="p-8 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6 flex flex-col hover:bg-black/60 transition-all duration-300 hover:border-white/20 hover:-translate-y-1">
                     <div className="flex items-center gap-4">
                       <div className="w-12 h-12 rounded-2xl bg-emerald-100 flex items-center justify-center text-emerald-600">
                         <FileText size={24} />
@@ -669,10 +694,16 @@ export default function App() {
                       <p className="text-xs font-black text-emerald-600 uppercase tracking-widest mb-1">📌 Kaitan 7KAIH:</p>
                       <p className="text-sm font-bold text-emerald-700">Keteraturan & Kejujuran</p>
                     </div>
-                  </div>
+                  </motion.div>
 
                   {/* C. BK Peduli Siswa */}
-                  <div className="p-8 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6 flex flex-col hover:bg-black/60 transition-all duration-300 hover:border-white/20 hover:-translate-y-1">
+                  <motion.div
+                    variants={cardVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.5 }}
+                    custom={2}
+                    className="p-8 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6 flex flex-col hover:bg-black/60 transition-all duration-300 hover:border-white/20 hover:-translate-y-1">
                     <div className="flex items-center gap-4">
                       <div className="w-12 h-12 rounded-2xl bg-indigo-100 flex items-center justify-center text-indigo-600">
                         <Users size={24} />
@@ -699,10 +730,16 @@ export default function App() {
                       <p className="text-xs font-black text-indigo-600 uppercase tracking-widest mb-1">📌 Kaitan 7KAIH:</p>
                       <p className="text-sm font-bold text-indigo-700">Karakter, Kemanusiaan, dan Kepedulian</p>
                     </div>
-                  </div>
+                  </motion.div>
 
                   {/* D. SI-UKS */}
-                  <div className="p-8 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6 flex flex-col hover:bg-black/60 transition-all duration-300 hover:border-white/20 hover:-translate-y-1">
+                  <motion.div
+                    variants={cardVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.5 }}
+                    custom={3}
+                    className="p-8 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6 flex flex-col hover:bg-black/60 transition-all duration-300 hover:border-white/20 hover:-translate-y-1">
                     <div className="flex items-center gap-4">
                       <div className="w-12 h-12 rounded-2xl bg-rose-100 flex items-center justify-center text-rose-600">
                         <Activity size={24} />
@@ -729,10 +766,16 @@ export default function App() {
                       <p className="text-xs font-black text-rose-600 uppercase tracking-widest mb-1">📌 Kaitan 7KAIH:</p>
                       <p className="text-sm font-bold text-rose-700">Kesehatan & Kebersihan</p>
                     </div>
-                  </div>
+                  </motion.div>
 
                   {/* E. SIM-Agama */}
-                  <div className="p-8 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6 flex flex-col hover:bg-black/60 transition-all duration-300 hover:border-white/20 hover:-translate-y-1">
+                  <motion.div
+                    variants={cardVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.5 }}
+                    custom={4}
+                    className="p-8 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6 flex flex-col hover:bg-black/60 transition-all duration-300 hover:border-white/20 hover:-translate-y-1">
                     <div className="flex items-center gap-4">
                       <div className="w-12 h-12 rounded-2xl bg-amber-100 flex items-center justify-center text-amber-600">
                         <Shield size={24} />
@@ -759,10 +802,16 @@ export default function App() {
                       <p className="text-xs font-black text-amber-600 uppercase tracking-widest mb-1">📌 Kaitan 7KAIH:</p>
                       <p className="text-sm font-bold text-amber-700">Keimanan & Akhlak</p>
                     </div>
-                  </div>
+                  </motion.div>
 
                   {/* F. SIPENA */}
-                  <div className="p-8 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6 flex flex-col hover:bg-black/60 transition-all duration-300 hover:border-white/20 hover:-translate-y-1">
+                  <motion.div
+                    variants={cardVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.5 }}
+                    custom={5}
+                    className="p-8 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6 flex flex-col hover:bg-black/60 transition-all duration-300 hover:border-white/20 hover:-translate-y-1">
                     <div className="flex items-center gap-4">
                       <div className="w-12 h-12 rounded-2xl bg-indigo-100 flex items-center justify-center text-indigo-600">
                         <Book size={24} />
@@ -789,7 +838,7 @@ export default function App() {
                       <p className="text-xs font-black text-indigo-600 uppercase tracking-widest mb-1">📌 Kaitan 7KAIH:</p>
                       <p className="text-sm font-bold text-indigo-700">Kedisiplinan, Karakter, dan Gemar Belajar</p>
                     </div>
-                  </div>
+                  </motion.div>
                 </div>
 
                 <div className="text-center pt-8">
@@ -826,7 +875,13 @@ export default function App() {
                   <p className="text-sm md:text-lg font-black text-slate-300 uppercase tracking-[0.3em]">Sistem Integrasi Aplikasi Pembinaan</p>
                 </div>
 
-                <div className="p-10 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6 hover:bg-black/60 transition-all duration-300 hover:border-white/20 hover:-translate-y-1">
+                <motion.div
+                  variants={cardVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.5 }}
+                  custom={0}
+                  className="p-10 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6 hover:bg-black/60 transition-all duration-300 hover:border-white/20 hover:-translate-y-1">
                   <h3 className="text-2xl font-black text-white font-display">Ringkasan SIAP Spanju</h3>
                   <p className="text-slate-300 leading-relaxed font-medium text-lg">
                     Penggunaan Aplikasi Pembinaan di SMP Negeri 7 Pasuruan sebagai upaya mendukung penanganan permasalahan siswa secara lebih efektif dan terintegrasi. 
@@ -837,14 +892,20 @@ export default function App() {
                   <p className="text-slate-300 leading-relaxed font-medium">
                     Melalui Aplikasi SIAP, sekolah berharap tercipta lingkungan belajar yang aman, tertib, dan kondusif guna mendukung tumbuh kembang karakter dan prestasi peserta didik.
                   </p>
-                </div>
+                </motion.div>
 
                 <div className="space-y-8">
                   <h3 className="text-3xl font-black text-white font-display text-center">Daftar Aplikasi SIAP Spanju</h3>
                   
                   <div className="grid grid-cols-1 gap-8">
                     {/* Aplikasi Siswa Terlambat Hadir */}
-                    <div className="p-8 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6">
+                    <motion.div
+                      variants={cardVariants}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true, amount: 0.5 }}
+                      custom={1}
+                      className="p-8 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6">
                       <div className="flex items-center gap-4">
                         <div className="w-12 h-12 rounded-2xl bg-rose-100 flex items-center justify-center text-rose-600">
                           <Calendar size={24} />
@@ -868,10 +929,16 @@ export default function App() {
                           ))}
                         </ul>
                       </div>
-                    </div>
+                    </motion.div>
 
                     {/* Aplikasi Izin Siswa */}
-                    <div className="p-8 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6">
+                    <motion.div
+                      variants={cardVariants}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true, amount: 0.5 }}
+                      custom={2}
+                      className="p-8 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6">
                       <div className="flex items-center gap-4">
                         <div className="w-12 h-12 rounded-2xl bg-emerald-100 flex items-center justify-center text-emerald-600">
                           <FileText size={24} />
@@ -897,10 +964,16 @@ export default function App() {
                           ))}
                         </ul>
                       </div>
-                    </div>
+                    </motion.div>
 
                     {/* Aplikasi BK Peduli Siswa */}
-                    <div className="p-8 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6">
+                    <motion.div
+                      variants={cardVariants}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true, amount: 0.5 }}
+                      custom={3}
+                      className="p-8 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6">
                       <div className="flex items-center gap-4">
                         <div className="w-12 h-12 rounded-2xl bg-indigo-100 flex items-center justify-center text-indigo-600">
                           <Users size={24} />
@@ -926,11 +999,17 @@ export default function App() {
                           ))}
                         </ul>
                       </div>
-                    </div>
+                    </motion.div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                       {/* Aplikasi Si-UKS */}
-                      <div className="p-6 bg-black/40 rounded-[2rem] border border-white/10 shadow-xl space-y-4">
+                      <motion.div
+                        variants={cardVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.5 }}
+                        custom={4}
+                        className="p-6 bg-black/40 rounded-[2rem] border border-white/10 shadow-xl space-y-4">
                         <div className="w-10 h-10 rounded-xl bg-rose-100 flex items-center justify-center text-rose-600">
                           <Activity size={20} />
                         </div>
@@ -949,10 +1028,16 @@ export default function App() {
                             </li>
                           ))}
                         </ul>
-                      </div>
+                      </motion.div>
 
                       {/* Aplikasi SIM-AGAMA */}
-                      <div className="p-6 bg-black/40 rounded-[2rem] border border-white/10 shadow-xl space-y-4">
+                      <motion.div
+                        variants={cardVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.5 }}
+                        custom={5}
+                        className="p-6 bg-black/40 rounded-[2rem] border border-white/10 shadow-xl space-y-4">
                         <div className="w-10 h-10 rounded-xl bg-amber-100 flex items-center justify-center text-amber-600">
                           <Shield size={20} />
                         </div>
@@ -969,10 +1054,16 @@ export default function App() {
                             </li>
                           ))}
                         </ul>
-                      </div>
+                      </motion.div>
 
                       {/* Aplikasi SIPENA */}
-                      <div className="p-6 bg-black/40 rounded-[2rem] border border-white/10 shadow-xl space-y-4">
+                      <motion.div
+                        variants={cardVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.5 }}
+                        custom={6}
+                        className="p-6 bg-black/40 rounded-[2rem] border border-white/10 shadow-xl space-y-4">
                         <div className="w-10 h-10 rounded-xl bg-indigo-100 flex items-center justify-center text-indigo-600">
                           <Book size={20} />
                         </div>
@@ -989,7 +1080,7 @@ export default function App() {
                             </li>
                           ))}
                         </ul>
-                      </div>
+                      </motion.div>
                     </div>
                   </div>
                 </div>
