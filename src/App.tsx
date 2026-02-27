@@ -71,16 +71,8 @@ export default function App() {
   const [links, setLinks] = useState<AppLink[]>([]);
   const [activeLinkId, setActiveLinkId] = useState<string | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [showAddModal, setShowAddModal] = useState(false);
   const [showKilas, setShowKilas] = useState(true);
   const [showPeta, setShowPeta] = useState(false);
-  const [newApp, setNewApp] = useState({ 
-    title: '', 
-    url: '', 
-    displayMode: 'iframe' as 'iframe' | 'new_tab',
-    color: APP_COLORS[0],
-    icon: 'Globe'
-  });
   const [isLoading, setIsLoading] = useState(false);
   const [copied, setCopied] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -161,30 +153,6 @@ export default function App() {
     } else {
       setActiveLinkId(link.id);
     }
-  };
-
-  const addLink = () => {
-    if (!newApp.title || !newApp.url) return;
-    let url = newApp.url;
-    if (!url.startsWith('http')) url = 'https://' + url;
-    
-    const newLink: AppLink = {
-      id: Date.now().toString(),
-      title: newApp.title,
-      url: url,
-      displayMode: newApp.displayMode,
-      color: newApp.color,
-      icon: newApp.icon
-    };
-    setLinks([...links, newLink]);
-    if (newLink.displayMode === 'iframe') {
-      setActiveLinkId(newLink.id);
-    } else {
-      window.open(newLink.url, '_blank');
-      setActiveLinkId(newLink.id);
-    }
-    setNewApp({ title: '', url: '', displayMode: 'iframe', color: APP_COLORS[links.length % APP_COLORS.length], icon: 'Globe' });
-    setShowAddModal(false);
   };
 
   const removeLink = (id: string, e: React.MouseEvent) => {
@@ -292,7 +260,11 @@ export default function App() {
             whileHover={{ scale: 1.05, translateY: -2 }}
             whileTap={{ scale: 0.95 }}
             transition={{ delay: 0.7 }}
-            onClick={() => setHasEntered(true)}
+            onClick={() => {
+              setHasEntered(true);
+              setShowKilas(true);
+              setIsSidebarOpen(false);
+            }}
             className="group relative px-8 py-4 md:px-12 md:py-5 bg-gradient-to-r from-pink-500 to-blue-500 text-white rounded-full font-bold text-lg md:text-xl shadow-[0_10px_40px_-10px_rgba(236,72,153,0.5)] border border-white/50 overflow-hidden"
           >
             <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out" />
@@ -882,10 +854,13 @@ export default function App() {
 
                 <div className="text-center pt-8">
                   <button 
-                    onClick={() => setShowPeta(false)}
+                    onClick={() => {
+                      setShowPeta(false);
+                      setIsSidebarOpen(true);
+                    }}
                     className="px-10 py-4 bg-white/80 text-slate-800 rounded-2xl font-black shadow-xl hover:scale-105 hover:bg-white transition-all border border-white/80"
                   >
-                    Kembali ke Dashboard
+                    Buka Menu Aplikasi
                   </button>
                 </div>
               </div>
@@ -1140,10 +1115,13 @@ export default function App() {
                 
                 <div className="text-center pt-8">
                   <button 
-                    onClick={() => setShowKilas(false)}
+                    onClick={() => {
+                      setShowKilas(false);
+                      setShowPeta(true);
+                    }}
                     className="px-10 py-4 bg-white/80 text-slate-800 rounded-2xl font-black shadow-xl hover:scale-105 hover:bg-white transition-all border border-white/80"
                   >
-                    Kembali ke Dashboard
+                    Selanjutnya
                   </button>
                 </div>
               </div>
@@ -1269,132 +1247,11 @@ export default function App() {
                     Sekolah Sigap Menangani Permasalahan Siswa Secara Cepat dan Terdata
                   </p>
                 </div>
-                <button 
-                  onClick={() => setShowAddModal(true)}
-                  className="px-8 py-4 bg-gradient-to-r from-indigo-600 to-violet-600 text-white rounded-xl shadow-2xl shadow-black/50 hover:scale-105 transition-all font-black text-base"
-                >
-                  Tambah Aplikasi Pertama
-                </button>
               </motion.div>
             </div>
           )}
         </AnimatePresence>
       </main>
-
-      {/* Add Modal */}
-      <AnimatePresence>
-        {showAddModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-6">
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setShowAddModal(false)}
-              className="absolute inset-0 bg-slate-900/60 backdrop-blur-md"
-            />
-            <motion.div 
-              initial={{ scale: 0.9, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className="relative bg-black/80 backdrop-blur-2xl rounded-[2rem] shadow-2xl w-full max-w-lg p-8 border border-white/10"
-            >
-              <h3 className="text-2xl font-black text-white mb-6 tracking-tight font-display">Tambah Aplikasi Baru</h3>
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5 ml-1">Nama Aplikasi</label>
-                  <input 
-                    type="text" 
-                    placeholder="Contoh: Dashboard Kerja"
-                    value={newApp.title}
-                    onChange={(e) => setNewApp({...newApp, title: e.target.value})}
-                    className="w-full px-4 py-2.5 rounded-xl bg-white/5 border-2 border-white/10 focus:border-indigo-500 focus:outline-none transition-all text-sm font-bold shadow-sm text-white"
-                  />
-                </div>
-                <div>
-                  <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5 ml-1">Alamat URL</label>
-                  <input 
-                    type="text" 
-                    placeholder="https://app.anda.com"
-                    value={newApp.url}
-                    onChange={(e) => setNewApp({...newApp, url: e.target.value})}
-                    className="w-full px-4 py-2.5 rounded-xl bg-white/5 border-2 border-white/10 focus:border-indigo-500 focus:outline-none transition-all text-sm font-bold shadow-sm text-white"
-                  />
-                </div>
-                
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 ml-1">Pilih Ikon</label>
-                    <div className="grid grid-cols-5 gap-1.5">
-                      {Object.keys(ICON_MAP).map((iconName) => {
-                        const Icon = ICON_MAP[iconName];
-                        return (
-                          <button
-                            key={iconName}
-                            onClick={() => setNewApp({...newApp, icon: iconName})}
-                            className={`p-1.5 rounded-lg border-2 transition-all flex items-center justify-center ${newApp.icon === iconName ? 'border-indigo-500 bg-indigo-500/20 text-indigo-400' : 'border-white/10 text-slate-400 bg-white/5 hover:border-white/20'}`}
-                          >
-                            <Icon size={14} />
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-                  
-                  <div>
-                    <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 ml-1">Warna Tema</label>
-                    <div className="grid grid-cols-3 gap-1.5">
-                      {APP_COLORS.map((color) => (
-                        <button
-                          key={color}
-                          onClick={() => setNewApp({...newApp, color})}
-                          className={`h-8 rounded-lg bg-gradient-to-br ${color} transition-all ${newApp.color === color ? 'ring-2 ring-offset-1 ring-indigo-500 scale-105 shadow-md' : 'opacity-60 hover:opacity-100'}`}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 gap-4">
-                  <div>
-                    <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 ml-1">Mode Tampilan</label>
-                    <div className="grid grid-cols-2 gap-3">
-                      <button
-                        onClick={() => setNewApp({...newApp, displayMode: 'iframe'})}
-                        className={`p-3 rounded-xl border-2 transition-all text-xs font-black flex flex-col items-center gap-1.5 ${newApp.displayMode === 'iframe' ? 'border-indigo-500 bg-indigo-500/20 text-indigo-400 shadow-lg shadow-indigo-500/20' : 'border-white/10 text-slate-400 bg-white/5'}`}
-                      >
-                        <LayoutDashboard size={16} />
-                        Dashboard
-                      </button>
-                      <button
-                        onClick={() => setNewApp({...newApp, displayMode: 'new_tab'})}
-                        className={`p-3 rounded-xl border-2 transition-all text-xs font-black flex flex-col items-center gap-1.5 ${newApp.displayMode === 'new_tab' ? 'border-indigo-500 bg-indigo-500/20 text-indigo-400 shadow-lg shadow-indigo-500/20' : 'border-white/10 text-slate-400 bg-white/5'}`}
-                      >
-                        <ExternalLink size={16} />
-                        Tab Baru
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex gap-3 pt-4">
-                  <button 
-                    onClick={() => setShowAddModal(false)}
-                    className="flex-1 py-3.5 px-4 bg-white/10 hover:bg-white/20 text-white rounded-xl font-black text-base transition-all"
-                  >
-                    Batal
-                  </button>
-                  <button 
-                    onClick={addLink}
-                    className="flex-1 py-3.5 px-4 bg-gradient-to-r from-indigo-600 to-violet-600 text-white rounded-xl font-black text-base shadow-2xl shadow-black/50 transition-all hover:scale-105 active:scale-95"
-                  >
-                    Simpan App
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
 
       <style dangerouslySetInnerHTML={{ __html: `
         .scrollbar-hide::-webkit-scrollbar {
