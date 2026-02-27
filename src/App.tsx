@@ -1020,7 +1020,7 @@ export default function App() {
                         <h4 className="text-xl font-black text-slate-800 font-display">Aplikasi BK Peduli Siswa</h4>
                       </div>
                       <div className="space-y-3">
-                        <p className="font-black text-xs text-slate-400 uppercase tracking-widest">Kegunaan:</p>
+                        <p className="font-black text-xs text-slate-500 uppercase tracking-widest">Kegunaan:</p>
                         <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           {[
                             "Pendataan permasalahan siswa secara terintegrasi membantu mencatat berbagai permasalahan siswa secara sistematis dan rahasia.",
@@ -1031,8 +1031,8 @@ export default function App() {
                             "Pemantauan tindak lanjut dan perkembangan siswa setiap langkah pembinaan dan hasil pendampingan dapat dipantau dan dievaluasi.",
                             "Sebagai bahan evaluasi dan pelaporan sekolah data aplikasi digunakan untuk evaluasi program BK, sekolah ramah anak, dan laporan administrasi."
                           ].map((item, i) => (
-                            <li key={i} className="flex gap-3 text-slate-300 text-sm font-medium">
-                              <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-1.5 shrink-0" />
+                            <li key={i} className="flex gap-3 text-slate-600 text-sm font-medium">
+                              <div className="w-1.5 h-1.5 rounded-full bg-purple-400 mt-1.5 shrink-0" />
                               {item}
                             </li>
                           ))}
@@ -1127,12 +1127,12 @@ export default function App() {
                 <div className="p-10 bg-gradient-to-br from-pink-50 to-blue-50 rounded-[2.5rem] text-slate-800 shadow-2xl relative overflow-hidden group border border-white/50">
                   <div className="absolute top-0 right-0 w-64 h-64 bg-blue-300/20 blur-3xl -mr-20 -mt-20 group-hover:bg-blue-300/40 transition-all duration-700" />
                   <div className="relative z-10 space-y-6">
-                    <h3 className="text-2xl font-black font-display tracking-tight">Filosofi SIAP Spanju</h3>
-                    <p className="text-slate-600 leading-relaxed font-medium text-lg italic">
+                    <h3 className="text-2xl font-black font-display tracking-tight text-slate-900">Filosofi SIAP Spanju</h3>
+                    <p className="text-slate-800 leading-relaxed font-bold text-lg italic">
                       "Sekolah Sigap Menangani Permasalahan Siswa Secara Cepat dan Terdata"
                     </p>
-                    <div className="h-px bg-slate-200 w-full" />
-                    <p className="text-slate-500 text-sm leading-relaxed">
+                    <div className="h-px bg-slate-300 w-full" />
+                    <p className="text-slate-700 text-base leading-relaxed font-medium">
                       Platform ini bukan sekadar kumpulan tautan, melainkan pusat kendali pembinaan karakter yang mengedepankan kecepatan respon dan akurasi data demi masa depan siswa yang lebih baik.
                     </p>
                   </div>
