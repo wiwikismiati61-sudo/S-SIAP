@@ -25,7 +25,8 @@ import {
   Briefcase,
   Search,
   Zap,
-  Copy
+  Copy,
+  ClipboardList
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -231,12 +232,12 @@ export default function App() {
 
   if (!hasEntered) {
     return (
-      <div className="min-h-screen bg-transparent flex flex-col items-center justify-center p-6 relative overflow-hidden font-sans">
+      <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-blue-50 flex flex-col items-center justify-center p-6 relative overflow-hidden font-sans">
         {/* Decorative elements */}
-        <div className="absolute top-[-10%] left-[-10%] w-[40rem] h-[40rem] bg-pink-600/20 rounded-full blur-[100px]" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40rem] h-[40rem] bg-emerald-600/20 rounded-full blur-[100px]" />
-        <div className="absolute top-[40%] left-[40%] w-64 h-64 bg-amber-800/20 rounded-full blur-[80px]" />
-        <div className="absolute top-[20%] right-[10%] w-32 h-32 bg-white/10 rounded-full blur-2xl" />
+        <div className="absolute top-[-10%] left-[-10%] w-[40rem] h-[40rem] bg-pink-300/30 rounded-full blur-[100px]" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40rem] h-[40rem] bg-blue-300/30 rounded-full blur-[100px]" />
+        <div className="absolute top-[40%] left-[40%] w-64 h-64 bg-purple-300/20 rounded-full blur-[80px]" />
+        <div className="absolute top-[20%] right-[10%] w-32 h-32 bg-white/50 rounded-full blur-2xl" />
         
         <motion.div 
           initial={{ opacity: 0, y: 20, scale: 0.95 }}
@@ -248,7 +249,7 @@ export default function App() {
             initial={{ rotate: -10, scale: 0.8 }}
             animate={{ rotate: 0, scale: 1 }}
             transition={{ type: "spring", bounce: 0.5, duration: 1, delay: 0.2 }}
-            className="w-32 h-32 md:w-40 md:h-40 bg-black/40 rounded-[2.5rem] shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] flex items-center justify-center p-4 mb-8 border border-white/10 backdrop-blur-2xl"
+            className="w-32 h-32 md:w-40 md:h-40 bg-white/60 rounded-[2.5rem] shadow-[0_8px_32px_0_rgba(0,0,0,0.05)] flex items-center justify-center p-4 mb-8 border border-white/50 backdrop-blur-2xl"
           >
             <img 
               src="https://iili.io/KDFk4fI.png" 
@@ -262,7 +263,7 @@ export default function App() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="text-4xl md:text-7xl font-black text-white tracking-tight mb-4 font-display"
+            className="text-4xl md:text-7xl font-black text-slate-800 tracking-tight mb-4 font-display"
           >
             SIAP
           </motion.h1>
@@ -271,7 +272,7 @@ export default function App() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
-            className="text-base md:text-xl font-bold text-slate-300 uppercase tracking-[0.2em] mb-8"
+            className="text-base md:text-xl font-bold text-slate-600 uppercase tracking-[0.2em] mb-8"
           >
             Sistem Integrasi Aplikasi Pembinaan
           </motion.p>
@@ -280,7 +281,7 @@ export default function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
-            className="text-slate-400 text-base md:text-lg max-w-lg mb-12 leading-relaxed font-medium"
+            className="text-slate-500 text-base md:text-lg max-w-lg mb-12 leading-relaxed font-medium"
           >
             Platform terpadu untuk mempermudah pendataan, pemantauan, dan tindak lanjut permasalahan siswa di SMP Negeri 7 Pasuruan.
           </motion.p>
@@ -292,7 +293,7 @@ export default function App() {
             whileTap={{ scale: 0.95 }}
             transition={{ delay: 0.7 }}
             onClick={() => setHasEntered(true)}
-            className="group relative px-8 py-4 md:px-12 md:py-5 bg-gradient-to-r from-red-600 to-blue-600 text-white rounded-full font-bold text-lg md:text-xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)] border border-white/20 overflow-hidden"
+            className="group relative px-8 py-4 md:px-12 md:py-5 bg-gradient-to-r from-pink-500 to-blue-500 text-white rounded-full font-bold text-lg md:text-xl shadow-[0_10px_40px_-10px_rgba(236,72,153,0.5)] border border-white/50 overflow-hidden"
           >
             <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out" />
             <span className="relative flex items-center gap-3">
@@ -306,7 +307,7 @@ export default function App() {
   }
 
   return (
-    <div className="flex h-screen bg-transparent font-sans overflow-hidden text-slate-100">
+    <div className="flex h-screen bg-gradient-to-br from-pink-50 via-white to-blue-50 font-sans overflow-hidden text-slate-800">
       {/* Mobile Backdrop */}
       <AnimatePresence>
         {isMobile && isSidebarOpen && (
@@ -315,7 +316,7 @@ export default function App() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsSidebarOpen(false)}
-            className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
+            className="fixed inset-0 bg-slate-900/20 backdrop-blur-sm z-40"
           />
         )}
       </AnimatePresence>
@@ -329,14 +330,14 @@ export default function App() {
           x: isMobile && !isSidebarOpen ? '-100%' : 0,
           margin: isMobile ? '1rem' : '0.75rem',
         }}
-        className="bg-black/40 backdrop-blur-2xl border-r border-white/10 flex flex-col z-50 fixed md:relative h-[calc(100vh-2rem)] md:h-auto overflow-hidden rounded-[2rem] shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] md:shadow-none"
+        className="bg-white/60 backdrop-blur-2xl border-r border-white/50 flex flex-col z-50 fixed md:relative h-[calc(100vh-2rem)] md:h-auto overflow-hidden rounded-[2rem] shadow-[0_8px_32px_0_rgba(0,0,0,0.05)] md:shadow-none"
       >
-        <div className="p-6 flex items-center justify-between border-b border-white/10 min-w-[280px]">
+        <div className="p-6 flex items-center justify-between border-b border-white/50 min-w-[280px]">
           <motion.h1 
             className="flex flex-col gap-0.5 font-display"
           >
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center shadow-lg shadow-indigo-100 rotate-3 overflow-hidden p-1">
+              <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center shadow-lg shadow-pink-100 rotate-3 overflow-hidden p-1">
                 <img 
                   src="https://iili.io/KDFk4fI.png" 
                   alt="Logo" 
@@ -344,13 +345,13 @@ export default function App() {
                   referrerPolicy="no-referrer"
                 />
               </div>
-              <span className="text-xl font-black tracking-tight text-white">SIAP</span>
+              <span className="text-xl font-black tracking-tight text-slate-800">SIAP</span>
             </div>
-            <span className="text-[8px] font-bold text-slate-400 uppercase tracking-[0.1em] leading-none ml-10">Sistem Integrasi Aplikasi Pembinaan</span>
+            <span className="text-[8px] font-bold text-slate-500 uppercase tracking-[0.1em] leading-none ml-10">Sistem Integrasi Aplikasi Pembinaan</span>
           </motion.h1>
           <button 
             onClick={() => setIsSidebarOpen(false)}
-            className="p-1.5 hover:bg-white/10 rounded-lg transition-colors text-slate-400 hover:text-white"
+            className="p-1.5 hover:bg-white/50 rounded-lg transition-colors text-slate-500 hover:text-slate-800"
           >
             <ChevronLeft size={20} />
           </button>
@@ -366,19 +367,19 @@ export default function App() {
             className={`
               w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300
               ${showKilas 
-                ? `bg-white/10 shadow-sm translate-y-[-1px] ring-1 ring-white/20` 
-                : 'hover:bg-white/5 text-slate-300'
+                ? `bg-white/80 shadow-sm translate-y-[-1px] ring-1 ring-white/50` 
+                : 'hover:bg-white/50 text-slate-600'
               }
             `}
           >
-            <div className={`w-10 h-10 rounded-2xl bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 ${showKilas ? 'scale-110 rotate-3 shadow-red-500/50' : ''}`}>
+            <div className={`w-10 h-10 rounded-2xl bg-gradient-to-br from-pink-500 to-pink-600 flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 ${showKilas ? 'scale-110 rotate-3 shadow-pink-500/50' : ''}`}>
               <Book size={20} />
             </div>
             <div className="flex-1 min-w-0">
-              <p className={`font-black tracking-tight truncate text-[20px] uppercase ${showKilas ? 'text-white' : 'text-slate-300'}`}>
+              <p className={`font-black tracking-tight truncate text-[20px] uppercase ${showKilas ? 'text-slate-800' : 'text-slate-600'}`}>
                 Kilas Aplikasi SIAP
               </p>
-              <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Referensi Dasar</p>
+              <p className="text-[8px] font-bold text-slate-500 uppercase tracking-widest">Referensi Dasar</p>
             </div>
           </button>
 
@@ -392,19 +393,19 @@ export default function App() {
             className={`
               w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300
               ${showPeta 
-                ? `bg-white/10 shadow-sm translate-y-[-1px] ring-1 ring-white/20` 
-                : 'hover:bg-white/5 text-slate-300'
+                ? `bg-white/80 shadow-sm translate-y-[-1px] ring-1 ring-white/50` 
+                : 'hover:bg-white/50 text-slate-600'
               }
             `}
           >
-            <div className={`w-10 h-10 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 ${showPeta ? 'scale-110 rotate-3 shadow-blue-500/50' : ''}`}>
+            <div className={`w-10 h-10 rounded-2xl bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 ${showPeta ? 'scale-110 rotate-3 shadow-blue-500/50' : ''}`}>
               <LayoutDashboard size={20} />
             </div>
             <div className="flex-1 min-w-0">
-              <p className={`font-black tracking-tight truncate text-[20px] uppercase ${showPeta ? 'text-white' : 'text-slate-300'}`}>
+              <p className={`font-black tracking-tight truncate text-[20px] uppercase ${showPeta ? 'text-slate-800' : 'text-slate-600'}`}>
                 Peta Integrasi 7KAIH
               </p>
-              <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Kaitan Karakter</p>
+              <p className="text-[8px] font-bold text-slate-500 uppercase tracking-widest">Kaitan Karakter</p>
             </div>
           </button>
 
@@ -413,18 +414,18 @@ export default function App() {
             href="https://silat-spanju.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/5 text-slate-300 group"
+            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/50 text-slate-600 group"
           >
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-red-500/50">
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-pink-400 to-pink-600 flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-pink-500/50">
               <Shield size={20} />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="font-black tracking-tight truncate text-[20px] uppercase text-slate-300 group-hover:text-white transition-colors">
+              <p className="font-black tracking-tight truncate text-[20px] uppercase text-slate-600 group-hover:text-slate-800 transition-colors">
                 Silat Spanju
               </p>
-              <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Aplikasi Eksternal</p>
+              <p className="text-[8px] font-bold text-slate-500 uppercase tracking-widest">Aplikasi Eksternal</p>
             </div>
-            <ExternalLink size={14} className="text-slate-400 group-hover:text-indigo-500 transition-colors" />
+            <ExternalLink size={14} className="text-slate-400 group-hover:text-blue-500 transition-colors" />
           </a>
 
           {/* SIM-Agama Menu */}
@@ -432,18 +433,18 @@ export default function App() {
             href="https://sim-agama.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/5 text-slate-300 group"
+            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/50 text-slate-600 group"
           >
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-blue-500/50">
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-blue-500/50">
               <Book size={20} />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="font-black tracking-tight truncate text-[20px] uppercase text-slate-300 group-hover:text-white transition-colors">
+              <p className="font-black tracking-tight truncate text-[20px] uppercase text-slate-600 group-hover:text-slate-800 transition-colors">
                 SIM-Agama
               </p>
-              <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Aplikasi Eksternal</p>
+              <p className="text-[8px] font-bold text-slate-500 uppercase tracking-widest">Aplikasi Eksternal</p>
             </div>
-            <ExternalLink size={14} className="text-slate-400 group-hover:text-indigo-500 transition-colors" />
+            <ExternalLink size={14} className="text-slate-400 group-hover:text-blue-500 transition-colors" />
           </a>
 
           {/* Disiplin Spanju Menu */}
@@ -451,18 +452,18 @@ export default function App() {
             href="https://disiplin-spanju.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/5 text-slate-300 group"
+            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/50 text-slate-600 group"
           >
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-red-500/50">
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-pink-400 to-pink-600 flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-pink-500/50">
               <Calendar size={20} />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="font-black tracking-tight truncate text-[20px] text-slate-300 group-hover:text-white transition-colors uppercase">
+              <p className="font-black tracking-tight truncate text-[20px] text-slate-600 group-hover:text-slate-800 transition-colors uppercase">
                 Disiplin Spanju
               </p>
-              <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Aplikasi Eksternal</p>
+              <p className="text-[8px] font-bold text-slate-500 uppercase tracking-widest">Aplikasi Eksternal</p>
             </div>
-            <ExternalLink size={14} className="text-slate-400 group-hover:text-indigo-500 transition-colors" />
+            <ExternalLink size={14} className="text-slate-400 group-hover:text-blue-500 transition-colors" />
           </a>
 
           {/* UKS SMPN 7 Menu */}
@@ -470,18 +471,18 @@ export default function App() {
             href="https://uksspanju.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/5 text-slate-300 group"
+            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/50 text-slate-600 group"
           >
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-blue-500/50">
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-blue-500/50">
               <Activity size={20} />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="font-black tracking-tight truncate text-[20px] text-slate-300 group-hover:text-white transition-colors uppercase">
+              <p className="font-black tracking-tight truncate text-[20px] text-slate-600 group-hover:text-slate-800 transition-colors uppercase">
                 UKS SMPN 7
               </p>
-              <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Aplikasi Eksternal</p>
+              <p className="text-[8px] font-bold text-slate-500 uppercase tracking-widest">Aplikasi Eksternal</p>
             </div>
-            <ExternalLink size={14} className="text-slate-400 group-hover:text-indigo-500 transition-colors" />
+            <ExternalLink size={14} className="text-slate-400 group-hover:text-blue-500 transition-colors" />
           </a>
 
           {/* SIPENA Menu */}
@@ -489,18 +490,18 @@ export default function App() {
             href="https://sipena7.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/5 text-slate-300 group"
+            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/50 text-slate-600 group"
           >
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-red-500/50">
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-pink-400 to-pink-600 flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-pink-500/50">
               <Book size={20} />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="font-black tracking-tight truncate text-[20px] text-slate-300 group-hover:text-white transition-colors uppercase">
+              <p className="font-black tracking-tight truncate text-[20px] text-slate-600 group-hover:text-slate-800 transition-colors uppercase">
                 SIPENA
               </p>
-              <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Aplikasi Eksternal</p>
+              <p className="text-[8px] font-bold text-slate-500 uppercase tracking-widest">Aplikasi Eksternal</p>
             </div>
-            <ExternalLink size={14} className="text-slate-400 group-hover:text-indigo-500 transition-colors" />
+            <ExternalLink size={14} className="text-slate-400 group-hover:text-blue-500 transition-colors" />
           </a>
 
           {/* Tata Tertib Siswa Menu */}
@@ -508,18 +509,18 @@ export default function App() {
             href="https://tally.so/r/q4D1XY"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/5 text-slate-300 group"
+            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/50 text-slate-600 group"
           >
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-blue-500/50">
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-blue-500/50">
               <FileText size={20} />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="font-black tracking-tight truncate text-[20px] text-slate-300 group-hover:text-white transition-colors uppercase">
+              <p className="font-black tracking-tight truncate text-[20px] text-slate-600 group-hover:text-slate-800 transition-colors uppercase">
                 Tata Tertib Siswa
               </p>
-              <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Aplikasi Eksternal</p>
+              <p className="text-[8px] font-bold text-slate-500 uppercase tracking-widest">Aplikasi Eksternal</p>
             </div>
-            <ExternalLink size={14} className="text-slate-400 group-hover:text-indigo-500 transition-colors" />
+            <ExternalLink size={14} className="text-slate-400 group-hover:text-blue-500 transition-colors" />
           </a>
 
           {/* BK Peduli Siswa Menu */}
@@ -527,18 +528,37 @@ export default function App() {
             href="https://bk-peduli-siswa.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/5 text-slate-300 group"
+            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/50 text-slate-600 group"
           >
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-indigo-500 to-indigo-700 flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-indigo-500/50">
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-pink-400 to-pink-600 flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-pink-500/50">
               <Users size={20} />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="font-black tracking-tight truncate text-[20px] text-slate-300 group-hover:text-white transition-colors uppercase">
+              <p className="font-black tracking-tight truncate text-[20px] text-slate-600 group-hover:text-slate-800 transition-colors uppercase">
                 BK Peduli Siswa
               </p>
-              <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Aplikasi Eksternal</p>
+              <p className="text-[8px] font-bold text-slate-500 uppercase tracking-widest">Aplikasi Eksternal</p>
             </div>
-            <ExternalLink size={14} className="text-slate-400 group-hover:text-indigo-500 transition-colors" />
+            <ExternalLink size={14} className="text-slate-400 group-hover:text-blue-500 transition-colors" />
+          </a>
+
+          {/* Izin Siswa Menu */}
+          <a
+            href="https://izin-siswa.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/50 text-slate-600 group"
+          >
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-blue-500/50">
+              <ClipboardList size={20} />
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="font-black tracking-tight truncate text-[20px] text-slate-600 group-hover:text-slate-800 transition-colors uppercase">
+                Izin Siswa
+              </p>
+              <p className="text-[8px] font-bold text-slate-500 uppercase tracking-widest">Aplikasi Eksternal</p>
+            </div>
+            <ExternalLink size={14} className="text-slate-400 group-hover:text-blue-500 transition-colors" />
           </a>
 
           <div className="h-px bg-black/5 mx-2" />
@@ -553,20 +573,20 @@ export default function App() {
                     className={`
                       w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300
                       ${activeLinkId === link.id 
-                        ? `bg-white/10 shadow-sm translate-y-[-1px] ring-1 ring-white/20` 
-                        : 'hover:bg-white/5 text-slate-300'
+                        ? `bg-white/80 shadow-sm translate-y-[-1px] ring-1 ring-white/50` 
+                        : 'hover:bg-white/50 text-slate-600'
                       }
                     `}
                   >
-                    <div className={`w-10 h-10 rounded-2xl bg-gradient-to-br ${link.color || 'from-red-500 to-blue-700'} flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3`}>
+                    <div className={`w-10 h-10 rounded-2xl bg-gradient-to-br ${link.color || 'from-pink-400 to-blue-500'} flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3`}>
                       <IconComponent size={20} />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className={`font-black tracking-tight truncate text-sm ${activeLinkId === link.id ? 'text-white' : 'text-slate-300'}`}>
+                      <p className={`font-black tracking-tight truncate text-sm ${activeLinkId === link.id ? 'text-slate-800' : 'text-slate-600'}`}>
                         {link.title}
                       </p>
                       <div className="flex items-center gap-2 mt-0.5">
-                        <span className={`text-[8px] font-black uppercase tracking-[0.15em] px-1.5 py-0.5 rounded-full ${activeLinkId === link.id ? 'bg-indigo-100 text-indigo-600' : 'bg-slate-200/50 text-slate-400'}`}>
+                        <span className={`text-[8px] font-black uppercase tracking-[0.15em] px-1.5 py-0.5 rounded-full ${activeLinkId === link.id ? 'bg-pink-100 text-pink-600' : 'bg-slate-200/50 text-slate-500'}`}>
                           {link.displayMode === 'iframe' ? 'Dashboard' : 'Direct'}
                         </span>
                       </div>
@@ -578,7 +598,7 @@ export default function App() {
                       target="_blank" 
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
-                      className="p-1.5 text-slate-300 hover:text-indigo-600 opacity-0 group-hover:opacity-100 transition-all hover:bg-white rounded-lg shadow-sm"
+                      className="p-1.5 text-slate-400 hover:text-blue-500 opacity-0 group-hover:opacity-100 transition-all hover:bg-white rounded-lg shadow-sm"
                       title="Open in new tab"
                     >
                       <ExternalLink size={14} />
@@ -604,7 +624,7 @@ export default function App() {
           initial={{ x: -20, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           onClick={() => setIsSidebarOpen(true)}
-          className="fixed left-6 top-6 z-30 p-2 bg-black/40 backdrop-blur-2xl border border-white/10 rounded-3xl text-slate-300 hover:scale-110 transition-all active:scale-90 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] overflow-hidden"
+          className="fixed left-6 top-6 z-30 p-2 bg-white/60 backdrop-blur-2xl border border-white/50 rounded-3xl text-slate-600 hover:scale-110 transition-all active:scale-90 shadow-[0_8px_32px_0_rgba(0,0,0,0.05)] overflow-hidden"
         >
           <img 
             src="https://iili.io/KDFk4fI.png" 
@@ -624,13 +644,13 @@ export default function App() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
-              className="flex-1 flex flex-col bg-gradient-to-b from-slate-900 via-slate-900 to-black rounded-[2rem] md:rounded-[2.5rem] overflow-y-auto shadow-2xl border border-white/10 p-6 md:p-12 scrollbar-hide"
+              className="flex-1 flex flex-col bg-white/60 backdrop-blur-3xl rounded-[2rem] md:rounded-[2.5rem] overflow-y-auto shadow-2xl border border-white/50 p-6 md:p-12 scrollbar-hide"
             >
               <div className="max-w-5xl mx-auto space-y-12">
                 <div className="text-center space-y-4 relative">
-                  <div className="absolute -top-16 -left-16 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl" />
-                  <div className="absolute -bottom-16 -right-16 w-64 h-64 bg-red-500/10 rounded-full blur-3xl" />
-                  <div className="w-24 h-24 rounded-3xl bg-white/10 flex items-center justify-center shadow-2xl shadow-black/50 mx-auto rotate-6 overflow-hidden p-2 mb-6 border border-white/20 backdrop-blur-md">
+                  <div className="absolute -top-16 -left-16 w-64 h-64 bg-blue-300/30 rounded-full blur-3xl" />
+                  <div className="absolute -bottom-16 -right-16 w-64 h-64 bg-pink-300/30 rounded-full blur-3xl" />
+                  <div className="w-24 h-24 rounded-3xl bg-white/80 flex items-center justify-center shadow-xl shadow-pink-100/50 mx-auto rotate-6 overflow-hidden p-2 mb-6 border border-white/80 backdrop-blur-md">
                     <img 
                       src="https://iili.io/KDFk4fI.png" 
                       alt="Logo" 
@@ -638,8 +658,8 @@ export default function App() {
                       referrerPolicy="no-referrer"
                     />
                   </div>
-                  <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight font-display leading-none">Peta Integrasi SIAP</h2>
-                  <p className="text-sm md:text-lg font-black text-slate-300 uppercase tracking-[0.3em]">Kaitan Aplikasi dengan Nilai 7KAIH</p>
+                  <h2 className="text-3xl md:text-5xl font-black text-slate-800 tracking-tight font-display leading-none">Peta Integrasi SIAP</h2>
+                  <p className="text-sm md:text-lg font-black text-slate-500 uppercase tracking-[0.3em]">Kaitan Aplikasi dengan Nilai 7KAIH</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
@@ -650,32 +670,32 @@ export default function App() {
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.5 }}
                     custom={0}
-                    className="p-8 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6 flex flex-col hover:bg-black/60 transition-all duration-300 hover:border-white/20 hover:-translate-y-1">
+                    className="p-8 bg-white/80 rounded-[2.5rem] border border-white/50 shadow-xl shadow-pink-100/30 space-y-6 flex flex-col hover:bg-white transition-all duration-300 hover:border-white/80 hover:-translate-y-1">
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-2xl bg-rose-100 flex items-center justify-center text-rose-600">
+                      <div className="w-12 h-12 rounded-2xl bg-pink-100 flex items-center justify-center text-pink-600">
                         <Calendar size={24} />
                       </div>
-                      <h3 className="text-xl font-black text-white font-display">A. Aplikasi Siswa Terlambat Hadir</h3>
+                      <h3 className="text-xl font-black text-slate-800 font-display">A. Aplikasi Siswa Terlambat Hadir</h3>
                     </div>
                     <div className="flex-1 space-y-4">
                       <ul className="space-y-2">
-                        <li className="flex gap-2 text-slate-300 text-sm font-medium">
-                          <div className="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 shrink-0" />
+                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
+                          <div className="w-1.5 h-1.5 rounded-full bg-pink-400 mt-1.5 shrink-0" />
                           Jumlah keterlambatan per bulan
                         </li>
-                        <li className="flex gap-2 text-slate-300 text-sm font-medium">
-                          <div className="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 shrink-0" />
+                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
+                          <div className="w-1.5 h-1.5 rounded-full bg-pink-400 mt-1.5 shrink-0" />
                           Kelas terbanyak & terendah
                         </li>
-                        <li className="flex gap-2 text-slate-300 text-sm font-medium">
-                          <div className="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 shrink-0" />
+                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
+                          <div className="w-1.5 h-1.5 rounded-full bg-pink-400 mt-1.5 shrink-0" />
                           Tindak lanjut (teguran, pembinaan, orang tua)
                         </li>
                       </ul>
                     </div>
-                    <div className="p-4 bg-rose-50 rounded-2xl border border-rose-100">
-                      <p className="text-xs font-black text-rose-600 uppercase tracking-widest mb-1">📌 Kaitan 7KAIH:</p>
-                      <p className="text-sm font-bold text-rose-700">Kedisiplinan & Karakter</p>
+                    <div className="p-4 bg-pink-50 rounded-2xl border border-pink-100">
+                      <p className="text-xs font-black text-pink-600 uppercase tracking-widest mb-1">📌 Kaitan 7KAIH:</p>
+                      <p className="text-sm font-bold text-pink-700">Kedisiplinan & Karakter</p>
                     </div>
                   </motion.div>
 
@@ -686,32 +706,32 @@ export default function App() {
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.5 }}
                     custom={1}
-                    className="p-8 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6 flex flex-col hover:bg-black/60 transition-all duration-300 hover:border-white/20 hover:-translate-y-1">
+                    className="p-8 bg-white/80 rounded-[2.5rem] border border-white/50 shadow-xl shadow-blue-100/30 space-y-6 flex flex-col hover:bg-white transition-all duration-300 hover:border-white/80 hover:-translate-y-1">
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-2xl bg-emerald-100 flex items-center justify-center text-emerald-600">
+                      <div className="w-12 h-12 rounded-2xl bg-blue-100 flex items-center justify-center text-blue-600">
                         <FileText size={24} />
                       </div>
-                      <h3 className="text-xl font-black text-white font-display">B. Aplikasi Izin Siswa</h3>
+                      <h3 className="text-xl font-black text-slate-800 font-display">B. Aplikasi Izin Siswa</h3>
                     </div>
                     <div className="flex-1 space-y-4">
                       <ul className="space-y-2">
-                        <li className="flex gap-2 text-slate-300 text-sm font-medium">
-                          <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 shrink-0" />
+                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
+                          <div className="w-1.5 h-1.5 rounded-full bg-blue-400 mt-1.5 shrink-0" />
                           Izin sakit / izin keluarga / tanpa keterangan
                         </li>
-                        <li className="flex gap-2 text-slate-300 text-sm font-medium">
-                          <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 shrink-0" />
+                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
+                          <div className="w-1.5 h-1.5 rounded-full bg-blue-400 mt-1.5 shrink-0" />
                           Validasi dokumen
                         </li>
-                        <li className="flex gap-2 text-slate-300 text-sm font-medium">
-                          <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 shrink-0" />
+                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
+                          <div className="w-1.5 h-1.5 rounded-full bg-blue-400 mt-1.5 shrink-0" />
                           Kepatuhan siswa
                         </li>
                       </ul>
                     </div>
-                    <div className="p-4 bg-emerald-50 rounded-2xl border border-emerald-100">
-                      <p className="text-xs font-black text-emerald-600 uppercase tracking-widest mb-1">📌 Kaitan 7KAIH:</p>
-                      <p className="text-sm font-bold text-emerald-700">Keteraturan & Kejujuran</p>
+                    <div className="p-4 bg-blue-50 rounded-2xl border border-blue-100">
+                      <p className="text-xs font-black text-blue-600 uppercase tracking-widest mb-1">📌 Kaitan 7KAIH:</p>
+                      <p className="text-sm font-bold text-blue-700">Keteraturan & Kejujuran</p>
                     </div>
                   </motion.div>
 
@@ -722,32 +742,32 @@ export default function App() {
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.5 }}
                     custom={2}
-                    className="p-8 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6 flex flex-col hover:bg-black/60 transition-all duration-300 hover:border-white/20 hover:-translate-y-1">
+                    className="p-8 bg-white/80 rounded-[2.5rem] border border-white/50 shadow-xl shadow-purple-100/30 space-y-6 flex flex-col hover:bg-white transition-all duration-300 hover:border-white/80 hover:-translate-y-1">
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-2xl bg-indigo-100 flex items-center justify-center text-indigo-600">
+                      <div className="w-12 h-12 rounded-2xl bg-purple-100 flex items-center justify-center text-purple-600">
                         <Users size={24} />
                       </div>
-                      <h3 className="text-xl font-black text-white font-display">C. Aplikasi BK Peduli Siswa</h3>
+                      <h3 className="text-xl font-black text-slate-800 font-display">C. Aplikasi BK Peduli Siswa</h3>
                     </div>
                     <div className="flex-1 space-y-4">
                       <ul className="space-y-2">
-                        <li className="flex gap-2 text-slate-300 text-sm font-medium">
-                          <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-1.5 shrink-0" />
+                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
+                          <div className="w-1.5 h-1.5 rounded-full bg-purple-400 mt-1.5 shrink-0" />
                           Jenis permasalahan siswa
                         </li>
-                        <li className="flex gap-2 text-slate-300 text-sm font-medium">
-                          <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-1.5 shrink-0" />
+                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
+                          <div className="w-1.5 h-1.5 rounded-full bg-purple-400 mt-1.5 shrink-0" />
                           Jumlah layanan konseling
                         </li>
-                        <li className="flex gap-2 text-slate-300 text-sm font-medium">
-                          <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-1.5 shrink-0" />
+                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
+                          <div className="w-1.5 h-1.5 rounded-full bg-purple-400 mt-1.5 shrink-0" />
                           Status penyelesaian kasus
                         </li>
                       </ul>
                     </div>
-                    <div className="p-4 bg-indigo-50 rounded-2xl border border-indigo-100">
-                      <p className="text-xs font-black text-indigo-600 uppercase tracking-widest mb-1">📌 Kaitan 7KAIH:</p>
-                      <p className="text-sm font-bold text-indigo-700">Karakter, Kemanusiaan, dan Kepedulian</p>
+                    <div className="p-4 bg-purple-50 rounded-2xl border border-purple-100">
+                      <p className="text-xs font-black text-purple-600 uppercase tracking-widest mb-1">📌 Kaitan 7KAIH:</p>
+                      <p className="text-sm font-bold text-purple-700">Karakter, Kemanusiaan, dan Kepedulian</p>
                     </div>
                   </motion.div>
 
@@ -758,32 +778,32 @@ export default function App() {
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.5 }}
                     custom={3}
-                    className="p-8 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6 flex flex-col hover:bg-black/60 transition-all duration-300 hover:border-white/20 hover:-translate-y-1">
+                    className="p-8 bg-white/80 rounded-[2.5rem] border border-white/50 shadow-xl shadow-pink-100/30 space-y-6 flex flex-col hover:bg-white transition-all duration-300 hover:border-white/80 hover:-translate-y-1">
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-2xl bg-rose-100 flex items-center justify-center text-rose-600">
+                      <div className="w-12 h-12 rounded-2xl bg-pink-100 flex items-center justify-center text-pink-600">
                         <Activity size={24} />
                       </div>
-                      <h3 className="text-xl font-black text-white font-display">D. Aplikasi SI-UKS</h3>
+                      <h3 className="text-xl font-black text-slate-800 font-display">D. Aplikasi SI-UKS</h3>
                     </div>
                     <div className="flex-1 space-y-4">
                       <ul className="space-y-2">
-                        <li className="flex gap-2 text-slate-300 text-sm font-medium">
-                          <div className="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 shrink-0" />
+                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
+                          <div className="w-1.5 h-1.5 rounded-full bg-pink-400 mt-1.5 shrink-0" />
                           Data siswa sakit
                         </li>
-                        <li className="flex gap-2 text-slate-300 text-sm font-medium">
-                          <div className="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 shrink-0" />
+                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
+                          <div className="w-1.5 h-1.5 rounded-full bg-pink-400 mt-1.5 shrink-0" />
                           Kunjungan UKS
                         </li>
-                        <li className="flex gap-2 text-slate-300 text-sm font-medium">
-                          <div className="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 shrink-0" />
+                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
+                          <div className="w-1.5 h-1.5 rounded-full bg-pink-400 mt-1.5 shrink-0" />
                           Edukasi kesehatan
                         </li>
                       </ul>
                     </div>
-                    <div className="p-4 bg-rose-50 rounded-2xl border border-rose-100">
-                      <p className="text-xs font-black text-rose-600 uppercase tracking-widest mb-1">📌 Kaitan 7KAIH:</p>
-                      <p className="text-sm font-bold text-rose-700">Kesehatan & Kebersihan</p>
+                    <div className="p-4 bg-pink-50 rounded-2xl border border-pink-100">
+                      <p className="text-xs font-black text-pink-600 uppercase tracking-widest mb-1">📌 Kaitan 7KAIH:</p>
+                      <p className="text-sm font-bold text-pink-700">Kesehatan & Kebersihan</p>
                     </div>
                   </motion.div>
 
@@ -794,32 +814,32 @@ export default function App() {
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.5 }}
                     custom={4}
-                    className="p-8 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6 flex flex-col hover:bg-black/60 transition-all duration-300 hover:border-white/20 hover:-translate-y-1">
+                    className="p-8 bg-white/80 rounded-[2.5rem] border border-white/50 shadow-xl shadow-blue-100/30 space-y-6 flex flex-col hover:bg-white transition-all duration-300 hover:border-white/80 hover:-translate-y-1">
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-2xl bg-amber-100 flex items-center justify-center text-amber-600">
+                      <div className="w-12 h-12 rounded-2xl bg-blue-100 flex items-center justify-center text-blue-600">
                         <Shield size={24} />
                       </div>
-                      <h3 className="text-xl font-black text-white font-display">E. Aplikasi SIM-Agama</h3>
+                      <h3 className="text-xl font-black text-slate-800 font-display">E. Aplikasi SIM-Agama</h3>
                     </div>
                     <div className="flex-1 space-y-4">
                       <ul className="space-y-2">
-                        <li className="flex gap-2 text-slate-300 text-sm font-medium">
-                          <div className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5 shrink-0" />
+                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
+                          <div className="w-1.5 h-1.5 rounded-full bg-blue-400 mt-1.5 shrink-0" />
                           Kegiatan keagamaan siswa
                         </li>
-                        <li className="flex gap-2 text-slate-300 text-sm font-medium">
-                          <div className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5 shrink-0" />
+                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
+                          <div className="w-1.5 h-1.5 rounded-full bg-blue-400 mt-1.5 shrink-0" />
                           Pembiasaan ibadah
                         </li>
-                        <li className="flex gap-2 text-slate-300 text-sm font-medium">
-                          <div className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5 shrink-0" />
+                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
+                          <div className="w-1.5 h-1.5 rounded-full bg-blue-400 mt-1.5 shrink-0" />
                           Partisipasi siswa
                         </li>
                       </ul>
                     </div>
-                    <div className="p-4 bg-amber-50 rounded-2xl border border-amber-100">
-                      <p className="text-xs font-black text-amber-600 uppercase tracking-widest mb-1">📌 Kaitan 7KAIH:</p>
-                      <p className="text-sm font-bold text-amber-700">Keimanan & Akhlak</p>
+                    <div className="p-4 bg-blue-50 rounded-2xl border border-blue-100">
+                      <p className="text-xs font-black text-blue-600 uppercase tracking-widest mb-1">📌 Kaitan 7KAIH:</p>
+                      <p className="text-sm font-bold text-blue-700">Keimanan & Akhlak</p>
                     </div>
                   </motion.div>
 
@@ -830,32 +850,32 @@ export default function App() {
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.5 }}
                     custom={5}
-                    className="p-8 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6 flex flex-col hover:bg-black/60 transition-all duration-300 hover:border-white/20 hover:-translate-y-1">
+                    className="p-8 bg-white/80 rounded-[2.5rem] border border-white/50 shadow-xl shadow-purple-100/30 space-y-6 flex flex-col hover:bg-white transition-all duration-300 hover:border-white/80 hover:-translate-y-1">
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-2xl bg-indigo-100 flex items-center justify-center text-indigo-600">
+                      <div className="w-12 h-12 rounded-2xl bg-purple-100 flex items-center justify-center text-purple-600">
                         <Book size={24} />
                       </div>
-                      <h3 className="text-xl font-black text-white font-display">F. Aplikasi SIPENA</h3>
+                      <h3 className="text-xl font-black text-slate-800 font-display">F. Aplikasi SIPENA</h3>
                     </div>
                     <div className="flex-1 space-y-4">
                       <ul className="space-y-2">
-                        <li className="flex gap-2 text-slate-300 text-sm font-medium">
-                          <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-1.5 shrink-0" />
+                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
+                          <div className="w-1.5 h-1.5 rounded-full bg-purple-400 mt-1.5 shrink-0" />
                           Jumlah kunjungan perpustakaan per bulan
                         </li>
-                        <li className="flex gap-2 text-slate-300 text-sm font-medium">
-                          <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-1.5 shrink-0" />
+                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
+                          <div className="w-1.5 h-1.5 rounded-full bg-purple-400 mt-1.5 shrink-0" />
                           Jumlah peminjaman dan pengembalian buku
                         </li>
-                        <li className="flex gap-2 text-slate-300 text-sm font-medium">
-                          <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-1.5 shrink-0" />
+                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
+                          <div className="w-1.5 h-1.5 rounded-full bg-purple-400 mt-1.5 shrink-0" />
                           Keterlambatan pengembalian dan tindak lanjut
                         </li>
                       </ul>
                     </div>
-                    <div className="p-4 bg-indigo-50 rounded-2xl border border-indigo-100">
-                      <p className="text-xs font-black text-indigo-600 uppercase tracking-widest mb-1">📌 Kaitan 7KAIH:</p>
-                      <p className="text-sm font-bold text-indigo-700">Kedisiplinan, Karakter, dan Gemar Belajar</p>
+                    <div className="p-4 bg-purple-50 rounded-2xl border border-purple-100">
+                      <p className="text-xs font-black text-purple-600 uppercase tracking-widest mb-1">📌 Kaitan 7KAIH:</p>
+                      <p className="text-sm font-bold text-purple-700">Kedisiplinan, Karakter, dan Gemar Belajar</p>
                     </div>
                   </motion.div>
                 </div>
@@ -863,7 +883,7 @@ export default function App() {
                 <div className="text-center pt-8">
                   <button 
                     onClick={() => setShowPeta(false)}
-                    className="px-10 py-4 bg-white/10 text-white rounded-2xl font-black shadow-xl hover:scale-105 hover:bg-white/20 transition-all border border-white/20"
+                    className="px-10 py-4 bg-white/80 text-slate-800 rounded-2xl font-black shadow-xl hover:scale-105 hover:bg-white transition-all border border-white/80"
                   >
                     Kembali ke Dashboard
                   </button>
@@ -876,13 +896,13 @@ export default function App() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
-              className="flex-1 flex flex-col bg-gradient-to-b from-slate-900 via-slate-900 to-black rounded-[2rem] md:rounded-[2.5rem] overflow-y-auto shadow-2xl border border-white/10 p-6 md:p-12 scrollbar-hide"
+              className="flex-1 flex flex-col bg-white/60 backdrop-blur-3xl rounded-[2rem] md:rounded-[2.5rem] overflow-y-auto shadow-2xl border border-white/50 p-6 md:p-12 scrollbar-hide"
             >
               <div className="max-w-4xl mx-auto space-y-12">
                 <div className="text-center space-y-4 relative">
-                  <div className="absolute -top-16 -left-16 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl" />
-                  <div className="absolute -bottom-16 -right-16 w-64 h-64 bg-red-500/10 rounded-full blur-3xl" />
-                  <div className="w-24 h-24 rounded-3xl bg-white/10 flex items-center justify-center shadow-2xl shadow-black/50 mx-auto rotate-6 overflow-hidden p-2 mb-6 border border-white/20 backdrop-blur-md">
+                  <div className="absolute -top-16 -left-16 w-64 h-64 bg-blue-300/30 rounded-full blur-3xl" />
+                  <div className="absolute -bottom-16 -right-16 w-64 h-64 bg-pink-300/30 rounded-full blur-3xl" />
+                  <div className="w-24 h-24 rounded-3xl bg-white/80 flex items-center justify-center shadow-xl shadow-pink-100/50 mx-auto rotate-6 overflow-hidden p-2 mb-6 border border-white/80 backdrop-blur-md">
                     <img 
                       src="https://iili.io/KDFk4fI.png" 
                       alt="Logo" 
@@ -890,8 +910,8 @@ export default function App() {
                       referrerPolicy="no-referrer"
                     />
                   </div>
-                  <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight font-display leading-none">Kilas Aplikasi SIAP</h2>
-                  <p className="text-sm md:text-lg font-black text-slate-300 uppercase tracking-[0.3em]">Sistem Integrasi Aplikasi Pembinaan</p>
+                  <h2 className="text-3xl md:text-5xl font-black text-slate-800 tracking-tight font-display leading-none">Kilas Aplikasi SIAP</h2>
+                  <p className="text-sm md:text-lg font-black text-slate-500 uppercase tracking-[0.3em]">Sistem Integrasi Aplikasi Pembinaan</p>
                 </div>
 
                 <motion.div
@@ -900,21 +920,21 @@ export default function App() {
                   whileInView="visible"
                   viewport={{ once: true, amount: 0.5 }}
                   custom={0}
-                  className="p-10 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6 hover:bg-black/60 transition-all duration-300 hover:border-white/20 hover:-translate-y-1">
-                  <h3 className="text-2xl font-black text-white font-display">Ringkasan SIAP Spanju</h3>
-                  <p className="text-slate-300 leading-relaxed font-medium text-lg">
+                  className="p-10 bg-white/80 rounded-[2.5rem] border border-white/50 shadow-xl shadow-pink-100/30 space-y-6 hover:bg-white transition-all duration-300 hover:border-white/80 hover:-translate-y-1">
+                  <h3 className="text-2xl font-black text-slate-800 font-display">Ringkasan SIAP Spanju</h3>
+                  <p className="text-slate-600 leading-relaxed font-medium text-lg">
                     Penggunaan Aplikasi Pembinaan di SMP Negeri 7 Pasuruan sebagai upaya mendukung penanganan permasalahan siswa secara lebih efektif dan terintegrasi. 
                   </p>
-                  <p className="text-slate-300 leading-relaxed font-medium">
+                  <p className="text-slate-600 leading-relaxed font-medium">
                     Aplikasi ini dimanfaatkan untuk mempermudah pendataan, pemantauan, dan tindak lanjut berbagai permasalahan siswa dengan mengedepankan pendekatan pembinaan yang edukatif, humanis, dan kolaboratif antara guru, wali kelas, guru BK, serta orang tua. 
                   </p>
-                  <p className="text-slate-300 leading-relaxed font-medium">
+                  <p className="text-slate-600 leading-relaxed font-medium">
                     Melalui Aplikasi SIAP, sekolah berharap tercipta lingkungan belajar yang aman, tertib, dan kondusif guna mendukung tumbuh kembang karakter dan prestasi peserta didik.
                   </p>
                 </motion.div>
 
                 <div className="space-y-8">
-                  <h3 className="text-3xl font-black text-white font-display text-center">Daftar Aplikasi SIAP Spanju</h3>
+                  <h3 className="text-3xl font-black text-slate-800 font-display text-center">Daftar Aplikasi SIAP Spanju</h3>
                   
                   <div className="grid grid-cols-1 gap-8">
                     {/* Aplikasi Siswa Terlambat Hadir */}
@@ -924,15 +944,15 @@ export default function App() {
                       whileInView="visible"
                       viewport={{ once: true, amount: 0.5 }}
                       custom={1}
-                      className="p-8 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6">
+                      className="p-8 bg-white/80 rounded-[2.5rem] border border-white/50 shadow-xl shadow-pink-100/30 space-y-6">
                       <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 rounded-2xl bg-rose-100 flex items-center justify-center text-rose-600">
+                        <div className="w-12 h-12 rounded-2xl bg-pink-100 flex items-center justify-center text-pink-600">
                           <Calendar size={24} />
                         </div>
-                        <h4 className="text-xl font-black text-white font-display">Aplikasi Siswa Terlambat Hadir</h4>
+                        <h4 className="text-xl font-black text-slate-800 font-display">Aplikasi Siswa Terlambat Hadir</h4>
                       </div>
                       <div className="space-y-3">
-                        <p className="font-black text-xs text-slate-400 uppercase tracking-widest">Kegunaan:</p>
+                        <p className="font-black text-xs text-slate-500 uppercase tracking-widest">Kegunaan:</p>
                         <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           {[
                             "Pendataan keterlambatan yang tertib dan akurat mencatat siswa terlambat secara sistematis sebagai data resmi sekolah.",
@@ -941,8 +961,8 @@ export default function App() {
                             "Meningkatkan kedisiplinan dan kesadaran siswa membiasakan siswa bertanggung jawab terhadap waktu hadir di sekolah.",
                             "Bahan evaluasi dan laporan sekolah."
                           ].map((item, i) => (
-                            <li key={i} className="flex gap-3 text-slate-300 text-sm font-medium">
-                              <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-1.5 shrink-0" />
+                            <li key={i} className="flex gap-3 text-slate-600 text-sm font-medium">
+                              <div className="w-1.5 h-1.5 rounded-full bg-pink-400 mt-1.5 shrink-0" />
                               {item}
                             </li>
                           ))}
@@ -957,15 +977,15 @@ export default function App() {
                       whileInView="visible"
                       viewport={{ once: true, amount: 0.5 }}
                       custom={2}
-                      className="p-8 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6">
+                      className="p-8 bg-white/80 rounded-[2.5rem] border border-white/50 shadow-xl shadow-blue-100/30 space-y-6">
                       <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 rounded-2xl bg-emerald-100 flex items-center justify-center text-emerald-600">
+                        <div className="w-12 h-12 rounded-2xl bg-blue-100 flex items-center justify-center text-blue-600">
                           <FileText size={24} />
                         </div>
-                        <h4 className="text-xl font-black text-white font-display">Aplikasi Izin Siswa</h4>
+                        <h4 className="text-xl font-black text-slate-800 font-display">Aplikasi Izin Siswa</h4>
                       </div>
                       <div className="space-y-3">
-                        <p className="font-black text-xs text-slate-400 uppercase tracking-widest">Kegunaan:</p>
+                        <p className="font-black text-xs text-slate-500 uppercase tracking-widest">Kegunaan:</p>
                         <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           {[
                             "Mencatat izin siswa secara resmi dan terdata memudahkan pendataan siswa izin sakit, izin keperluan keluarga, atau izin lainnya secara tertib dan terdokumentasi.",
@@ -976,8 +996,8 @@ export default function App() {
                             "Memperkuat komunikasi sekolah dan orang tua orang tua dapat terlibat langsung dalam proses pengajuan izin siswa.",
                             "Sebagai bahan evaluasi dan pelaporan sekolah data izin digunakan untuk laporan kehadiran, evaluasi bulanan, dan arsip administrasi sekolah."
                           ].map((item, i) => (
-                            <li key={i} className="flex gap-3 text-slate-300 text-sm font-medium">
-                              <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 shrink-0" />
+                            <li key={i} className="flex gap-3 text-slate-600 text-sm font-medium">
+                              <div className="w-1.5 h-1.5 rounded-full bg-blue-400 mt-1.5 shrink-0" />
                               {item}
                             </li>
                           ))}
@@ -992,12 +1012,12 @@ export default function App() {
                       whileInView="visible"
                       viewport={{ once: true, amount: 0.5 }}
                       custom={3}
-                      className="p-8 bg-black/40 rounded-[2.5rem] border border-white/10 shadow-xl space-y-6">
+                      className="p-8 bg-white/80 rounded-[2.5rem] border border-white/50 shadow-xl shadow-purple-100/30 space-y-6">
                       <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 rounded-2xl bg-indigo-100 flex items-center justify-center text-indigo-600">
+                        <div className="w-12 h-12 rounded-2xl bg-purple-100 flex items-center justify-center text-purple-600">
                           <Users size={24} />
                         </div>
-                        <h4 className="text-xl font-black text-white font-display">Aplikasi BK Peduli Siswa</h4>
+                        <h4 className="text-xl font-black text-slate-800 font-display">Aplikasi BK Peduli Siswa</h4>
                       </div>
                       <div className="space-y-3">
                         <p className="font-black text-xs text-slate-400 uppercase tracking-widest">Kegunaan:</p>
@@ -1028,11 +1048,11 @@ export default function App() {
                         whileInView="visible"
                         viewport={{ once: true, amount: 0.5 }}
                         custom={4}
-                        className="p-6 bg-black/40 rounded-[2rem] border border-white/10 shadow-xl space-y-4">
-                        <div className="w-10 h-10 rounded-xl bg-rose-100 flex items-center justify-center text-rose-600">
+                        className="p-6 bg-white/80 rounded-[2rem] border border-white/50 shadow-xl shadow-pink-100/30 space-y-4">
+                        <div className="w-10 h-10 rounded-xl bg-pink-100 flex items-center justify-center text-pink-600">
                           <Activity size={20} />
                         </div>
-                        <h4 className="text-lg font-black text-white font-display">Aplikasi Si-UKS</h4>
+                        <h4 className="text-lg font-black text-slate-800 font-display">Aplikasi Si-UKS</h4>
                         <ul className="space-y-2">
                           {[
                             "Menertibkan administrasi UKS digital.",
@@ -1041,8 +1061,8 @@ export default function App() {
                             "Layanan kesehatan berkualitas.",
                             "Bukti inovasi & praktik baik."
                           ].map((item, i) => (
-                            <li key={i} className="flex gap-2 text-slate-300 text-xs font-medium">
-                              <div className="w-1 h-1 rounded-full bg-rose-400 mt-1.5 shrink-0" />
+                            <li key={i} className="flex gap-2 text-slate-600 text-xs font-medium">
+                              <div className="w-1 h-1 rounded-full bg-pink-400 mt-1.5 shrink-0" />
                               {item}
                             </li>
                           ))}
@@ -1056,19 +1076,19 @@ export default function App() {
                         whileInView="visible"
                         viewport={{ once: true, amount: 0.5 }}
                         custom={5}
-                        className="p-6 bg-black/40 rounded-[2rem] border border-white/10 shadow-xl space-y-4">
-                        <div className="w-10 h-10 rounded-xl bg-amber-100 flex items-center justify-center text-amber-600">
+                        className="p-6 bg-white/80 rounded-[2rem] border border-white/50 shadow-xl shadow-blue-100/30 space-y-4">
+                        <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center text-blue-600">
                           <Shield size={20} />
                         </div>
-                        <h4 className="text-lg font-black text-white font-display">Aplikasi SIM-AGAMA</h4>
+                        <h4 className="text-lg font-black text-slate-800 font-display">Aplikasi SIM-AGAMA</h4>
                         <ul className="space-y-2">
                           {[
                             "Pantau keaktifan keagamaan.",
                             "Konsistensi program agama.",
                             "Data akurat untuk pelaporan."
                           ].map((item, i) => (
-                            <li key={i} className="flex gap-2 text-slate-300 text-xs font-medium">
-                              <div className="w-1 h-1 rounded-full bg-amber-400 mt-1.5 shrink-0" />
+                            <li key={i} className="flex gap-2 text-slate-600 text-xs font-medium">
+                              <div className="w-1 h-1 rounded-full bg-blue-400 mt-1.5 shrink-0" />
                               {item}
                             </li>
                           ))}
@@ -1082,19 +1102,19 @@ export default function App() {
                         whileInView="visible"
                         viewport={{ once: true, amount: 0.5 }}
                         custom={6}
-                        className="p-6 bg-black/40 rounded-[2rem] border border-white/10 shadow-xl space-y-4">
-                        <div className="w-10 h-10 rounded-xl bg-indigo-100 flex items-center justify-center text-indigo-600">
+                        className="p-6 bg-white/80 rounded-[2rem] border border-white/50 shadow-xl shadow-purple-100/30 space-y-4">
+                        <div className="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center text-purple-600">
                           <Book size={20} />
                         </div>
-                        <h4 className="text-lg font-black text-white font-display">Aplikasi SIPENA</h4>
+                        <h4 className="text-lg font-black text-slate-800 font-display">Aplikasi SIPENA</h4>
                         <ul className="space-y-2">
                           {[
                             "Pendataan buku perpustakaan.",
                             "Layanan pinjam-kembali cepat.",
                             "Meningkatkan minat baca siswa."
                           ].map((item, i) => (
-                            <li key={i} className="flex gap-2 text-slate-300 text-xs font-medium">
-                              <div className="w-1 h-1 rounded-full bg-indigo-400 mt-1.5 shrink-0" />
+                            <li key={i} className="flex gap-2 text-slate-600 text-xs font-medium">
+                              <div className="w-1 h-1 rounded-full bg-purple-400 mt-1.5 shrink-0" />
                               {item}
                             </li>
                           ))}
@@ -1104,15 +1124,15 @@ export default function App() {
                   </div>
                 </div>
 
-                <div className="p-10 bg-gradient-to-br from-slate-900 to-slate-800 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group">
-                  <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/10 blur-3xl -mr-20 -mt-20 group-hover:bg-indigo-500/20 transition-all duration-700" />
+                <div className="p-10 bg-gradient-to-br from-pink-50 to-blue-50 rounded-[2.5rem] text-slate-800 shadow-2xl relative overflow-hidden group border border-white/50">
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-blue-300/20 blur-3xl -mr-20 -mt-20 group-hover:bg-blue-300/40 transition-all duration-700" />
                   <div className="relative z-10 space-y-6">
                     <h3 className="text-2xl font-black font-display tracking-tight">Filosofi SIAP Spanju</h3>
-                    <p className="text-slate-300 leading-relaxed font-medium text-lg italic">
+                    <p className="text-slate-600 leading-relaxed font-medium text-lg italic">
                       "Sekolah Sigap Menangani Permasalahan Siswa Secara Cepat dan Terdata"
                     </p>
-                    <div className="h-px bg-white/10 w-full" />
-                    <p className="text-slate-400 text-sm leading-relaxed">
+                    <div className="h-px bg-slate-200 w-full" />
+                    <p className="text-slate-500 text-sm leading-relaxed">
                       Platform ini bukan sekadar kumpulan tautan, melainkan pusat kendali pembinaan karakter yang mengedepankan kecepatan respon dan akurasi data demi masa depan siswa yang lebih baik.
                     </p>
                   </div>
@@ -1121,7 +1141,7 @@ export default function App() {
                 <div className="text-center pt-8">
                   <button 
                     onClick={() => setShowKilas(false)}
-                    className="px-10 py-4 bg-white/10 text-white rounded-2xl font-black shadow-xl hover:scale-105 hover:bg-white/20 transition-all border border-white/20"
+                    className="px-10 py-4 bg-white/80 text-slate-800 rounded-2xl font-black shadow-xl hover:scale-105 hover:bg-white transition-all border border-white/80"
                   >
                     Kembali ke Dashboard
                   </button>
@@ -1134,20 +1154,20 @@ export default function App() {
               initial={{ opacity: 0, scale: 0.99 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.99 }}
-              className="flex-1 flex flex-col bg-black/40 backdrop-blur-2xl rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] border border-white/10"
+              className="flex-1 flex flex-col bg-white/60 backdrop-blur-2xl rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-[0_8px_32px_0_rgba(0,0,0,0.05)] border border-white/50"
             >
               {/* Toolbar */}
-              <div className="h-16 bg-black/40 border-b border-white/10 flex items-center justify-between px-4 md:px-8 z-10 backdrop-blur-md">
+              <div className="h-16 bg-white/40 border-b border-white/50 flex items-center justify-between px-4 md:px-8 z-10 backdrop-blur-md">
                 <div className="flex items-center gap-4">
-                  <div className={`w-10 h-10 rounded-2xl bg-gradient-to-br ${activeLink.color || 'from-indigo-400 to-blue-400'} flex items-center justify-center text-white shadow-sm`}>
+                  <div className={`w-10 h-10 rounded-2xl bg-gradient-to-br ${activeLink.color || 'from-pink-400 to-blue-400'} flex items-center justify-center text-white shadow-sm`}>
                     {(() => {
                       const IconComponent = ICON_MAP[activeLink.icon] || Globe;
                       return <IconComponent size={20} />;
                     })()}
                   </div>
                   <div>
-                    <h2 className="text-base md:text-lg font-black text-white tracking-tight leading-none mb-0.5 font-display">{activeLink.title}</h2>
-                    <p className="text-[10px] text-slate-400 font-mono tracking-wider uppercase opacity-70">
+                    <h2 className="text-base md:text-lg font-black text-slate-800 tracking-tight leading-none mb-0.5 font-display">{activeLink.title}</h2>
+                    <p className="text-[10px] text-slate-500 font-mono tracking-wider uppercase opacity-70">
                       {activeLink.url}
                     </p>
                   </div>
@@ -1158,7 +1178,7 @@ export default function App() {
                       setIsLoading(true);
                       setTimeout(() => setIsLoading(false), 1000);
                     }}
-                    className="p-2 text-slate-400 hover:text-indigo-600 hover:bg-white/10 rounded-xl transition-all shadow-sm border border-black/5"
+                    className="p-2 text-slate-500 hover:text-blue-600 hover:bg-white/50 rounded-xl transition-all shadow-sm border border-slate-200/50"
                   >
                     <Settings size={18} />
                   </button>
@@ -1166,7 +1186,7 @@ export default function App() {
                     href={activeLink.url} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className={`px-5 py-2.5 bg-gradient-to-r ${activeLink.color} text-white rounded-xl hover:brightness-110 transition-all flex items-center gap-2 text-xs font-black shadow-xl shadow-black/10 tracking-widest uppercase`}
+                    className={`px-5 py-2.5 bg-gradient-to-r ${activeLink.color || 'from-pink-500 to-blue-500'} text-white rounded-xl hover:brightness-110 transition-all flex items-center gap-2 text-xs font-black shadow-xl shadow-pink-100/50 tracking-widest uppercase`}
                   >
                     <ExternalLink size={16} />
                     <span>Buka Penuh</span>
@@ -1175,22 +1195,22 @@ export default function App() {
               </div>
 
               {/* Iframe Container */}
-              <div className="flex-1 bg-black/20 m-2 md:m-4 rounded-[1.5rem] md:rounded-[2rem] shadow-inner overflow-hidden border border-white/10 relative group">
+              <div className="flex-1 bg-white/40 m-2 md:m-4 rounded-[1.5rem] md:rounded-[2rem] shadow-inner overflow-hidden border border-white/50 relative group">
                 {isLoading && (
-                  <div className="absolute inset-0 z-20 bg-black/80 backdrop-blur-xl flex flex-col items-center justify-center space-y-6">
+                  <div className="absolute inset-0 z-20 bg-white/80 backdrop-blur-xl flex flex-col items-center justify-center space-y-6">
                     <div className="relative">
                       <motion.div 
                         animate={{ rotate: 360 }}
                         transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                        className="w-16 h-16 border-[4px] border-indigo-50 border-t-indigo-600 rounded-full"
+                        className="w-16 h-16 border-[4px] border-pink-100 border-t-pink-500 rounded-full"
                       />
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <Zap size={24} className="text-indigo-600 animate-pulse" />
+                        <Zap size={24} className="text-pink-500 animate-pulse" />
                       </div>
                     </div>
                     <div className="text-center">
-                      <p className="text-xl font-black text-white tracking-tighter">Menyiapkan Aplikasi</p>
-                      <p className="text-slate-400 text-[10px] font-bold uppercase tracking-widest">Sinkronisasi data...</p>
+                      <p className="text-xl font-black text-slate-800 tracking-tighter">Menyiapkan Aplikasi</p>
+                      <p className="text-slate-500 text-[10px] font-bold uppercase tracking-widest">Sinkronisasi data...</p>
                     </div>
                   </div>
                 )}
