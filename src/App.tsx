@@ -66,6 +66,65 @@ const APP_COLORS = [
   'from-amber-700 to-amber-900', // Coklat
 ];
 
+const EXTERNAL_APPS = [
+  {
+    id: 'silat-spanju',
+    title: "Silat Spanju",
+    url: "https://silat-spanju.vercel.app/",
+    icon: 'Shield',
+    color: "from-pink-400 to-pink-600"
+  },
+  {
+    id: 'sim-agama',
+    title: "SIM-Agama",
+    url: "https://sim-agama.vercel.app/",
+    icon: 'Book',
+    color: "from-blue-400 to-blue-600"
+  },
+  {
+    id: 'disiplin-spanju',
+    title: "Disiplin Spanju",
+    url: "https://disiplin-spanju.vercel.app/",
+    icon: 'Calendar',
+    color: "from-pink-400 to-pink-600"
+  },
+  {
+    id: 'uks-smpn7',
+    title: "UKS SMPN 7",
+    url: "https://uksspanju.vercel.app/",
+    icon: 'Activity',
+    color: "from-blue-400 to-blue-600"
+  },
+  {
+    id: 'sipena',
+    title: "SIPENA",
+    url: "https://sipena7.vercel.app/",
+    icon: 'Book',
+    color: "from-pink-400 to-pink-600"
+  },
+  {
+    id: 'tata-tertib',
+    title: "Tata Tertib Siswa",
+    url: "https://tally.so/r/q4D1XY",
+    icon: 'FileText',
+    color: "from-blue-400 to-blue-600"
+  },
+  {
+    id: 'bk-peduli',
+    title: "BK Peduli Siswa",
+    url: "https://bk-peduli-siswa.vercel.app/",
+    icon: 'Users',
+    color: "from-pink-400 to-pink-600"
+  },
+  {
+    id: 'izin-siswa',
+    title: "Izin Siswa",
+    url: "https://izin-siswa.vercel.app/",
+    icon: 'ClipboardList',
+    color: "from-blue-400 to-blue-600"
+  }
+];
+
 export default function App() {
   const [hasEntered, setHasEntered] = useState(false);
   const [links, setLinks] = useState<AppLink[]>([]);
@@ -381,157 +440,29 @@ export default function App() {
             </div>
           </button>
 
-          {/* Silat Spanju Menu */}
-          <a
-            href="https://silat-spanju.vercel.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/50 text-slate-600 group"
-          >
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-pink-400 to-pink-600 flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-pink-500/50">
-              <Shield size={20} />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="font-black tracking-tight truncate text-[20px] uppercase text-slate-600 group-hover:text-slate-800 transition-colors">
-                Silat Spanju
-              </p>
-              <p className="text-[8px] font-bold text-slate-500 uppercase tracking-widest">Aplikasi Eksternal</p>
-            </div>
-            <ExternalLink size={14} className="text-slate-400 group-hover:text-blue-500 transition-colors" />
-          </a>
-
-          {/* SIM-Agama Menu */}
-          <a
-            href="https://sim-agama.vercel.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/50 text-slate-600 group"
-          >
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-blue-500/50">
-              <Book size={20} />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="font-black tracking-tight truncate text-[20px] uppercase text-slate-600 group-hover:text-slate-800 transition-colors">
-                SIM-Agama
-              </p>
-              <p className="text-[8px] font-bold text-slate-500 uppercase tracking-widest">Aplikasi Eksternal</p>
-            </div>
-            <ExternalLink size={14} className="text-slate-400 group-hover:text-blue-500 transition-colors" />
-          </a>
-
-          {/* Disiplin Spanju Menu */}
-          <a
-            href="https://disiplin-spanju.vercel.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/50 text-slate-600 group"
-          >
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-pink-400 to-pink-600 flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-pink-500/50">
-              <Calendar size={20} />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="font-black tracking-tight truncate text-[20px] text-slate-600 group-hover:text-slate-800 transition-colors uppercase">
-                Disiplin Spanju
-              </p>
-              <p className="text-[8px] font-bold text-slate-500 uppercase tracking-widest">Aplikasi Eksternal</p>
-            </div>
-            <ExternalLink size={14} className="text-slate-400 group-hover:text-blue-500 transition-colors" />
-          </a>
-
-          {/* UKS SMPN 7 Menu */}
-          <a
-            href="https://uksspanju.vercel.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/50 text-slate-600 group"
-          >
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-blue-500/50">
-              <Activity size={20} />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="font-black tracking-tight truncate text-[20px] text-slate-600 group-hover:text-slate-800 transition-colors uppercase">
-                UKS SMPN 7
-              </p>
-              <p className="text-[8px] font-bold text-slate-500 uppercase tracking-widest">Aplikasi Eksternal</p>
-            </div>
-            <ExternalLink size={14} className="text-slate-400 group-hover:text-blue-500 transition-colors" />
-          </a>
-
-          {/* SIPENA Menu */}
-          <a
-            href="https://sipena7.vercel.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/50 text-slate-600 group"
-          >
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-pink-400 to-pink-600 flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-pink-500/50">
-              <Book size={20} />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="font-black tracking-tight truncate text-[20px] text-slate-600 group-hover:text-slate-800 transition-colors uppercase">
-                SIPENA
-              </p>
-              <p className="text-[8px] font-bold text-slate-500 uppercase tracking-widest">Aplikasi Eksternal</p>
-            </div>
-            <ExternalLink size={14} className="text-slate-400 group-hover:text-blue-500 transition-colors" />
-          </a>
-
-          {/* Tata Tertib Siswa Menu */}
-          <a
-            href="https://tally.so/r/q4D1XY"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/50 text-slate-600 group"
-          >
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-blue-500/50">
-              <FileText size={20} />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="font-black tracking-tight truncate text-[20px] text-slate-600 group-hover:text-slate-800 transition-colors uppercase">
-                Tata Tertib Siswa
-              </p>
-              <p className="text-[8px] font-bold text-slate-500 uppercase tracking-widest">Aplikasi Eksternal</p>
-            </div>
-            <ExternalLink size={14} className="text-slate-400 group-hover:text-blue-500 transition-colors" />
-          </a>
-
-          {/* BK Peduli Siswa Menu */}
-          <a
-            href="https://bk-peduli-siswa.vercel.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/50 text-slate-600 group"
-          >
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-pink-400 to-pink-600 flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-pink-500/50">
-              <Users size={20} />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="font-black tracking-tight truncate text-[20px] text-slate-600 group-hover:text-slate-800 transition-colors uppercase">
-                BK Peduli Siswa
-              </p>
-              <p className="text-[8px] font-bold text-slate-500 uppercase tracking-widest">Aplikasi Eksternal</p>
-            </div>
-            <ExternalLink size={14} className="text-slate-400 group-hover:text-blue-500 transition-colors" />
-          </a>
-
-          {/* Izin Siswa Menu */}
-          <a
-            href="https://izin-siswa.vercel.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/50 text-slate-600 group"
-          >
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-blue-500/50">
-              <ClipboardList size={20} />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="font-black tracking-tight truncate text-[20px] text-slate-600 group-hover:text-slate-800 transition-colors uppercase">
-                Izin Siswa
-              </p>
-              <p className="text-[8px] font-bold text-slate-500 uppercase tracking-widest">Aplikasi Eksternal</p>
-            </div>
-            <ExternalLink size={14} className="text-slate-400 group-hover:text-blue-500 transition-colors" />
-          </a>
+          {EXTERNAL_APPS.map((app) => {
+            const Icon = ICON_MAP[app.icon] || Globe;
+            return (
+              <a
+                key={app.id}
+                href={app.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300 hover:bg-white/50 text-slate-600 group"
+              >
+                <div className={`w-10 h-10 rounded-2xl bg-gradient-to-br ${app.color} flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-pink-500/50`}>
+                  <Icon size={20} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="font-black tracking-tight truncate text-[20px] uppercase text-slate-600 group-hover:text-slate-800 transition-colors">
+                    {app.title}
+                  </p>
+                  <p className="text-[8px] font-bold text-slate-500 uppercase tracking-widest">Aplikasi Eksternal</p>
+                </div>
+                <ExternalLink size={14} className="text-slate-400 group-hover:text-blue-500 transition-colors" />
+              </a>
+            );
+          })}
 
           <div className="h-px bg-black/5 mx-2" />
 
@@ -1225,27 +1156,53 @@ export default function App() {
               </div>
             </motion.div>
           ) : (
-            <div className="flex-1 flex flex-col items-center justify-center p-6">
+            <div className="flex-1 p-6 md:p-10 overflow-y-auto scrollbar-hide">
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="p-8 md:p-12 bg-black/40 backdrop-blur-2xl rounded-[2rem] md:rounded-[3rem] flex flex-col items-center gap-6 border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] text-center max-w-xl"
+                className="max-w-5xl mx-auto"
               >
-                <div className="w-20 h-20 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center shadow-2xl shadow-black/50 rotate-6 overflow-hidden p-2">
-                  <img 
-                    src="https://iili.io/KDFk4fI.png" 
-                    alt="Logo" 
-                    className="w-full h-full object-contain"
-                    referrerPolicy="no-referrer"
-                  />
+                <div className="mb-10 text-center">
+                  <div className="w-20 h-20 rounded-3xl bg-white/80 flex items-center justify-center shadow-xl shadow-pink-100/50 mx-auto rotate-3 overflow-hidden p-2 mb-6 border border-white/80 backdrop-blur-md">
+                    <img 
+                      src="https://iili.io/KDFk4fI.png" 
+                      alt="Logo" 
+                      className="w-full h-full object-contain"
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
+                  <h2 className="text-3xl md:text-4xl font-black text-slate-800 tracking-tight font-display mb-4">Pilih Aplikasi</h2>
+                  <p className="text-slate-500 text-lg font-medium">Silakan pilih aplikasi yang ingin Anda buka dari daftar di bawah ini.</p>
                 </div>
-                <div className="space-y-2">
-                  <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight font-display leading-none">SIAP</h2>
-                  <p className="text-sm font-black text-slate-300 uppercase tracking-[0.3em]">Sistem Integrasi Aplikasi Pembinaan</p>
-                  <div className="h-1 w-20 bg-gradient-to-r from-indigo-500 to-violet-500 mx-auto rounded-full my-4" />
-                  <p className="text-slate-400 text-base font-medium max-w-md mx-auto leading-relaxed">
-                    Sekolah Sigap Menangani Permasalahan Siswa Secara Cepat dan Terdata
-                  </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {EXTERNAL_APPS.map((app, index) => {
+                    const Icon = ICON_MAP[app.icon] || Globe;
+                    return (
+                      <motion.a
+                        key={app.id}
+                        href={app.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                        className="group p-6 bg-white/80 backdrop-blur-xl rounded-[2rem] border border-white/50 shadow-xl shadow-slate-200/50 hover:bg-white hover:shadow-2xl hover:shadow-slate-200/80 transition-all duration-300 hover:-translate-y-1 flex flex-col items-center text-center gap-4"
+                      >
+                        <div className={`w-20 h-20 rounded-[1.5rem] bg-gradient-to-br ${app.color} flex items-center justify-center text-white shadow-lg transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3`}>
+                          <Icon size={32} />
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-black text-slate-800 uppercase tracking-tight mb-1 group-hover:text-blue-600 transition-colors">{app.title}</h3>
+                          <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">Aplikasi Eksternal</p>
+                        </div>
+                        <div className="mt-2 px-4 py-2 bg-slate-50 rounded-xl flex items-center gap-2 text-slate-600 text-sm font-bold group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors">
+                          <ExternalLink size={16} />
+                          Buka Aplikasi
+                        </div>
+                      </motion.a>
+                    );
+                  })}
                 </div>
               </motion.div>
             </div>
