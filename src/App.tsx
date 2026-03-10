@@ -133,6 +133,11 @@ const EXTERNAL_APPS = [
   }
 ];
 
+// GANTI LINK DI BAWAH INI DENGAN LINK GAMBAR ANDA YANG SUDAH DIUPLOAD KE INTERNET (misal: imgbb.com, imgur.com, dll)
+const KILAS_IMAGE_URL = "https://wsrv.nl/?url=i.ibb.co/ZtqkYcY/kilas-aplikasi.jpg";
+const PETA_IMAGE_URL = "https://wsrv.nl/?url=i.ibb.co/DDvBMgFH/gambar-2.jpg";
+const KORELASI_IMAGE_URL = "https://wsrv.nl/?url=i.ibb.co/5wM2Bd4/gambar-3.jpg";
+
 export default function App() {
   const [hasEntered, setHasEntered] = useState(false);
   const [links, setLinks] = useState<AppLink[]>([]);
@@ -144,74 +149,8 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [copied, setCopied] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const kilasFileInputRef = useRef<HTMLInputElement>(null);
-  const petaFileInputRef = useRef<HTMLInputElement>(null);
-  const korelasiFileInputRef = useRef<HTMLInputElement>(null);
-  const [kilasImage, setKilasImage] = useState<string | null>(() => {
-    return localStorage.getItem('kilasImage') || null;
-  });
-  const [petaImage, setPetaImage] = useState<string | null>(() => {
-    return localStorage.getItem('petaImage') || null;
-  });
-  const [korelasiImage, setKorelasiImage] = useState<string | null>(() => {
-    return localStorage.getItem('korelasiImage') || null;
-  });
 
   const [isMobile, setIsMobile] = useState(false);
-
-  const handleKilasImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const base64String = reader.result as string;
-        try {
-          localStorage.setItem('kilasImage', base64String);
-          setKilasImage(base64String);
-        } catch (err) {
-          alert('Gambar terlalu besar untuk disimpan di memori browser. Gambar akan tetap ditampilkan untuk sesi ini.');
-          setKilasImage(base64String);
-        }
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const handlePetaImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const base64String = reader.result as string;
-        try {
-          localStorage.setItem('petaImage', base64String);
-          setPetaImage(base64String);
-        } catch (err) {
-          alert('Gambar terlalu besar untuk disimpan di memori browser. Gambar akan tetap ditampilkan untuk sesi ini.');
-          setPetaImage(base64String);
-        }
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const handleKorelasiImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const base64String = reader.result as string;
-        try {
-          localStorage.setItem('korelasiImage', base64String);
-          setKorelasiImage(base64String);
-        } catch (err) {
-          alert('Gambar terlalu besar untuk disimpan di memori browser. Gambar akan tetap ditampilkan untuk sesi ini.');
-          setKorelasiImage(base64String);
-        }
-      };
-      reader.readAsDataURL(file);
-    }
-  };
 
   // Handle responsive sidebar
   useEffect(() => {
@@ -677,38 +616,10 @@ export default function App() {
                   custom={0}
                   className="p-4 md:p-8 bg-white/80 rounded-[2.5rem] border border-white/50 shadow-xl shadow-blue-100/30 hover:bg-white transition-all duration-300 hover:border-white/80 hover:-translate-y-1 flex flex-col items-center justify-center relative group z-10">
                   
-                  {petaImage ? (
-                    <>
-                      <img 
-                        src={petaImage} 
-                        alt="Peta Integrasi SIAP" 
-                        className="w-full max-w-3xl h-auto rounded-2xl shadow-md object-contain"
-                      />
-                      <button 
-                        onClick={() => petaFileInputRef.current?.click()}
-                        className="absolute top-4 right-4 md:top-8 md:right-8 bg-white/90 backdrop-blur-sm text-slate-700 p-3 rounded-xl shadow-lg opacity-0 group-hover:opacity-100 transition-opacity hover:bg-blue-50 hover:text-blue-600 flex items-center gap-2 font-semibold text-sm"
-                      >
-                        <Upload size={16} />
-                        Ganti Gambar
-                      </button>
-                    </>
-                  ) : (
-                    <div 
-                      onClick={() => petaFileInputRef.current?.click()}
-                      className="w-full max-w-3xl aspect-[4/5] md:aspect-video rounded-2xl border-2 border-dashed border-blue-300 bg-blue-50/50 flex flex-col items-center justify-center text-blue-500 cursor-pointer hover:bg-blue-50 hover:border-blue-400 transition-all"
-                    >
-                      <Upload size={48} className="mb-4 opacity-50" />
-                      <p className="font-bold text-lg">Klik untuk Mengunggah Gambar Peta Integrasi</p>
-                      <p className="text-sm opacity-70 mt-2">Gambar akan tersimpan di browser Anda</p>
-                    </div>
-                  )}
-                  
-                  <input 
-                    type="file" 
-                    accept="image/*"
-                    ref={petaFileInputRef}
-                    className="hidden"
-                    onChange={handlePetaImageUpload}
+                  <img 
+                    src={PETA_IMAGE_URL} 
+                    alt="Peta Integrasi SIAP" 
+                    className="w-full max-w-3xl h-auto rounded-2xl shadow-md object-contain"
                   />
                 </motion.div>
 
@@ -757,38 +668,10 @@ export default function App() {
                   custom={0}
                   className="p-4 md:p-8 bg-white/80 rounded-[2.5rem] border border-white/50 shadow-xl shadow-emerald-100/30 hover:bg-white transition-all duration-300 hover:border-white/80 hover:-translate-y-1 flex flex-col items-center justify-center relative group z-10">
                   
-                  {korelasiImage ? (
-                    <>
-                      <img 
-                        src={korelasiImage} 
-                        alt="Korelasi Integrasi SIAP dengan SRA" 
-                        className="w-full max-w-3xl h-auto rounded-2xl shadow-md object-contain"
-                      />
-                      <button 
-                        onClick={() => korelasiFileInputRef.current?.click()}
-                        className="absolute top-4 right-4 md:top-8 md:right-8 bg-white/90 backdrop-blur-sm text-slate-700 p-3 rounded-xl shadow-lg opacity-0 group-hover:opacity-100 transition-opacity hover:bg-emerald-50 hover:text-emerald-600 flex items-center gap-2 font-semibold text-sm"
-                      >
-                        <Upload size={16} />
-                        Ganti Gambar
-                      </button>
-                    </>
-                  ) : (
-                    <div 
-                      onClick={() => korelasiFileInputRef.current?.click()}
-                      className="w-full max-w-3xl aspect-[4/5] md:aspect-video rounded-2xl border-2 border-dashed border-emerald-300 bg-emerald-50/50 flex flex-col items-center justify-center text-emerald-500 cursor-pointer hover:bg-emerald-50 hover:border-emerald-400 transition-all"
-                    >
-                      <Upload size={48} className="mb-4 opacity-50" />
-                      <p className="font-bold text-lg">Klik untuk Mengunggah Gambar Korelasi SRA</p>
-                      <p className="text-sm opacity-70 mt-2">Gambar akan tersimpan di browser Anda</p>
-                    </div>
-                  )}
-                  
-                  <input 
-                    type="file" 
-                    accept="image/*"
-                    ref={korelasiFileInputRef}
-                    className="hidden"
-                    onChange={handleKorelasiImageUpload}
+                  <img 
+                    src={KORELASI_IMAGE_URL} 
+                    alt="Korelasi Integrasi SIAP dengan SRA" 
+                    className="w-full max-w-3xl h-auto rounded-2xl shadow-md object-contain"
                   />
                 </motion.div>
 
@@ -837,38 +720,10 @@ export default function App() {
                   custom={0}
                   className="p-4 md:p-8 bg-white/80 rounded-[2.5rem] border border-white/50 shadow-xl shadow-pink-100/30 hover:bg-white transition-all duration-300 hover:border-white/80 hover:-translate-y-1 flex flex-col items-center justify-center relative group">
                   
-                  {kilasImage ? (
-                    <>
-                      <img 
-                        src={kilasImage} 
-                        alt="Kilas Aplikasi SIAP" 
-                        className="w-full max-w-3xl h-auto rounded-2xl shadow-md object-contain"
-                      />
-                      <button 
-                        onClick={() => kilasFileInputRef.current?.click()}
-                        className="absolute top-4 right-4 md:top-8 md:right-8 bg-white/90 backdrop-blur-sm text-slate-700 p-3 rounded-xl shadow-lg opacity-0 group-hover:opacity-100 transition-opacity hover:bg-pink-50 hover:text-pink-600 flex items-center gap-2 font-semibold text-sm"
-                      >
-                        <Upload size={16} />
-                        Ganti Gambar
-                      </button>
-                    </>
-                  ) : (
-                    <div 
-                      onClick={() => kilasFileInputRef.current?.click()}
-                      className="w-full max-w-3xl aspect-[4/5] md:aspect-video rounded-2xl border-2 border-dashed border-pink-300 bg-pink-50/50 flex flex-col items-center justify-center text-pink-500 cursor-pointer hover:bg-pink-50 hover:border-pink-400 transition-all"
-                    >
-                      <Upload size={48} className="mb-4 opacity-50" />
-                      <p className="font-bold text-lg">Klik untuk Mengunggah Gambar Infografis</p>
-                      <p className="text-sm opacity-70 mt-2">Gambar akan tersimpan di browser Anda</p>
-                    </div>
-                  )}
-                  
-                  <input 
-                    type="file" 
-                    accept="image/*"
-                    ref={kilasFileInputRef}
-                    className="hidden"
-                    onChange={handleKilasImageUpload}
+                  <img 
+                    src={KILAS_IMAGE_URL} 
+                    alt="Kilas Aplikasi SIAP" 
+                    className="w-full max-w-3xl h-auto rounded-2xl shadow-md object-contain"
                   />
                 </motion.div>
 
