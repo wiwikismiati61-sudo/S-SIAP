@@ -143,8 +143,52 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [copied, setCopied] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const kilasFileInputRef = useRef<HTMLInputElement>(null);
+  const petaFileInputRef = useRef<HTMLInputElement>(null);
+  const [kilasImage, setKilasImage] = useState<string | null>(() => {
+    return localStorage.getItem('kilasImage') || null;
+  });
+  const [petaImage, setPetaImage] = useState<string | null>(() => {
+    return localStorage.getItem('petaImage') || null;
+  });
 
   const [isMobile, setIsMobile] = useState(false);
+
+  const handleKilasImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64String = reader.result as string;
+        try {
+          localStorage.setItem('kilasImage', base64String);
+          setKilasImage(base64String);
+        } catch (err) {
+          alert('Gambar terlalu besar untuk disimpan di memori browser. Gambar akan tetap ditampilkan untuk sesi ini.');
+          setKilasImage(base64String);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handlePetaImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64String = reader.result as string;
+        try {
+          localStorage.setItem('petaImage', base64String);
+          setPetaImage(base64String);
+        } catch (err) {
+          alert('Gambar terlalu besar untuk disimpan di memori browser. Gambar akan tetap ditampilkan untuk sesi ini.');
+          setPetaImage(base64String);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   // Handle responsive sidebar
   useEffect(() => {
@@ -573,223 +617,48 @@ export default function App() {
                   <p className="text-sm md:text-lg font-black text-slate-500 uppercase tracking-[0.3em]">Kaitan Aplikasi dengan Nilai 7KAIH</p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
-                  {/* A. Terlambat Hadir */}
-                  <motion.div
-                    variants={cardVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.5 }}
-                    custom={0}
-                    className="p-8 bg-white/80 rounded-[2.5rem] border border-white/50 shadow-xl shadow-pink-100/30 space-y-6 flex flex-col hover:bg-white transition-all duration-300 hover:border-white/80 hover:-translate-y-1">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-2xl bg-pink-100 flex items-center justify-center text-pink-600">
-                        <Calendar size={24} />
-                      </div>
-                      <h3 className="text-xl font-black text-slate-800 font-display">A. Aplikasi Siswa Terlambat Hadir</h3>
+                <motion.div
+                  variants={cardVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.5 }}
+                  custom={0}
+                  className="p-4 md:p-8 bg-white/80 rounded-[2.5rem] border border-white/50 shadow-xl shadow-blue-100/30 hover:bg-white transition-all duration-300 hover:border-white/80 hover:-translate-y-1 flex flex-col items-center justify-center relative group z-10">
+                  
+                  {petaImage ? (
+                    <>
+                      <img 
+                        src={petaImage} 
+                        alt="Peta Integrasi SIAP" 
+                        className="w-full max-w-3xl h-auto rounded-2xl shadow-md object-contain"
+                      />
+                      <button 
+                        onClick={() => petaFileInputRef.current?.click()}
+                        className="absolute top-4 right-4 md:top-8 md:right-8 bg-white/90 backdrop-blur-sm text-slate-700 p-3 rounded-xl shadow-lg opacity-0 group-hover:opacity-100 transition-opacity hover:bg-blue-50 hover:text-blue-600 flex items-center gap-2 font-semibold text-sm"
+                      >
+                        <Upload size={16} />
+                        Ganti Gambar
+                      </button>
+                    </>
+                  ) : (
+                    <div 
+                      onClick={() => petaFileInputRef.current?.click()}
+                      className="w-full max-w-3xl aspect-[4/5] md:aspect-video rounded-2xl border-2 border-dashed border-blue-300 bg-blue-50/50 flex flex-col items-center justify-center text-blue-500 cursor-pointer hover:bg-blue-50 hover:border-blue-400 transition-all"
+                    >
+                      <Upload size={48} className="mb-4 opacity-50" />
+                      <p className="font-bold text-lg">Klik untuk Mengunggah Gambar Peta Integrasi</p>
+                      <p className="text-sm opacity-70 mt-2">Gambar akan tersimpan di browser Anda</p>
                     </div>
-                    <div className="flex-1 space-y-4">
-                      <ul className="space-y-2">
-                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
-                          <div className="w-1.5 h-1.5 rounded-full bg-pink-400 mt-1.5 shrink-0" />
-                          Jumlah keterlambatan per bulan
-                        </li>
-                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
-                          <div className="w-1.5 h-1.5 rounded-full bg-pink-400 mt-1.5 shrink-0" />
-                          Kelas terbanyak & terendah
-                        </li>
-                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
-                          <div className="w-1.5 h-1.5 rounded-full bg-pink-400 mt-1.5 shrink-0" />
-                          Tindak lanjut (teguran, pembinaan, orang tua)
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="p-4 bg-pink-50 rounded-2xl border border-pink-100">
-                      <p className="text-xs font-black text-pink-600 uppercase tracking-widest mb-1">📌 Kaitan 7KAIH:</p>
-                      <p className="text-sm font-bold text-pink-700">Kedisiplinan & Karakter</p>
-                    </div>
-                  </motion.div>
-
-                  {/* B. Izin Siswa */}
-                  <motion.div
-                    variants={cardVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.5 }}
-                    custom={1}
-                    className="p-8 bg-white/80 rounded-[2.5rem] border border-white/50 shadow-xl shadow-blue-100/30 space-y-6 flex flex-col hover:bg-white transition-all duration-300 hover:border-white/80 hover:-translate-y-1">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-2xl bg-blue-100 flex items-center justify-center text-blue-600">
-                        <FileText size={24} />
-                      </div>
-                      <h3 className="text-xl font-black text-slate-800 font-display">B. Aplikasi Izin Siswa</h3>
-                    </div>
-                    <div className="flex-1 space-y-4">
-                      <ul className="space-y-2">
-                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
-                          <div className="w-1.5 h-1.5 rounded-full bg-blue-400 mt-1.5 shrink-0" />
-                          Izin sakit / izin keluarga / tanpa keterangan
-                        </li>
-                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
-                          <div className="w-1.5 h-1.5 rounded-full bg-blue-400 mt-1.5 shrink-0" />
-                          Validasi dokumen
-                        </li>
-                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
-                          <div className="w-1.5 h-1.5 rounded-full bg-blue-400 mt-1.5 shrink-0" />
-                          Kepatuhan siswa
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="p-4 bg-blue-50 rounded-2xl border border-blue-100">
-                      <p className="text-xs font-black text-blue-600 uppercase tracking-widest mb-1">📌 Kaitan 7KAIH:</p>
-                      <p className="text-sm font-bold text-blue-700">Keteraturan & Kejujuran</p>
-                    </div>
-                  </motion.div>
-
-                  {/* C. BK Peduli Siswa */}
-                  <motion.div
-                    variants={cardVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.5 }}
-                    custom={2}
-                    className="p-8 bg-white/80 rounded-[2.5rem] border border-white/50 shadow-xl shadow-purple-100/30 space-y-6 flex flex-col hover:bg-white transition-all duration-300 hover:border-white/80 hover:-translate-y-1">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-2xl bg-purple-100 flex items-center justify-center text-purple-600">
-                        <Users size={24} />
-                      </div>
-                      <h3 className="text-xl font-black text-slate-800 font-display">C. Aplikasi BK Peduli Siswa</h3>
-                    </div>
-                    <div className="flex-1 space-y-4">
-                      <ul className="space-y-2">
-                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
-                          <div className="w-1.5 h-1.5 rounded-full bg-purple-400 mt-1.5 shrink-0" />
-                          Jenis permasalahan siswa
-                        </li>
-                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
-                          <div className="w-1.5 h-1.5 rounded-full bg-purple-400 mt-1.5 shrink-0" />
-                          Jumlah layanan konseling
-                        </li>
-                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
-                          <div className="w-1.5 h-1.5 rounded-full bg-purple-400 mt-1.5 shrink-0" />
-                          Status penyelesaian kasus
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="p-4 bg-purple-50 rounded-2xl border border-purple-100">
-                      <p className="text-xs font-black text-purple-600 uppercase tracking-widest mb-1">📌 Kaitan 7KAIH:</p>
-                      <p className="text-sm font-bold text-purple-700">Karakter, Kemanusiaan, dan Kepedulian</p>
-                    </div>
-                  </motion.div>
-
-                  {/* D. SI-UKS */}
-                  <motion.div
-                    variants={cardVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.5 }}
-                    custom={3}
-                    className="p-8 bg-white/80 rounded-[2.5rem] border border-white/50 shadow-xl shadow-pink-100/30 space-y-6 flex flex-col hover:bg-white transition-all duration-300 hover:border-white/80 hover:-translate-y-1">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-2xl bg-pink-100 flex items-center justify-center text-pink-600">
-                        <Activity size={24} />
-                      </div>
-                      <h3 className="text-xl font-black text-slate-800 font-display">D. Aplikasi SI-UKS</h3>
-                    </div>
-                    <div className="flex-1 space-y-4">
-                      <ul className="space-y-2">
-                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
-                          <div className="w-1.5 h-1.5 rounded-full bg-pink-400 mt-1.5 shrink-0" />
-                          Data siswa sakit
-                        </li>
-                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
-                          <div className="w-1.5 h-1.5 rounded-full bg-pink-400 mt-1.5 shrink-0" />
-                          Kunjungan UKS
-                        </li>
-                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
-                          <div className="w-1.5 h-1.5 rounded-full bg-pink-400 mt-1.5 shrink-0" />
-                          Edukasi kesehatan
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="p-4 bg-pink-50 rounded-2xl border border-pink-100">
-                      <p className="text-xs font-black text-pink-600 uppercase tracking-widest mb-1">📌 Kaitan 7KAIH:</p>
-                      <p className="text-sm font-bold text-pink-700">Kesehatan & Kebersihan</p>
-                    </div>
-                  </motion.div>
-
-                  {/* E. SIM-Agama */}
-                  <motion.div
-                    variants={cardVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.5 }}
-                    custom={4}
-                    className="p-8 bg-white/80 rounded-[2.5rem] border border-white/50 shadow-xl shadow-blue-100/30 space-y-6 flex flex-col hover:bg-white transition-all duration-300 hover:border-white/80 hover:-translate-y-1">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-2xl bg-blue-100 flex items-center justify-center text-blue-600">
-                        <Shield size={24} />
-                      </div>
-                      <h3 className="text-xl font-black text-slate-800 font-display">E. Aplikasi SIM-Agama</h3>
-                    </div>
-                    <div className="flex-1 space-y-4">
-                      <ul className="space-y-2">
-                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
-                          <div className="w-1.5 h-1.5 rounded-full bg-blue-400 mt-1.5 shrink-0" />
-                          Kegiatan keagamaan siswa
-                        </li>
-                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
-                          <div className="w-1.5 h-1.5 rounded-full bg-blue-400 mt-1.5 shrink-0" />
-                          Pembiasaan ibadah
-                        </li>
-                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
-                          <div className="w-1.5 h-1.5 rounded-full bg-blue-400 mt-1.5 shrink-0" />
-                          Partisipasi siswa
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="p-4 bg-blue-50 rounded-2xl border border-blue-100">
-                      <p className="text-xs font-black text-blue-600 uppercase tracking-widest mb-1">📌 Kaitan 7KAIH:</p>
-                      <p className="text-sm font-bold text-blue-700">Keimanan & Akhlak</p>
-                    </div>
-                  </motion.div>
-
-                  {/* F. SIPENA */}
-                  <motion.div
-                    variants={cardVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.5 }}
-                    custom={5}
-                    className="p-8 bg-white/80 rounded-[2.5rem] border border-white/50 shadow-xl shadow-purple-100/30 space-y-6 flex flex-col hover:bg-white transition-all duration-300 hover:border-white/80 hover:-translate-y-1">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-2xl bg-purple-100 flex items-center justify-center text-purple-600">
-                        <Book size={24} />
-                      </div>
-                      <h3 className="text-xl font-black text-slate-800 font-display">F. Aplikasi SIPENA</h3>
-                    </div>
-                    <div className="flex-1 space-y-4">
-                      <ul className="space-y-2">
-                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
-                          <div className="w-1.5 h-1.5 rounded-full bg-purple-400 mt-1.5 shrink-0" />
-                          Jumlah kunjungan perpustakaan per bulan
-                        </li>
-                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
-                          <div className="w-1.5 h-1.5 rounded-full bg-purple-400 mt-1.5 shrink-0" />
-                          Jumlah peminjaman dan pengembalian buku
-                        </li>
-                        <li className="flex gap-2 text-slate-600 text-sm font-medium">
-                          <div className="w-1.5 h-1.5 rounded-full bg-purple-400 mt-1.5 shrink-0" />
-                          Keterlambatan pengembalian dan tindak lanjut
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="p-4 bg-purple-50 rounded-2xl border border-purple-100">
-                      <p className="text-xs font-black text-purple-600 uppercase tracking-widest mb-1">📌 Kaitan 7KAIH:</p>
-                      <p className="text-sm font-bold text-purple-700">Kedisiplinan, Karakter, dan Gemar Belajar</p>
-                    </div>
-                  </motion.div>
-                </div>
+                  )}
+                  
+                  <input 
+                    type="file" 
+                    accept="image/*"
+                    ref={petaFileInputRef}
+                    className="hidden"
+                    onChange={handlePetaImageUpload}
+                  />
+                </motion.div>
 
                 <div className="text-center pt-8">
                   <button 
@@ -834,209 +703,42 @@ export default function App() {
                   whileInView="visible"
                   viewport={{ once: true, amount: 0.5 }}
                   custom={0}
-                  className="p-10 bg-white/80 rounded-[2.5rem] border border-white/50 shadow-xl shadow-pink-100/30 space-y-6 hover:bg-white transition-all duration-300 hover:border-white/80 hover:-translate-y-1">
-                  <h3 className="text-2xl font-black text-slate-800 font-display">Ringkasan SIAP Spanju</h3>
-                  <p className="text-slate-600 leading-relaxed font-medium text-lg">
-                    Penggunaan Aplikasi Pembinaan di SMP Negeri 7 Pasuruan sebagai upaya mendukung penanganan permasalahan siswa secara lebih efektif dan terintegrasi. 
-                  </p>
-                  <p className="text-slate-600 leading-relaxed font-medium">
-                    Aplikasi ini dimanfaatkan untuk mempermudah pendataan, pemantauan, dan tindak lanjut berbagai permasalahan siswa dengan mengedepankan pendekatan pembinaan yang edukatif, humanis, dan kolaboratif antara guru, wali kelas, guru BK, serta orang tua. 
-                  </p>
-                  <p className="text-slate-600 leading-relaxed font-medium">
-                    Melalui Aplikasi SIAP, sekolah berharap tercipta lingkungan belajar yang aman, tertib, dan kondusif guna mendukung tumbuh kembang karakter dan prestasi peserta didik.
-                  </p>
-                </motion.div>
-
-                <div className="space-y-8">
-                  <h3 className="text-3xl font-black text-slate-800 font-display text-center">Daftar Aplikasi SIAP Spanju</h3>
+                  className="p-4 md:p-8 bg-white/80 rounded-[2.5rem] border border-white/50 shadow-xl shadow-pink-100/30 hover:bg-white transition-all duration-300 hover:border-white/80 hover:-translate-y-1 flex flex-col items-center justify-center relative group">
                   
-                  <div className="grid grid-cols-1 gap-8">
-                    {/* Aplikasi Siswa Terlambat Hadir */}
-                    <motion.div
-                      variants={cardVariants}
-                      initial="hidden"
-                      whileInView="visible"
-                      viewport={{ once: true, amount: 0.5 }}
-                      custom={1}
-                      className="p-8 bg-white/80 rounded-[2.5rem] border border-white/50 shadow-xl shadow-pink-100/30 space-y-6">
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 rounded-2xl bg-pink-100 flex items-center justify-center text-pink-600">
-                          <Calendar size={24} />
-                        </div>
-                        <h4 className="text-xl font-black text-slate-800 font-display">Aplikasi Siswa Terlambat Hadir</h4>
-                      </div>
-                      <div className="space-y-3">
-                        <p className="font-black text-xs text-slate-500 uppercase tracking-widest">Kegunaan:</p>
-                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          {[
-                            "Pendataan keterlambatan yang tertib dan akurat mencatat siswa terlambat secara sistematis sebagai data resmi sekolah.",
-                            "Pemantauan disiplin siswa secara berkelanjutan mengetahui frekuensi keterlambatan siswa sebagai dasar pembinaan.",
-                            "Dasar tindak lanjut layanan BK dan wali kelas menjadi acuan konseling, pembinaan disiplin, dan pemanggilan orang tua.",
-                            "Meningkatkan kedisiplinan dan kesadaran siswa membiasakan siswa bertanggung jawab terhadap waktu hadir di sekolah.",
-                            "Bahan evaluasi dan laporan sekolah."
-                          ].map((item, i) => (
-                            <li key={i} className="flex gap-3 text-slate-600 text-sm font-medium">
-                              <div className="w-1.5 h-1.5 rounded-full bg-pink-400 mt-1.5 shrink-0" />
-                              {item}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </motion.div>
-
-                    {/* Aplikasi Izin Siswa */}
-                    <motion.div
-                      variants={cardVariants}
-                      initial="hidden"
-                      whileInView="visible"
-                      viewport={{ once: true, amount: 0.5 }}
-                      custom={2}
-                      className="p-8 bg-white/80 rounded-[2.5rem] border border-white/50 shadow-xl shadow-blue-100/30 space-y-6">
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 rounded-2xl bg-blue-100 flex items-center justify-center text-blue-600">
-                          <FileText size={24} />
-                        </div>
-                        <h4 className="text-xl font-black text-slate-800 font-display">Aplikasi Izin Siswa</h4>
-                      </div>
-                      <div className="space-y-3">
-                        <p className="font-black text-xs text-slate-500 uppercase tracking-widest">Kegunaan:</p>
-                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          {[
-                            "Mencatat izin siswa secara resmi dan terdata memudahkan pendataan siswa izin sakit, izin keperluan keluarga, atau izin lainnya secara tertib dan terdokumentasi.",
-                            "Memverifikasi alasan ketidakhadiran siswa aplikasi menjadi sarana unggah bukti pendukung sehingga izin dapat dipertanggungjawabkan.",
-                            "Memudahkan pemantauan kehadiran siswa sekolah dapat membedakan antara siswa izin, sakit, dan tanpa keterangan sebagai dasar pembinaan.",
-                            "Mendukung tindak lanjut wali kelas dan guru BK data izin menjadi rujukan dalam layanan konseling, pembinaan, dan komunikasi dengan orang tua.",
-                            "Meningkatkan disiplin dan kejujuran siswa siswa terbiasa mengajukan izin secara tertib, jujur, dan sesuai prosedur sekolah.",
-                            "Memperkuat komunikasi sekolah dan orang tua orang tua dapat terlibat langsung dalam proses pengajuan izin siswa.",
-                            "Sebagai bahan evaluasi dan pelaporan sekolah data izin digunakan untuk laporan kehadiran, evaluasi bulanan, dan arsip administrasi sekolah."
-                          ].map((item, i) => (
-                            <li key={i} className="flex gap-3 text-slate-600 text-sm font-medium">
-                              <div className="w-1.5 h-1.5 rounded-full bg-blue-400 mt-1.5 shrink-0" />
-                              {item}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </motion.div>
-
-                    {/* Aplikasi BK Peduli Siswa */}
-                    <motion.div
-                      variants={cardVariants}
-                      initial="hidden"
-                      whileInView="visible"
-                      viewport={{ once: true, amount: 0.5 }}
-                      custom={3}
-                      className="p-8 bg-white/80 rounded-[2.5rem] border border-white/50 shadow-xl shadow-purple-100/30 space-y-6">
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 rounded-2xl bg-purple-100 flex items-center justify-center text-purple-600">
-                          <Users size={24} />
-                        </div>
-                        <h4 className="text-xl font-black text-slate-800 font-display">Aplikasi BK Peduli Siswa</h4>
-                      </div>
-                      <div className="space-y-3">
-                        <p className="font-black text-xs text-slate-500 uppercase tracking-widest">Kegunaan:</p>
-                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          {[
-                            "Pendataan permasalahan siswa secara terintegrasi membantu mencatat berbagai permasalahan siswa secara sistematis dan rahasia.",
-                            "Deteksi dini permasalahan siswa sekolah dapat mengidentifikasi potensi masalah siswa sejak dini sebelum berkembang menjadi lebih serius.",
-                            "Mendukung layanan bimbingan dan konseling data dalam aplikasi menjadi dasar guru BK dalam memberikan layanan konseling yang tepat sasaran.",
-                            "Memperkuat kolaborasi sekolah dan orang tua sarana komunikasi dan koordinasi antara sekolah, wali kelas, guru BK, dan orang tua.",
-                            "Pendampingan siswa secara humanis dan edukatif mengedepankan pembinaan, empati, dan penguatan karakter positif.",
-                            "Pemantauan tindak lanjut dan perkembangan siswa setiap langkah pembinaan dan hasil pendampingan dapat dipantau dan dievaluasi.",
-                            "Sebagai bahan evaluasi dan pelaporan sekolah data aplikasi digunakan untuk evaluasi program BK, sekolah ramah anak, dan laporan administrasi."
-                          ].map((item, i) => (
-                            <li key={i} className="flex gap-3 text-slate-600 text-sm font-medium">
-                              <div className="w-1.5 h-1.5 rounded-full bg-purple-400 mt-1.5 shrink-0" />
-                              {item}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </motion.div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      {/* Aplikasi Si-UKS */}
-                      <motion.div
-                        variants={cardVariants}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.5 }}
-                        custom={4}
-                        className="p-6 bg-white/80 rounded-[2rem] border border-white/50 shadow-xl shadow-pink-100/30 space-y-4">
-                        <div className="w-10 h-10 rounded-xl bg-pink-100 flex items-center justify-center text-pink-600">
-                          <Activity size={20} />
-                        </div>
-                        <h4 className="text-lg font-black text-slate-800 font-display">Aplikasi Si-UKS</h4>
-                        <ul className="space-y-2">
-                          {[
-                            "Menertibkan administrasi UKS digital.",
-                            "Pengelolaan UKS berbasis data.",
-                            "Monitoring indikator UKS.",
-                            "Layanan kesehatan berkualitas.",
-                            "Bukti inovasi & praktik baik."
-                          ].map((item, i) => (
-                            <li key={i} className="flex gap-2 text-slate-600 text-xs font-medium">
-                              <div className="w-1 h-1 rounded-full bg-pink-400 mt-1.5 shrink-0" />
-                              {item}
-                            </li>
-                          ))}
-                        </ul>
-                      </motion.div>
-
-                      {/* Aplikasi SIM-AGAMA */}
-                      <motion.div
-                        variants={cardVariants}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.5 }}
-                        custom={5}
-                        className="p-6 bg-white/80 rounded-[2rem] border border-white/50 shadow-xl shadow-blue-100/30 space-y-4">
-                        <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center text-blue-600">
-                          <Shield size={20} />
-                        </div>
-                        <h4 className="text-lg font-black text-slate-800 font-display">Aplikasi SIM-AGAMA</h4>
-                        <ul className="space-y-2">
-                          {[
-                            "Pantau keaktifan keagamaan.",
-                            "Konsistensi program agama.",
-                            "Data akurat untuk pelaporan."
-                          ].map((item, i) => (
-                            <li key={i} className="flex gap-2 text-slate-600 text-xs font-medium">
-                              <div className="w-1 h-1 rounded-full bg-blue-400 mt-1.5 shrink-0" />
-                              {item}
-                            </li>
-                          ))}
-                        </ul>
-                      </motion.div>
-
-                      {/* Aplikasi SIPENA */}
-                      <motion.div
-                        variants={cardVariants}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.5 }}
-                        custom={6}
-                        className="p-6 bg-white/80 rounded-[2rem] border border-white/50 shadow-xl shadow-purple-100/30 space-y-4">
-                        <div className="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center text-purple-600">
-                          <Book size={20} />
-                        </div>
-                        <h4 className="text-lg font-black text-slate-800 font-display">Aplikasi SIPENA</h4>
-                        <ul className="space-y-2">
-                          {[
-                            "Pendataan buku perpustakaan.",
-                            "Layanan pinjam-kembali cepat.",
-                            "Meningkatkan minat baca siswa."
-                          ].map((item, i) => (
-                            <li key={i} className="flex gap-2 text-slate-600 text-xs font-medium">
-                              <div className="w-1 h-1 rounded-full bg-purple-400 mt-1.5 shrink-0" />
-                              {item}
-                            </li>
-                          ))}
-                        </ul>
-                      </motion.div>
+                  {kilasImage ? (
+                    <>
+                      <img 
+                        src={kilasImage} 
+                        alt="Kilas Aplikasi SIAP" 
+                        className="w-full max-w-3xl h-auto rounded-2xl shadow-md object-contain"
+                      />
+                      <button 
+                        onClick={() => kilasFileInputRef.current?.click()}
+                        className="absolute top-4 right-4 md:top-8 md:right-8 bg-white/90 backdrop-blur-sm text-slate-700 p-3 rounded-xl shadow-lg opacity-0 group-hover:opacity-100 transition-opacity hover:bg-pink-50 hover:text-pink-600 flex items-center gap-2 font-semibold text-sm"
+                      >
+                        <Upload size={16} />
+                        Ganti Gambar
+                      </button>
+                    </>
+                  ) : (
+                    <div 
+                      onClick={() => kilasFileInputRef.current?.click()}
+                      className="w-full max-w-3xl aspect-[4/5] md:aspect-video rounded-2xl border-2 border-dashed border-pink-300 bg-pink-50/50 flex flex-col items-center justify-center text-pink-500 cursor-pointer hover:bg-pink-50 hover:border-pink-400 transition-all"
+                    >
+                      <Upload size={48} className="mb-4 opacity-50" />
+                      <p className="font-bold text-lg">Klik untuk Mengunggah Gambar Infografis</p>
+                      <p className="text-sm opacity-70 mt-2">Gambar akan tersimpan di browser Anda</p>
                     </div>
-                  </div>
-                </div>
+                  )}
+                  
+                  <input 
+                    type="file" 
+                    accept="image/*"
+                    ref={kilasFileInputRef}
+                    className="hidden"
+                    onChange={handleKilasImageUpload}
+                  />
+                </motion.div>
 
                 <div className="p-10 bg-gradient-to-br from-pink-50 to-blue-50 rounded-[2.5rem] text-slate-800 shadow-2xl relative overflow-hidden group border border-white/50">
                   <div className="absolute top-0 right-0 w-64 h-64 bg-blue-300/20 blur-3xl -mr-20 -mt-20 group-hover:bg-blue-300/40 transition-all duration-700" />
