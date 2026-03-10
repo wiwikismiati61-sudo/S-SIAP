@@ -140,16 +140,21 @@ export default function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [showKilas, setShowKilas] = useState(true);
   const [showPeta, setShowPeta] = useState(false);
+  const [showKorelasi, setShowKorelasi] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [copied, setCopied] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const kilasFileInputRef = useRef<HTMLInputElement>(null);
   const petaFileInputRef = useRef<HTMLInputElement>(null);
+  const korelasiFileInputRef = useRef<HTMLInputElement>(null);
   const [kilasImage, setKilasImage] = useState<string | null>(() => {
     return localStorage.getItem('kilasImage') || null;
   });
   const [petaImage, setPetaImage] = useState<string | null>(() => {
     return localStorage.getItem('petaImage') || null;
+  });
+  const [korelasiImage, setKorelasiImage] = useState<string | null>(() => {
+    return localStorage.getItem('korelasiImage') || null;
   });
 
   const [isMobile, setIsMobile] = useState(false);
@@ -184,6 +189,24 @@ export default function App() {
         } catch (err) {
           alert('Gambar terlalu besar untuk disimpan di memori browser. Gambar akan tetap ditampilkan untuk sesi ini.');
           setPetaImage(base64String);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleKorelasiImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64String = reader.result as string;
+        try {
+          localStorage.setItem('korelasiImage', base64String);
+          setKorelasiImage(base64String);
+        } catch (err) {
+          alert('Gambar terlalu besar untuk disimpan di memori browser. Gambar akan tetap ditampilkan untuk sesi ini.');
+          setKorelasiImage(base64String);
         }
       };
       reader.readAsDataURL(file);
@@ -258,6 +281,7 @@ export default function App() {
   const handleLinkClick = (link: AppLink) => {
     setShowKilas(false);
     setShowPeta(false);
+    setShowKorelasi(false);
     if (link.displayMode === 'new_tab') {
       window.open(link.url, '_blank');
       setActiveLinkId(link.id); // Still set as active to show selection
@@ -471,6 +495,7 @@ export default function App() {
             onClick={() => {
               setShowPeta(true);
               setShowKilas(false);
+              setShowKorelasi(false);
               setActiveLinkId(null);
             }}
             className={`
@@ -489,6 +514,33 @@ export default function App() {
                 Peta Integrasi 7KAIH
               </p>
               <p className="text-[8px] font-bold text-slate-500 uppercase tracking-widest">Kaitan Karakter</p>
+            </div>
+          </button>
+
+          {/* Korelasi SRA Menu */}
+          <button
+            onClick={() => {
+              setShowKorelasi(true);
+              setShowPeta(false);
+              setShowKilas(false);
+              setActiveLinkId(null);
+            }}
+            className={`
+              w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300
+              ${showKorelasi 
+                ? `bg-white/80 shadow-sm translate-y-[-1px] ring-1 ring-white/50` 
+                : 'hover:bg-white/50 text-slate-600'
+              }
+            `}
+          >
+            <div className={`w-10 h-10 rounded-2xl bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 ${showKorelasi ? 'scale-110 rotate-3 shadow-emerald-500/50' : ''}`}>
+              <Activity size={20} />
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className={`font-black tracking-tight truncate text-[20px] uppercase ${showKorelasi ? 'text-slate-800' : 'text-slate-600'}`}>
+                Korelasi SRA
+              </p>
+              <p className="text-[8px] font-bold text-slate-500 uppercase tracking-widest">Sekolah Ramah Anak</p>
             </div>
           </button>
 
@@ -664,6 +716,86 @@ export default function App() {
                   <button 
                     onClick={() => {
                       setShowPeta(false);
+                      setShowKorelasi(true);
+                    }}
+                    className="px-10 py-4 bg-white/80 text-slate-800 rounded-2xl font-black shadow-xl hover:scale-105 hover:bg-white transition-all border border-white/80"
+                  >
+                    Selanjutnya
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          ) : showKorelasi ? (
+            <motion.div
+              key="korelasi-content"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              className="flex-1 flex flex-col bg-white/60 backdrop-blur-3xl rounded-[2rem] md:rounded-[2.5rem] overflow-y-auto shadow-2xl border border-white/50 p-6 md:p-12 scrollbar-hide"
+            >
+              <div className="max-w-5xl mx-auto space-y-12">
+                <div className="text-center space-y-4 relative">
+                  <div className="absolute -top-16 -left-16 w-64 h-64 bg-emerald-300/30 rounded-full blur-3xl" />
+                  <div className="absolute -bottom-16 -right-16 w-64 h-64 bg-teal-300/30 rounded-full blur-3xl" />
+                  <div className="w-24 h-24 rounded-3xl bg-white/80 flex items-center justify-center shadow-xl shadow-emerald-100/50 mx-auto rotate-6 overflow-hidden p-2 mb-6 border border-white/80 backdrop-blur-md">
+                    <img 
+                      src="https://iili.io/KDFk4fI.png" 
+                      alt="Logo" 
+                      className="w-full h-full object-contain"
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
+                  <h2 className="text-3xl md:text-5xl font-black text-slate-800 tracking-tight font-display leading-none">Korelasi Integrasi SIAP</h2>
+                  <p className="text-sm md:text-lg font-black text-slate-500 uppercase tracking-[0.3em]">dengan Sekolah Ramah Anak / SRA</p>
+                </div>
+
+                <motion.div
+                  variants={cardVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.5 }}
+                  custom={0}
+                  className="p-4 md:p-8 bg-white/80 rounded-[2.5rem] border border-white/50 shadow-xl shadow-emerald-100/30 hover:bg-white transition-all duration-300 hover:border-white/80 hover:-translate-y-1 flex flex-col items-center justify-center relative group z-10">
+                  
+                  {korelasiImage ? (
+                    <>
+                      <img 
+                        src={korelasiImage} 
+                        alt="Korelasi Integrasi SIAP dengan SRA" 
+                        className="w-full max-w-3xl h-auto rounded-2xl shadow-md object-contain"
+                      />
+                      <button 
+                        onClick={() => korelasiFileInputRef.current?.click()}
+                        className="absolute top-4 right-4 md:top-8 md:right-8 bg-white/90 backdrop-blur-sm text-slate-700 p-3 rounded-xl shadow-lg opacity-0 group-hover:opacity-100 transition-opacity hover:bg-emerald-50 hover:text-emerald-600 flex items-center gap-2 font-semibold text-sm"
+                      >
+                        <Upload size={16} />
+                        Ganti Gambar
+                      </button>
+                    </>
+                  ) : (
+                    <div 
+                      onClick={() => korelasiFileInputRef.current?.click()}
+                      className="w-full max-w-3xl aspect-[4/5] md:aspect-video rounded-2xl border-2 border-dashed border-emerald-300 bg-emerald-50/50 flex flex-col items-center justify-center text-emerald-500 cursor-pointer hover:bg-emerald-50 hover:border-emerald-400 transition-all"
+                    >
+                      <Upload size={48} className="mb-4 opacity-50" />
+                      <p className="font-bold text-lg">Klik untuk Mengunggah Gambar Korelasi SRA</p>
+                      <p className="text-sm opacity-70 mt-2">Gambar akan tersimpan di browser Anda</p>
+                    </div>
+                  )}
+                  
+                  <input 
+                    type="file" 
+                    accept="image/*"
+                    ref={korelasiFileInputRef}
+                    className="hidden"
+                    onChange={handleKorelasiImageUpload}
+                  />
+                </motion.div>
+
+                <div className="text-center pt-8">
+                  <button 
+                    onClick={() => {
+                      setShowKorelasi(false);
                       setIsSidebarOpen(true);
                     }}
                     className="px-10 py-4 bg-white/80 text-slate-800 rounded-2xl font-black shadow-xl hover:scale-105 hover:bg-white transition-all border border-white/80"
