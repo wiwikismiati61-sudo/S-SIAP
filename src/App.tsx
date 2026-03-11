@@ -27,7 +27,8 @@ import {
   Zap,
   Copy,
   ClipboardList,
-  FileCheck
+  FileCheck,
+  Award
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -41,7 +42,7 @@ interface AppLink {
 }
 
 const ICON_MAP: Record<string, any> = {
-  Globe, Shield, Book, Users, Activity, FileText, Calendar, MessageSquare, Briefcase, Zap, Search, ClipboardList, FileCheck
+  Globe, Shield, Book, Users, Activity, FileText, Calendar, MessageSquare, Briefcase, Zap, Search, ClipboardList, FileCheck, Award
 };
 
 const cardVariants = {
@@ -130,6 +131,13 @@ const EXTERNAL_APPS = [
     url: "https://dispensasi-siswa-lime.vercel.app/",
     icon: 'FileCheck',
     color: "from-pink-400 to-pink-600"
+  },
+  {
+    id: 'prestasi-siswa',
+    title: "Prestasi Siswa",
+    url: "https://prestasi-siswa.vercel.app/",
+    icon: 'Award',
+    color: "from-blue-400 to-blue-600"
   }
 ];
 
