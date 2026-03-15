@@ -683,6 +683,26 @@ export default function App() {
                   />
                 </motion.div>
 
+                <div className="p-10 bg-gradient-to-br from-emerald-50 to-teal-50 rounded-[2.5rem] text-slate-800 shadow-2xl relative overflow-hidden group border border-white/50">
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-teal-300/20 blur-3xl -mr-20 -mt-20 group-hover:bg-teal-300/40 transition-all duration-700" />
+                  <div className="relative z-10 space-y-6">
+                    <h3 className="text-2xl font-black font-display tracking-tight text-slate-900">Kesimpulan</h3>
+                    <p className="text-slate-800 leading-relaxed font-medium text-lg">
+                      Kesembilan aplikasi SIAP di SMPN 7 saling terintegrasi untuk mendukung implementasi Sekolah Ramah Anak, karena:
+                    </p>
+                    <ol className="list-decimal list-outside text-slate-700 text-base leading-relaxed font-medium space-y-2 ml-6">
+                      <li>Mendukung perlindungan dan kesejahteraan siswa.</li>
+                      <li>Mengembangkan kedisiplinan positif dan karakter.</li>
+                      <li>Menjamin pelayanan pendidikan yang aman, sehat, dan inklusif.</li>
+                      <li>Mengoptimalkan potensi dan prestasi siswa.</li>
+                    </ol>
+                    <div className="h-px bg-slate-300 w-full" />
+                    <p className="text-slate-700 text-base leading-relaxed font-medium">
+                      Dengan integrasi tersebut, sistem aplikasi SIAP dapat menjadi pendukung utama manajemen sekolah dalam mewujudkan lingkungan belajar yang aman, nyaman, dan ramah anak.
+                    </p>
+                  </div>
+                </div>
+
                 <div className="text-center pt-8">
                   <button 
                     onClick={() => {
