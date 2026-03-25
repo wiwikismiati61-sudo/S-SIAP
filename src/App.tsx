@@ -138,6 +138,13 @@ const EXTERNAL_APPS = [
     url: "https://prestasi-siswa.vercel.app/",
     icon: 'Award',
     color: "from-blue-400 to-blue-600"
+  },
+  {
+    id: 'pengaduan-wali-murid',
+    title: "Pengaduan Wali Murid",
+    url: "https://pengaduan-topaz.vercel.app/",
+    icon: 'MessageSquare',
+    color: "from-pink-400 to-pink-600"
   }
 ];
 
