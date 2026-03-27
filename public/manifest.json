@@ -1,6 +1,6 @@
 {
-  "name": "SIAP - Sistem Integrasi Aplikasi Pembinaan",
-  "short_name": "SIAP Spanju",
+  "name": "SIAP SPANJU - Sistem Integrasi Aplikasi Pembinaan Siswa",
+  "short_name": "SIAP SPANJU",
   "description": "Sekolah Sigap Menangani Permasalahan Siswa Secara Cepat dan Terdata",
   "start_url": "/",
   "display": "standalone",

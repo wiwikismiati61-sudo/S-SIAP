@@ -310,7 +310,7 @@ export default function App() {
           >
             <img 
               src="https://iili.io/KDFk4fI.png" 
-              alt="Logo SIAP" 
+              alt="Logo SIAP SPANJU" 
               className="w-full h-full object-contain drop-shadow-md"
               referrerPolicy="no-referrer"
             />
@@ -322,7 +322,7 @@ export default function App() {
             transition={{ delay: 0.4 }}
             className="text-4xl md:text-7xl font-black text-slate-800 tracking-tight mb-4 font-display"
           >
-            SIAP
+            SIAP SPANJU
           </motion.h1>
           
           <motion.p 
@@ -331,7 +331,7 @@ export default function App() {
             transition={{ delay: 0.5 }}
             className="text-base md:text-xl font-bold text-slate-600 uppercase tracking-[0.2em] mb-8"
           >
-            Sistem Integrasi Aplikasi Pembinaan
+            Sistem Integrasi Aplikasi Pembinaan Siswa
           </motion.p>
           
           <motion.p
@@ -406,9 +406,9 @@ export default function App() {
                   referrerPolicy="no-referrer"
                 />
               </div>
-              <span className="text-xl font-black tracking-tight text-slate-800">SIAP</span>
+              <span className="text-xl font-black tracking-tight text-slate-800">SIAP SPANJU</span>
             </div>
-            <span className="text-[8px] font-bold text-slate-500 uppercase tracking-[0.1em] leading-none ml-10">Sistem Integrasi Aplikasi Pembinaan</span>
+            <span className="text-[8px] font-bold text-slate-500 uppercase tracking-[0.1em] leading-none ml-10">Sistem Integrasi Aplikasi Pembinaan Siswa</span>
           </motion.h1>
           <button 
             onClick={() => setIsSidebarOpen(false)}
@@ -438,7 +438,7 @@ export default function App() {
             </div>
             <div className="flex-1 min-w-0">
               <p className={`font-black tracking-tight truncate text-[20px] uppercase ${showKilas ? 'text-slate-800' : 'text-slate-600'}`}>
-                Kilas Aplikasi SIAP
+                Kilas Aplikasi SIAP SPANJU
               </p>
               <p className="text-[8px] font-bold text-slate-500 uppercase tracking-widest">Referensi Dasar</p>
             </div>
@@ -619,7 +619,7 @@ export default function App() {
                       referrerPolicy="no-referrer"
                     />
                   </div>
-                  <h2 className="text-3xl md:text-5xl font-black text-slate-800 tracking-tight font-display leading-none">Peta Integrasi SIAP</h2>
+                  <h2 className="text-3xl md:text-5xl font-black text-slate-800 tracking-tight font-display leading-none">Peta Integrasi SIAP SPANJU</h2>
                   <p className="text-sm md:text-lg font-black text-slate-500 uppercase tracking-[0.3em]">Kaitan Aplikasi dengan Nilai 7KAIH</p>
                 </div>
 
@@ -633,7 +633,7 @@ export default function App() {
                   
                   <img 
                     src={PETA_IMAGE_URL} 
-                    alt="Peta Integrasi SIAP" 
+                    alt="Peta Integrasi SIAP SPANJU" 
                     className="w-full max-w-3xl h-auto rounded-2xl shadow-md object-contain"
                   />
                 </motion.div>
@@ -671,7 +671,7 @@ export default function App() {
                       referrerPolicy="no-referrer"
                     />
                   </div>
-                  <h2 className="text-3xl md:text-5xl font-black text-slate-800 tracking-tight font-display leading-none">Korelasi Integrasi SIAP</h2>
+                  <h2 className="text-3xl md:text-5xl font-black text-slate-800 tracking-tight font-display leading-none">Korelasi Integrasi SIAP SPANJU</h2>
                   <p className="text-sm md:text-lg font-black text-slate-500 uppercase tracking-[0.3em]">dengan Sekolah Ramah Anak / SRA</p>
                 </div>
 
@@ -685,7 +685,7 @@ export default function App() {
                   
                   <img 
                     src={KORELASI_IMAGE_URL} 
-                    alt="Korelasi Integrasi SIAP dengan SRA" 
+                    alt="Korelasi Integrasi SIAP SPANJU dengan SRA" 
                     className="w-full max-w-3xl h-auto rounded-2xl shadow-md object-contain"
                   />
                 </motion.div>
@@ -695,7 +695,7 @@ export default function App() {
                   <div className="relative z-10 space-y-6">
                     <h3 className="text-2xl font-black font-display tracking-tight text-slate-900">Kesimpulan</h3>
                     <p className="text-slate-800 leading-relaxed font-medium text-lg">
-                      Kesembilan aplikasi SIAP di SMPN 7 saling terintegrasi untuk mendukung implementasi Sekolah Ramah Anak, karena:
+                      Kesembilan aplikasi SIAP SPANJU di SMPN 7 saling terintegrasi untuk mendukung implementasi Sekolah Ramah Anak, karena:
                     </p>
                     <ol className="list-decimal list-outside text-slate-700 text-base leading-relaxed font-medium space-y-2 ml-6">
                       <li>Mendukung perlindungan dan kesejahteraan siswa.</li>
@@ -705,7 +705,7 @@ export default function App() {
                     </ol>
                     <div className="h-px bg-slate-300 w-full" />
                     <p className="text-slate-700 text-base leading-relaxed font-medium">
-                      Dengan integrasi tersebut, sistem aplikasi SIAP dapat menjadi pendukung utama manajemen sekolah dalam mewujudkan lingkungan belajar yang aman, nyaman, dan ramah anak.
+                      Dengan integrasi tersebut, sistem aplikasi SIAP SPANJU dapat menjadi pendukung utama manajemen sekolah dalam mewujudkan lingkungan belajar yang aman, nyaman, dan ramah anak.
                     </p>
                   </div>
                 </div>
@@ -743,8 +743,8 @@ export default function App() {
                       referrerPolicy="no-referrer"
                     />
                   </div>
-                  <h2 className="text-3xl md:text-5xl font-black text-slate-800 tracking-tight font-display leading-none">Kilas Aplikasi SIAP</h2>
-                  <p className="text-sm md:text-lg font-black text-slate-500 uppercase tracking-[0.3em]">Sistem Integrasi Aplikasi Pembinaan</p>
+                  <h2 className="text-3xl md:text-5xl font-black text-slate-800 tracking-tight font-display leading-none">Kilas Aplikasi SIAP SPANJU</h2>
+                  <p className="text-sm md:text-lg font-black text-slate-500 uppercase tracking-[0.3em]">Sistem Integrasi Aplikasi Pembinaan Siswa</p>
                 </div>
 
                 <motion.div
@@ -757,7 +757,7 @@ export default function App() {
                   
                   <img 
                     src={KILAS_IMAGE_URL} 
-                    alt="Kilas Aplikasi SIAP" 
+                    alt="Kilas Aplikasi SIAP SPANJU" 
                     className="w-full max-w-3xl h-auto rounded-2xl shadow-md object-contain"
                   />
                 </motion.div>
@@ -765,7 +765,7 @@ export default function App() {
                 <div className="p-10 bg-gradient-to-br from-pink-50 to-blue-50 rounded-[2.5rem] text-slate-800 shadow-2xl relative overflow-hidden group border border-white/50">
                   <div className="absolute top-0 right-0 w-64 h-64 bg-blue-300/20 blur-3xl -mr-20 -mt-20 group-hover:bg-blue-300/40 transition-all duration-700" />
                   <div className="relative z-10 space-y-6">
-                    <h3 className="text-2xl font-black font-display tracking-tight text-slate-900">Filosofi SIAP Spanju</h3>
+                    <h3 className="text-2xl font-black font-display tracking-tight text-slate-900">Filosofi SIAP SPANJU</h3>
                     <p className="text-slate-800 leading-relaxed font-bold text-lg italic">
                       "Sekolah Sigap Menangani Permasalahan Siswa Secara Cepat dan Terdata"
                     </p>
