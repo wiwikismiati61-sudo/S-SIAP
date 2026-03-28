@@ -755,7 +755,7 @@ export default function App() {
                     className="p-4 bg-white/80 rounded-[2rem] border border-white/50 shadow-xl shadow-purple-100/30 hover:bg-white transition-all duration-300 hover:border-white/80 hover:-translate-y-1 flex flex-col items-center justify-center group"
                   >
                     <img 
-                      src="https://wsrv.nl/?url=i.ibb.co.com/ZRzcd3NC/Gemini-Generated-Image-7jesy47jesy47jes.png" 
+                      src="https://wsrv.nl/?url=i.ibb.co.com/YFn0zsDJ/Gemini-Generated-Image-ncurlcncurlcncur.png" 
                       alt="15 Indikator SPIP Anti Korupsi - Bagian 1" 
                       className="w-full h-auto rounded-xl shadow-sm object-contain"
                     />
