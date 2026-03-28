@@ -150,7 +150,7 @@ const EXTERNAL_APPS = [
 
 // GANTI LINK DI BAWAH INI DENGAN LINK GAMBAR ANDA YANG SUDAH DIUPLOAD KE INTERNET (misal: imgbb.com, imgur.com, dll)
 const KILAS_IMAGE_URL = "https://wsrv.nl/?url=i.ibb.co/ZtqkYcY/kilas-aplikasi.jpg";
-const PETA_IMAGE_URL = "https://wsrv.nl/?url=i.ibb.co/DDvBMgFH/gambar-2.jpg";
+const PETA_IMAGE_URL = "https://wsrv.nl/?url=i.ibb.co.com/VWYCc9Cc/Gemini-Generated-Image-a54l2ma54l2ma54l.png";
 const KORELASI_IMAGE_URL = "https://wsrv.nl/?url=i.ibb.co/5wM2Bd4/gambar-3.jpg";
 
 export default function App() {
@@ -465,9 +465,9 @@ export default function App() {
             </div>
             <div className="flex-1 min-w-0">
               <p className={`font-black tracking-tight truncate text-[20px] uppercase ${showPeta ? 'text-slate-800' : 'text-slate-600'}`}>
-                Peta Integrasi 7KAIH
+                8 Program Prioritas
               </p>
-              <p className="text-[8px] font-bold text-slate-500 uppercase tracking-widest">Kaitan Karakter</p>
+              <p className="text-[8px] font-bold text-slate-500 uppercase tracking-widest">SMPN 7 Pasuruan</p>
             </div>
           </button>
 
@@ -619,8 +619,8 @@ export default function App() {
                       referrerPolicy="no-referrer"
                     />
                   </div>
-                  <h2 className="text-3xl md:text-5xl font-black text-slate-800 tracking-tight font-display leading-none">Peta Integrasi SIAP SPANJU</h2>
-                  <p className="text-sm md:text-lg font-black text-slate-500 uppercase tracking-[0.3em]">Kaitan Aplikasi dengan Nilai 7KAIH</p>
+                  <h2 className="text-3xl md:text-5xl font-black text-slate-800 tracking-tight font-display leading-none">8 Program Prioritas</h2>
+                  <p className="text-sm md:text-lg font-black text-slate-500 uppercase tracking-[0.3em]">Menuju Sekolah Unggul & Berkarakter</p>
                 </div>
 
                 <motion.div
@@ -633,7 +633,7 @@ export default function App() {
                   
                   <img 
                     src={PETA_IMAGE_URL} 
-                    alt="Peta Integrasi SIAP SPANJU" 
+                    alt="8 Program Prioritas SMPN 7 Pasuruan" 
                     className="w-full max-w-3xl h-auto rounded-2xl shadow-md object-contain"
                   />
                 </motion.div>
