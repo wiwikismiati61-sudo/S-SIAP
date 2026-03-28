@@ -161,6 +161,7 @@ export default function App() {
   const [showKilas, setShowKilas] = useState(true);
   const [showPeta, setShowPeta] = useState(false);
   const [showSpip, setShowSpip] = useState(false);
+  const [showKorelasiProgram, setShowKorelasiProgram] = useState(false);
   const [showKorelasi, setShowKorelasi] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -237,6 +238,7 @@ export default function App() {
     setShowKilas(false);
     setShowPeta(false);
     setShowSpip(false);
+    setShowKorelasiProgram(false);
     setShowKorelasi(false);
     if (link.displayMode === 'new_tab') {
       window.open(link.url, '_blank');
@@ -427,6 +429,7 @@ export default function App() {
               setShowKilas(true);
               setShowSpip(false);
               setShowPeta(false);
+              setShowKorelasiProgram(false);
               setShowKorelasi(false);
               setActiveLinkId(null);
             }}
@@ -455,6 +458,7 @@ export default function App() {
               setShowPeta(true);
               setShowSpip(false);
               setShowKilas(false);
+              setShowKorelasiProgram(false);
               setShowKorelasi(false);
               setActiveLinkId(null);
             }}
@@ -482,6 +486,7 @@ export default function App() {
             onClick={() => {
               setShowSpip(true);
               setShowPeta(false);
+              setShowKorelasiProgram(false);
               setShowKorelasi(false);
               setShowKilas(false);
               setActiveLinkId(null);
@@ -505,10 +510,40 @@ export default function App() {
             </div>
           </button>
 
+          {/* Korelasi Program & SPIP Menu */}
+          <button
+            onClick={() => {
+              setShowKorelasiProgram(true);
+              setShowSpip(false);
+              setShowPeta(false);
+              setShowKorelasi(false);
+              setShowKilas(false);
+              setActiveLinkId(null);
+            }}
+            className={`
+              w-full text-left p-3 rounded-xl flex items-center gap-3 transition-all duration-300
+              ${showKorelasiProgram 
+                ? `bg-white/80 shadow-sm translate-y-[-1px] ring-1 ring-white/50` 
+                : 'hover:bg-white/50 text-slate-600'
+              }
+            `}
+          >
+            <div className={`w-10 h-10 rounded-2xl bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-white shadow-sm shrink-0 transition-all duration-500 ${showKorelasiProgram ? 'scale-110 rotate-3 shadow-orange-500/50' : ''}`}>
+              <ClipboardList size={20} />
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className={`font-black tracking-tight truncate text-[20px] uppercase ${showKorelasiProgram ? 'text-slate-800' : 'text-slate-600'}`}>
+                Korelasi Program
+              </p>
+              <p className="text-[8px] font-bold text-slate-500 uppercase tracking-widest">SPIP & SIAP SPANJU</p>
+            </div>
+          </button>
+
           {/* Korelasi SRA Menu */}
           <button
             onClick={() => {
               setShowKorelasi(true);
+              setShowKorelasiProgram(false);
               setShowSpip(false);
               setShowPeta(false);
               setShowKilas(false);
@@ -710,7 +745,7 @@ export default function App() {
                   <p className="text-sm md:text-lg font-black text-slate-500 uppercase tracking-[0.3em]">Sistem Pengendalian Intern Pemerintah</p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+                <div className="flex flex-col gap-8 relative z-10 max-w-4xl mx-auto w-full">
                   <motion.div
                     variants={cardVariants}
                     initial="hidden"
@@ -761,6 +796,58 @@ export default function App() {
                   <button 
                     onClick={() => {
                       setShowSpip(false);
+                      setShowKorelasiProgram(true);
+                    }}
+                    className="px-10 py-4 bg-white/80 text-slate-800 rounded-2xl font-black shadow-xl hover:scale-105 hover:bg-white transition-all border border-white/80"
+                  >
+                    Selanjutnya
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          ) : showKorelasiProgram ? (
+            <motion.div
+              key="korelasi-program-content"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              className="flex-1 flex flex-col bg-white/60 backdrop-blur-3xl rounded-[2rem] md:rounded-[2.5rem] overflow-y-auto shadow-2xl border border-white/50 p-6 md:p-12 scrollbar-hide"
+            >
+              <div className="max-w-5xl mx-auto space-y-12">
+                <div className="text-center space-y-4 relative">
+                  <div className="absolute -top-16 -left-16 w-64 h-64 bg-orange-300/30 rounded-full blur-3xl" />
+                  <div className="absolute -bottom-16 -right-16 w-64 h-64 bg-yellow-300/30 rounded-full blur-3xl" />
+                  <div className="w-24 h-24 rounded-3xl bg-white/80 flex items-center justify-center shadow-xl shadow-orange-100/50 mx-auto rotate-6 overflow-hidden p-2 mb-6 border border-white/80 backdrop-blur-md">
+                    <img 
+                      src="https://iili.io/KDFk4fI.png" 
+                      alt="Logo" 
+                      className="w-full h-full object-contain"
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
+                  <h2 className="text-3xl md:text-5xl font-black text-slate-800 tracking-tight font-display leading-none">Korelasi Program & SPIP</h2>
+                  <p className="text-sm md:text-lg font-black text-slate-500 uppercase tracking-[0.3em]">dengan 9 Aplikasi SIAP SPANJU</p>
+                </div>
+
+                <motion.div
+                  variants={cardVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.5 }}
+                  custom={0}
+                  className="p-4 md:p-8 bg-white/80 rounded-[2.5rem] border border-white/50 shadow-xl shadow-orange-100/30 hover:bg-white transition-all duration-300 hover:border-white/80 hover:-translate-y-1 flex flex-col items-center justify-center relative group z-10">
+                  
+                  <img 
+                    src="https://wsrv.nl/?url=i.ibb.co.com/99vdYcf5/Gemini-Generated-Image-kbsmjdkbsmjdkbsm.png" 
+                    alt="Korelasi 8 Program Prioritas, 15 Indikator SPIP dengan 9 Aplikasi SIAP SPANJU" 
+                    className="w-full max-w-4xl h-auto rounded-2xl shadow-md object-contain"
+                  />
+                </motion.div>
+
+                <div className="text-center pt-8">
+                  <button 
+                    onClick={() => {
+                      setShowKorelasiProgram(false);
                       setShowKorelasi(true);
                     }}
                     className="px-10 py-4 bg-white/80 text-slate-800 rounded-2xl font-black shadow-xl hover:scale-105 hover:bg-white transition-all border border-white/80"
