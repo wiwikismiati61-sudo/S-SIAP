@@ -149,7 +149,7 @@ const EXTERNAL_APPS = [
 ];
 
 // GANTI LINK DI BAWAH INI DENGAN LINK GAMBAR ANDA YANG SUDAH DIUPLOAD KE INTERNET (misal: imgbb.com, imgur.com, dll)
-const KILAS_IMAGE_URL = "https://wsrv.nl/?url=i.ibb.co/ZtqkYcY/kilas-aplikasi.jpg";
+const KILAS_IMAGE_URL = "https://wsrv.nl/?url=i.ibb.co.com/3yssw38v/Gemini-Generated-Image-gporzagporzagpor.png";
 const PETA_IMAGE_URL = "https://wsrv.nl/?url=i.ibb.co.com/VWYCc9Cc/Gemini-Generated-Image-a54l2ma54l2ma54l.png";
 const KORELASI_IMAGE_URL = "https://wsrv.nl/?url=i.ibb.co/5wM2Bd4/gambar-3.jpg";
 
