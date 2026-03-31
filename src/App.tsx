@@ -148,7 +148,7 @@ const EXTERNAL_APPS = [
   },
   {
     id: '8-program-prioritas-spanju',
-    title: "8 program ptioritas Spanju",
+    title: "8 Program Prioritas Spanju",
     url: "https://7-kaih-nine.vercel.app/",
     icon: 'LayoutDashboard',
     color: "from-blue-400 to-blue-600"
