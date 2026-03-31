@@ -42,7 +42,7 @@ interface AppLink {
 }
 
 const ICON_MAP: Record<string, any> = {
-  Globe, Shield, Book, Users, Activity, FileText, Calendar, MessageSquare, Briefcase, Zap, Search, ClipboardList, FileCheck, Award
+  Globe, Shield, Book, Users, Activity, FileText, Calendar, MessageSquare, Briefcase, Zap, Search, ClipboardList, FileCheck, Award, LayoutDashboard
 };
 
 const cardVariants = {
@@ -145,6 +145,13 @@ const EXTERNAL_APPS = [
     url: "https://pengaduan-topaz.vercel.app/",
     icon: 'MessageSquare',
     color: "from-pink-400 to-pink-600"
+  },
+  {
+    id: '8-program-prioritas-spanju',
+    title: "8 program ptioritas Spanju",
+    url: "https://7-kaih-nine.vercel.app/",
+    icon: 'LayoutDashboard',
+    color: "from-blue-400 to-blue-600"
   }
 ];
 
